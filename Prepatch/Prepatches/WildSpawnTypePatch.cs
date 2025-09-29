@@ -24,10 +24,10 @@ public static class UNTARWildSpawnTypePatch
 
         suitableList = new List<int>();
 
-        UNTAREnums.AddBot("followeruntar", brain: (int)WildSpawnType.followerSanitar, suitableList: suitableList);
-        UNTAREnums.AddBot("bossuntarlead", brain: (int)WildSpawnType.exUsec, suitableList: suitableList);
-        UNTAREnums.AddBot("followeruntarmarksman", brain: (int)WildSpawnType.exUsec, suitableList: suitableList);
-        UNTAREnums.AddBot("bossuntarofficer", brain: (int)WildSpawnType.exUsec, suitableList: suitableList);
+        UNTAREnums.AddBot("followeruntar", brain: (int)WildSpawnType.pmcBot, suitableList: suitableList);
+        UNTAREnums.AddBot("bossuntarlead", brain: (int)WildSpawnType.pmcBot, suitableList: suitableList);
+        UNTAREnums.AddBot("followeruntarmarksman", brain: (int)WildSpawnType.pmcBot, suitableList: suitableList);
+        UNTAREnums.AddBot("bossuntarofficer", brain: (int)WildSpawnType.pmcBot, suitableList: suitableList);
 
         var wildSpawnType = assembly.MainModule.GetType("EFT.WildSpawnType");
 

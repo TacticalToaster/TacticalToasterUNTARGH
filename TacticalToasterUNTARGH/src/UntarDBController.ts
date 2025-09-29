@@ -50,7 +50,7 @@ export class UntarDBController {
             BossEscortType: "followeruntar",
             BossName: "bossuntarofficer",
             BossPlayer: false,
-            BossZone: "ZoneFactoryCenter",
+            BossZone: "ZoneRoad",
             ForceSpawn: false,
             IgnoreMaxBots: true,
             RandomTimeSpawn: false,
@@ -79,10 +79,8 @@ export class UntarDBController {
             TriggerName: ""
         }
 
-        //dbTables.locations.bigmap.base.BossLocationSpawn = [];
-        //dbTables.locations.bigmap.base.BossLocationSpawn.push(bossInfo);
-
-
+        dbTables.locations.woods.base.BossLocationSpawn = [];
+        dbTables.locations.woods.base.BossLocationSpawn.push(bossInfo);
 
         this.logger.info("UNTAR spawn should be created!");
 
