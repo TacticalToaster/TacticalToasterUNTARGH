@@ -17,6 +17,9 @@
 		<Reference Include="0Harmony">
 		  <HintPath>..\..\..\BepInEx\core\0Harmony.dll</HintPath>
 		</Reference>
+		<Reference Include="DrakiaXYZ-BigBrain">
+		  <HintPath>..\Reference\DrakiaXYZ-BigBrain.dll</HintPath>
+		</Reference>
 		<Reference Include="spt-custom">
 		  <HintPath>..\..\..\BepInEx\plugins\spt\spt-custom.dll</HintPath>
 		</Reference>
