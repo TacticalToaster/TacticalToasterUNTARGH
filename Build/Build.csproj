@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net471</TargetFramework>
+    <Configuration>Release</Configuration>
+    <Configurations>Debug;Release</Configurations>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Company>TacticalToaster</Company>
+    <Copyright>:3</Copyright>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Plugin\Plugin.csproj" />
+    <ProjectReference Include="..\Prepatch\Prepatch.csproj" />
+  </ItemGroup>
+
+</Project>
