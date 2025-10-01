@@ -13,7 +13,11 @@ namespace TacticalToasterUNTARGH.Behavior.Actions
     {
         public static Vector3 patrolPoint = new Vector3(-140f, -1f, 410f);
 
+        private CustomNavigationPoint guardPoint;
         private GClass385 baseSteeringLogic = new GClass385();
+        private float checkDelay;
+
+        private bool teleported = false;
 
         public GoToCheckpointAction(BotOwner botOwner) : base(botOwner)
         {
@@ -21,6 +25,8 @@ namespace TacticalToasterUNTARGH.Behavior.Actions
 
         public override void Start()
         {
+            BotOwner.StopMove();
+            BotOwner.Mover.
             base.Start();
         }
 
@@ -34,7 +40,37 @@ namespace TacticalToasterUNTARGH.Behavior.Actions
             UpdateBotMovement();
             UpdateSteering();
             BotOwner.MagazineChecker.ManualUpdate();
-            BotOwner.Mover.GoToPoint(patrolPoint, true, 10f, true);
+
+            if (guardPoint == null)
+            {
+                var searchData = new CoverSearchData(patrolPoint, BotOwner.CoverSearchInfo, CoverShootType.hide, 35f * 35f, 0f, CoverSearchType.distToToCenter, null, null, patrolPoint, ECheckSHootHide.shootAndHide, new CoverSearchDefenceDataClass(BotOwner.Settings.FileSettings.Cover.MIN_DEFENCE_LEVEL), PointsArrayType.byShootType, true);
+                guardPoint = BotOwner.BotsGroup.CoverPointMaster.GetCoverPointMain(searchData, true);
+                BotOwner.Memory.BotCurrentCoverInfo.SetCover(guardPoint, true);
+                BotOwner.Memory.SetCoverPoints(guardPoint, "");
+            }
+
+            if (teleported == false)
+            {
+                Plugin.LogSource.LogMessage("Erm, teleporting!");
+                BotOwner.Mover.Teleport(guardPoint.Position);
+                BotOwner.Mover.GoToPoint(guardPoint.Position, true, 1f, true);
+                BotOwner.Memory.ComeToPoint();
+                BotOwner.StopMove();
+                teleported = true;
+                return;
+            }
+
+            if (Time.time > checkDelay)
+            {
+                if (BotOwner.Mover.IsComeTo(0.6f, true, guardPoint))
+                {
+                    BotOwner.Sprint(false, false);
+                    BotOwner.Memory.ComeToPoint();
+                    return;
+                }
+                BotOwner.Mover.GoToPoint(guardPoint.Position, true, 1f, true);
+                checkDelay = Time.time + 0.75f;
+            }
         }
 
         public void UpdateBotMovement() 

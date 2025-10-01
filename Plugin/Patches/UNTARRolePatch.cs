@@ -1,6 +1,7 @@
 ﻿using BepInEx.Logging;
 using Comfort.Common;
 using EFT;
+using EFT.InputSystem;
 using HarmonyLib;
 using SPT.Reflection.Patching;
 using System;
@@ -9,6 +10,10 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using TacticalToasterUNTARGH.Behavior;
+using TacticalToasterUNTARGH.Behavior.Brains;
+using static AITaskManager;
+using static EFT.ClientPlayer.Control0;
 
 namespace TacticalToasterUNTARGH.Patches
 {
@@ -19,8 +24,34 @@ namespace TacticalToasterUNTARGH.Patches
             return AccessTools.Method(typeof(StandartBotBrain), nameof(StandartBotBrain.Activate));
         }
 
-        [PatchPrefix]
-        public static bool PatchPrefix(out WildSpawnType __state, StandartBotBrain __instance, BotOwner ___botOwner_0)
+        private static BaseBrain GetUNTARBrain(BotOwner botOwner)
+        {
+            return new UNTARBrain(botOwner, false);//new UNTARBrain(botOwner, false);//GClass340(botOwner, false);
+        }
+
+        private static AICoreAgentClass<BotLogicDecision> GetUNTARAgent(BotOwner botOwner, BaseBrain brain, StandartBotBrain __instance)
+        {
+            var name = botOwner.name + " " + botOwner.Profile.Info.Settings.Role.ToString();
+            return new AICoreAgentClass<BotLogicDecision>(botOwner.BotsController.AICoreController, brain, NodeCreator.ActionsList(botOwner), botOwner.gameObject, name, new Func<BotLogicDecision, GClass168>(__instance.method_0));
+        }
+
+        [PatchPostfix]
+        [HarmonyBefore(["xyz.drakia.bigbrain"])]
+        public static void PatchPostfix(StandartBotBrain __instance, BotOwner ___botOwner_0)
+        {
+            if (UNTAREnums.UNTARTypesDict.ContainsKey((int)___botOwner_0.Profile.Info.Settings.Role))
+            {
+                Logger.LogMessage("Inserting our UNTAR brain. How exciting!");
+                __instance.BaseBrain = GetUNTARBrain(___botOwner_0);
+                __instance.Agent = GetUNTARAgent(___botOwner_0, __instance.BaseBrain, __instance);
+
+                // This isn't critical, only knight, sanitar, and the attack event (khorvod generators, spring event, etc) behaviors use this
+                //__instance.OnSetStrategy?.Invoke(__instance.BaseBrain);
+            }
+
+            //return false;
+        }
+        /*public static bool PatchPrefix(out WildSpawnType __state, StandartBotBrain __instance, BotOwner ___botOwner_0)
         {
             __state = ___botOwner_0.Profile.Info.Settings.Role;
 
@@ -42,31 +73,16 @@ namespace TacticalToasterUNTARGH.Patches
             }
 
             return true;
-        }
+        }*/
 
-        [PatchPostfix]
+        /*[PatchPostfix]
         public static void PatchPostfix(WildSpawnType __state, BotOwner ___botOwner_0)
         {
             if (UNTAREnums.UNTARTypesDict.ContainsKey((int)__state))//if (__state == (WildSpawnType)UNTAREnums.BotUNTARValue)
             {
                 //Logger.LogInfo($"Restoring role back to {__state} for UNTAR bot.");
                 ___botOwner_0.Profile.Info.Settings.Role = __state;
-
-                if (Singleton<GameWorld>.Instance == null)
-                {
-                    Logger.LogWarning("GameWorld instance is null, cannot check local player.");
-                    return;
-                }
-                var localPlayer = Singleton<GameWorld>.Instance.RegisteredPlayers.FirstOrDefault(x => x.IsYourPlayer);
-
-                if (localPlayer == null)
-                {
-                    Logger.LogWarning("Local player not found, cannot check if bot is a player threat.");
-                    return;
-                }
-
-                //Logger.LogInfo($"Checking 2 {___botOwner_0.Profile.Info.Settings.IsBossOrFollower()} {___botOwner_0.Profile.Info.Settings.BotDifficulty} {___botOwner_0.Settings.FileSettings.Mind.DEFAULT_USEC_BEHAVIOUR} {___botOwner_0.Settings.IsPlayerWarn(localPlayer)} {BotBoss.IsFollowerSuitableForBoss(___botOwner_0.Profile.Info.Settings.Role, (WildSpawnType)1173)} {BotBoss.IsFollowerSuitableForBoss(___botOwner_0.Profile.Info.Settings.Role, (WildSpawnType)1170)}.");
             }
-        }
+        }*/
     }
 }

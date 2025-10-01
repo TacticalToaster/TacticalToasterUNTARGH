@@ -69,6 +69,9 @@
 		<Reference Include="UnityEngine">
 		  <HintPath>..\..\..\EscapeFromTarkov_Data\Managed\UnityEngine.dll</HintPath>
 		</Reference>
+		<Reference Include="UnityEngine.AIModule">
+		  <HintPath>..\..\..\EscapeFromTarkov_Data\Managed\UnityEngine.AIModule.dll</HintPath>
+		</Reference>
 		<Reference Include="UnityEngine.AnimationModule">
 		  <HintPath>..\..\..\EscapeFromTarkov_Data\Managed\UnityEngine.AnimationModule.dll</HintPath>
 		</Reference>

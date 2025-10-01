@@ -12,6 +12,7 @@ using UnityEngine;
 namespace TacticalToasterUNTARGH;
 
 // first string below is your plugin's GUID, it MUST be unique to any other mod. Read more about it in BepInEx docs. Be sure to update it if you copy this project.
+[BepInDependency("xyz.drakia.bigbrain", "1.3.2")]
 [BepInPlugin(ClientInfo.UNTARGHGUID, ClientInfo.UNTARGHPluginName, ClientInfo.UNTARGHVersion)]
 public class Plugin : BaseUnityPlugin
 {
@@ -59,6 +60,7 @@ public class Plugin : BaseUnityPlugin
         LoadUNTARSettings();
 
         //new UNTARPatch().Enable();
+        new TarkovInitPatch().Enable();
         new UNTARRolePatch().Enable();
         new UNTARBotControllerPatch().Enable();
         new UNTARShootGroundWarnPatch().Enable();
