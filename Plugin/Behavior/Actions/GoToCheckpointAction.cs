@@ -26,7 +26,8 @@ namespace TacticalToasterUNTARGH.Behavior.Actions
         public override void Start()
         {
             BotOwner.StopMove();
-            BotOwner.Mover.
+            BotOwner.PatrollingData.Status = PatrolStatus.pause;
+            BotOwner.Memory.BotCurrentCoverInfo.SetCover(null, false);
             base.Start();
         }
 
