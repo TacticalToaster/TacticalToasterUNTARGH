@@ -28,6 +28,7 @@ namespace TacticalToasterUNTARGH.Behavior.Actions
             BotOwner.StopMove();
             BotOwner.PatrollingData.Status = PatrolStatus.pause;
             BotOwner.Memory.BotCurrentCoverInfo.SetCover(null, false);
+            BotOwner.Memory.SetCoverPoints(null, "");
             base.Start();
         }
 
