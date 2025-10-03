@@ -55,7 +55,7 @@ namespace TacticalToasterUNTARGH.Behavior.Actions
             {
                 Plugin.LogSource.LogMessage("Erm, teleporting!");
                 BotOwner.Mover.Teleport(guardPoint.Position);
-                BotOwner.Mover.GoToPoint(guardPoint.Position, true, 1f, true);
+                //BotOwner.Mover.GoToPoint(guardPoint.Position, true, 1f, true);
                 BotOwner.Memory.ComeToPoint();
                 BotOwner.StopMove();
                 teleported = true;

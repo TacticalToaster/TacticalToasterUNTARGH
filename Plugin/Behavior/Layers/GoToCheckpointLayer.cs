@@ -62,7 +62,12 @@ namespace TacticalToasterUNTARGH.Behavior.Layers
 
         public override bool IsCurrentActionEnding()
         {
-            return false;
+            if (CurrentAction?.Type == typeof(GoToCheckpointAction))
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }
