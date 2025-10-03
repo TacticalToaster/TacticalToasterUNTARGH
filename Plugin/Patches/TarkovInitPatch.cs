@@ -1,4 +1,5 @@
-﻿using EFT;
+﻿using BepInEx.Bootstrap;
+using EFT;
 using EFT.InputSystem;
 using SPT.Reflection.Patching;
 using System;
@@ -8,6 +9,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using TacticalToasterUNTARGH.Behavior;
+using TacticalToasterUNTARGH.Interop;
 
 namespace TacticalToasterUNTARGH.Patches
 {
@@ -22,6 +24,14 @@ namespace TacticalToasterUNTARGH.Patches
         protected static void PatchPostfix(IAssetsManager assetsManager, InputTree inputTree)
         {
             UNTARBrainManager.AddUntarBrainLayers();
+
+            bool sainLoaded = Chainloader.PluginInfos.ContainsKey("me.sol.sain");
+
+            if (sainLoaded)
+            {
+                Logger.LogMessage("SAIN detected, initializing SAIN interop for UNTARGH.");
+                new SAINInterop().Init();
+            }
         }
     }
 }
