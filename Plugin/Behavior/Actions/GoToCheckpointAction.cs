@@ -26,9 +26,27 @@ namespace TacticalToasterUNTARGH.Behavior.Actions
         public override void Start()
         {
             BotOwner.StopMove();
-            BotOwner.PatrollingData.Status = PatrolStatus.pause;
+            BotOwner.BotRun.EndMove();
+
+            //BotOwner.PatrollingData.Status = PatrolStatus.pause;
+            BotOwner.PatrollingData.Pause();
+            BotOwner.PatrollingData.PointControl.SetTarget(null, -1);
+
             BotOwner.Memory.BotCurrentCoverInfo.SetCover(null, false);
             BotOwner.Memory.SetCoverPoints(null, "");
+
+            BotOwner.GoToSomePointData.SetPoint(Vector3.zero);
+
+            /*if (teleported == false)
+            {
+                Plugin.LogSource.LogMessage("Erm, teleporting!");
+                BotOwner.Mover.Teleport(guardPoint.Position);
+                BotOwner.Mover.GoToPoint(guardPoint.Position, true, 1f, true);
+                //BotOwner.Memory.ComeToPoint();
+                //BotOwner.StopMove();
+                teleported = true;
+            }*/
+
             base.Start();
         }
 
@@ -49,17 +67,6 @@ namespace TacticalToasterUNTARGH.Behavior.Actions
                 guardPoint = BotOwner.BotsGroup.CoverPointMaster.GetCoverPointMain(searchData, true);
                 BotOwner.Memory.BotCurrentCoverInfo.SetCover(guardPoint, true);
                 BotOwner.Memory.SetCoverPoints(guardPoint, "");
-            }
-
-            if (teleported == false)
-            {
-                Plugin.LogSource.LogMessage("Erm, teleporting!");
-                BotOwner.Mover.Teleport(guardPoint.Position);
-                //BotOwner.Mover.GoToPoint(guardPoint.Position, true, 1f, true);
-                BotOwner.Memory.ComeToPoint();
-                BotOwner.StopMove();
-                teleported = true;
-                return;
             }
 
             if (Time.time > checkDelay)
@@ -88,6 +95,12 @@ namespace TacticalToasterUNTARGH.Behavior.Actions
         {
             BotOwner.Steering.LookToMovingDirection();
             baseSteeringLogic.Update(BotOwner);
+        }
+
+        public override void BuildDebugText(StringBuilder stringBuilder)
+        {
+            stringBuilder.AppendLine($"-- GoToCheckpointAction -- {guardPoint.Position}");
+            base.BuildDebugText(stringBuilder);
         }
     }
 }

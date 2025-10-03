@@ -23,7 +23,7 @@ namespace TacticalToasterUNTARGH.Behavior.Layers
         {
             isInside = BotOwner.Position.SqrDistance(patrolPoint) <= (outerRadius * outerRadius);
             hasRun = true;
-            runTime = Time.time + 10f;
+            runTime = Time.time + 2f;
             base.Start();
         }
 
@@ -50,7 +50,7 @@ namespace TacticalToasterUNTARGH.Behavior.Layers
             {
                 if (!isInside && !hasRun)
                 {
-                    runTime = Time.time + 10f;
+                    runTime = Time.time + 2f;
                     //isInside = true;
                 }
             }

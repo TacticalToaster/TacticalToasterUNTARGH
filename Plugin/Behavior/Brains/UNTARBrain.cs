@@ -34,12 +34,12 @@ namespace TacticalToasterUNTARGH.Behavior.Brains
             base.method_0(3, class2, true);
             GClass129 gclass8 = new GClass129(owner, 3);
             base.method_0(8, gclass8, true);
-            GClass132 stayPos = new GClass132(owner, 0, true, CoverLevel.Stay, false);
-            base.method_0(2, stayPos, true);
-            //GClass83 gclass9 = new GClass83(owner, 2); // PatrolFollower
-            //base.method_0(7, gclass9, true);
-            //GClass130 gclass10 = new GClass130(owner, 0); // PatrolAssault (for the leader of group)
-            //base.method_0(2, gclass10, true);
+            //GClass132 stayPos = new GClass132(owner, 0, true, CoverLevel.Stay, false);
+            //base.method_0(2, stayPos, true);
+            GClass83 gclass9 = new GClass83(owner, 2); // PatrolFollower
+            base.method_0(7, gclass9, true);
+            GClass130 gclass10 = new GClass130(owner, 0); // PatrolAssault (for the leader of group)
+            base.method_0(2, gclass10, true);
             if (this._owner.Boss.IamBoss)
             {
                 Singleton<BotEventHandler>.Instance.OnKill += this.method_6;
