@@ -46,11 +46,6 @@ class UNTARGHMod implements IPreSptLoadMod, IPostDBLoadMod
         // get the logger from the server container
         const logger = container.resolve<ILogger>("WinstonLogger");
 
-        logger.info("I am logging info!");
-        logger.warning("I am logging a warning!");
-        logger.error("I am logging an error!");
-        logger.logWithColor("I am logging with color!", LogTextColor.YELLOW, LogBackgroundColor.RED);
-
         this.pushBotData(container);
     }
 
