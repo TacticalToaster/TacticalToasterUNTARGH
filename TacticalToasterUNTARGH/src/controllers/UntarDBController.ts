@@ -208,7 +208,7 @@ export class UntarDBController {
      * @returns Combined ILoadoutInfo from all common loadout files
      */
     private loadCommonLoadouts(): ILoadoutInfo {
-        const commonDir = path.resolve(__dirname, "..", "db", "bots", "loadouts", "common");
+        const commonDir = path.resolve(__dirname, "..", "..", "db", "bots", "loadouts", "common");
         let combinedLoadout: ILoadoutInfo = { equipment: {}, weapons: {}, categories: {} };
 
         // Check if common directory exists
