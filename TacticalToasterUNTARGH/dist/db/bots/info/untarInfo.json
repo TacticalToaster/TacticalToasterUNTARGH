@@ -14,7 +14,7 @@
         "blacklist": [],
         "whitelist": [],
         "weaponModLimits": {
-            "scopeLimit": 3,
+            "scopeLimit": 2,
             "lightLaserLimit": 2
         },
         "filterPlatesByLevel": false,

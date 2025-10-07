@@ -1,0 +1,44 @@
+{
+    "locations": {
+        "woods": {
+            "enablePatrols": true,
+            "patrolChance": 100,
+            "patrolAmount": 2,
+            "patrolMin": 3,
+            "patrolMax": 6,
+            "patrolZones": ["ZoneRoad", "ZoneRedHouse", "ZoneClearVill"],
+            "patrolTimeMin": -1,
+            "patrolTimeMax": -1
+        },
+        "bigmap": {
+            "enablePatrols": true,
+            "patrolChance": 100,
+            "patrolAmount": 1,
+            "patrolMin": 3,
+            "patrolMax": 6,
+            "patrolZones": ["ZoneBrige"],
+            "patrolTimeMin": 120,
+            "patrolTimeMax": 480
+        },
+        "interchange": {
+            "enablePatrols": true,
+            "patrolChance": 100,
+            "patrolAmount": 2,
+            "patrolMin": 3,
+            "patrolMax": 6,
+            "patrolZones": ["ZonePowerStation", "ZoneTrucks"],
+            "patrolTimeMin": 120,
+            "patrolTimeMax": 480
+        },
+        "shoreline": {
+            "enablePatrols": true,
+            "patrolChance": 100,
+            "patrolAmount": 1,
+            "patrolMin": 3,
+            "patrolMax": 6,
+            "patrolZones": ["ZoneForestGasStation"],
+            "patrolTimeMin": -1,
+            "patrolTimeMax": -1
+        }
+    }
+}

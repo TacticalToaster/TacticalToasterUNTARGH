@@ -86,7 +86,7 @@ export class UntarDBController {
             TriggerName: ""
         }
 
-        dbTables.locations.woods.base.BossLocationSpawn = [];
+        dbTables.locations.factory4_day.base.BossLocationSpawn = [];
         dbTables.locations.factory4_day.base.BossLocationSpawn.push(bossInfo);
 
         this.logger.info("UNTAR spawn should be created!");
@@ -340,7 +340,7 @@ export class UntarDBController {
                 children[child] = childData;
                 this.processChildren(children, childData, loadoutInfo, type);
 
-                this.logger.info(`Processed child: ${childData.id} ${child} of parent: ${parent.id} ${childData.slots ? childData.slots : "no slots"} ${children["compm4"]}`);
+                //this.logger.info(`Processed child: ${childData.id} ${child} of parent: ${parent.id} ${childData.slots ? childData.slots : "no slots"} ${children["compm4"]}`);
 
                 if (childData.slots) {
                     this.processItem(childData.id, childData.slots ? childData.slots : {}, type, loadoutInfo, children);

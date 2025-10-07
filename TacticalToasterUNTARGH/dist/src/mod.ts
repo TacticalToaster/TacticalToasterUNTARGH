@@ -10,28 +10,31 @@ import { DiContainer } from "./di/Container";
 import { WildSpawnTypeNumber } from "@spt/models/enums/WildSpawnTypeNumber";
 import { DynamicRouterModService } from "@spt/services/mod/dynamicRouter/DynamicRouterModService";
 import { IEmptyRequestData } from "@spt/models/eft/common/IEmptyRequestData";
+import { UntarSpawnController } from "./controllers/UntarSpawnController";
+import { StaticRouterModService } from "@spt/services/mod/staticRouter/StaticRouterModService";
 
 class UNTARGHMod implements IPreSptLoadMod, IPostDBLoadMod
 {
     public preSptLoad(container: DependencyContainer): void {
-        const dynamicRouterModService = container.resolve<DynamicRouterModService>("DynamicRouterModService");
+        const staticRouterService = container.resolve<StaticRouterModService>("StaticRouterModService");
 
         DiContainer.register(container);
 
-        const untarDBController = container.resolve<UntarDBController>("UntarDBController");
+        const untarSpawn = container.resolve<UntarSpawnController>("UntarSpawnController");
 
-        /*dynamicRouterModService.registerDynamicRouter(
-            "UNTARDifficultiesRouter",
+        staticRouterService.registerStaticRouter(
+            "UNTARRaidStart",
             [
                 {
-                    url: "/singleplayer/settings/bot/difficulties",
-                    action: async (url: string, info: IEmptyRequestData, sessionID: string, output: string): Promise<string> => {
-                        return untarDBController.getBotDifficulties(url, info, sessionID, output);
+                    url: "/client/match/local/end",
+                    action: async (url: string, info: any, sessionID: string, output: string) => {
+                        untarSpawn.adjustAllUntarSpawns();
+                        return output;
                     }
                 }
             ],
-            ""
-        );*/
+            "UNTAR"
+        );
 
         //const untarDBController = container.resolve<UntarDBController>("UntarDBController");
         //untarDBController.addUntarToFactory();
@@ -54,9 +57,11 @@ class UNTARGHMod implements IPreSptLoadMod, IPostDBLoadMod
     private pushBotData(container: DependencyContainer): void
     {
         const untarDBController = container.resolve<UntarDBController>("UntarDBController");
+        const untarSpawn = container.resolve<UntarSpawnController>("UntarSpawnController");
 
         untarDBController.addUntarToDB();
-        untarDBController.addUntarToFactory();
+        untarSpawn.adjustAllUntarSpawns();
+        //untarDBController.addUntarToFactory();
 
     }
 }
