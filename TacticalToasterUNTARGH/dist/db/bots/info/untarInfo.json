@@ -14,12 +14,13 @@
         "blacklist": [],
         "whitelist": [],
         "weaponModLimits": {
-            "scopeLimit": 2,
+            "scopeLimit": 3,
             "lightLaserLimit": 2
         },
         "filterPlatesByLevel": false,
         "forceOnlyArmoredRigWhenNoArmor": true,
-        "forceStock": false
+        "forceStock": false,
+        "weaponSlotIdsToMakeRequired": []
     },
     "walletSettings": {
         "chancePercent": 50,

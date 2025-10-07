@@ -19,7 +19,8 @@
         },
         "filterPlatesByLevel": false,
         "forceOnlyArmoredRigWhenNoArmor": true,
-        "forceStock": false
+        "forceStock": false,
+        "weaponSlotIdsToMakeRequired": []
     },
     "walletSettings": {
         "chancePercent": 50,
