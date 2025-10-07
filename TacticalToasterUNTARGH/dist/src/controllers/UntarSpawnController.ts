@@ -15,6 +15,7 @@ import { IBotConfig } from "@spt/models/spt/config/IBotConfig";
 import { ConfigTypes } from "@spt/models/enums/ConfigTypes";
 
 import mainConfig = require("../../config/main.json");
+import { UNTARLogger } from "../logger";
 
 //const mainConfig: IMainConfig = require("../../config/main.json");
 
@@ -26,8 +27,9 @@ export class UntarSpawnController {
         @inject("RandomUtil") protected randomUtil: RandomUtil,
         @inject("ConfigServer") protected configServer: ConfigServer,
         @inject("DatabaseService") protected databaseService: DatabaseService,
-        @inject("WinstonLogger") protected logger: ILogger,
-        @inject("HttpResponseUtil") protected httpResponse: HttpResponseUtil
+        @inject("WinstonLogger") protected wLogger: ILogger,
+        @inject("HttpResponseUtil") protected httpResponse: HttpResponseUtil,
+        @inject("UNTARLogger") protected logger: UNTARLogger
     ) {}
 
     public adjustAllUntarSpawns() {
@@ -172,14 +174,14 @@ export class UntarSpawnController {
 
         this.logger.info(`Generating UNTAR patrol of size ${patrolSize}.`);
 
-        if (patrolSize > 3) {
-            if (this.randomUtil.getChance100(35)) {
+        if (patrolSize >= mainConfig.patrols.minOfficerSize) {
+            if (this.randomUtil.getChance100(mainConfig.patrols.officerChance)) {
                 this.logger.info("UNTAR patrol leader changed to Officer.");
                 bossType = "bossuntarofficer";
             }
 
-            if (patrolSize > 6) {
-                if (this.randomUtil.getChance100(50)) {
+            if (patrolSize >= mainConfig.patrols.minSecondLeaderSize) {
+                if (this.randomUtil.getChance100(mainConfig.patrols.secondLeaderChance)) {
                     this.logger.info("UNTAR patrol second leader added.");
                     secondLeader = "bossuntarlead";
                     followers = followers - 1;

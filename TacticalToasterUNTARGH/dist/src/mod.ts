@@ -3,7 +3,7 @@ import { DependencyContainer } from "tsyringe";
 import { ILogger } from "@spt/models/spt/utils/ILogger";
 import { LogTextColor } from "@spt/models/spt/logging/LogTextColor";
 import { LogBackgroundColor } from "@spt/models/spt/logging/LogBackgroundColor";
-import { UntarDBController } from "./UntarDBController";
+import { UntarDBController } from "./controllers/UntarDBController";
 import { IPostDBLoadMod } from "@spt/models/external/IPostDBLoadMod";
 import { IPreSptLoadMod } from "@spt/models/external/IPreSptLoadMod";
 import { DiContainer } from "./di/Container";

@@ -16,18 +16,21 @@ import { ILogger } from "@spt/models/spt/utils/ILogger";
 import { IEmptyRequestData } from "@spt/models/eft/common/IEmptyRequestData";
 import { HttpResponseUtil } from "@spt/utils/HttpResponseUtil";
 // Configs
-import type { ILoadoutInfo, ILoadoutCategory, ILoadoutItem } from "./models/ILoadoutCategory";
-import untarBotType = require("../db/bots/types/test.json")
-import untarBotInfo = require("../db/bots/info/untarInfo.json")
-import untarLoadout from "../db/bots/types/test.json"
-import untarMarksmanLoadout from "../db/bots/types/test.json"
-import untarLeadLoadout from "../db/bots/types/untarlead.json"
-import untarOfficerLoadout from "../db/bots/types/untarofficer.json"
-import loadouts from "../db/bots/loadouts/untar.json";
+import type { ILoadoutInfo, ILoadoutCategory, ILoadoutItem } from "../models/ILoadoutCategory";
+import untarBotType = require("../../db/bots/types/test.json")
+import untarBotInfo = require("../../db/bots/info/untarInfo.json")
+import untarLoadout from "../../db/bots/types/test.json"
+import untarMarksmanLoadout from "../../db/bots/types/test.json"
+import untarLeadLoadout from "../../db/bots/types/untarlead.json"
+import untarOfficerLoadout from "../../db/bots/types/untarofficer.json"
+import followeruntarLoadout from "../../db/bots/loadouts/followeruntar.json";
+import bossuntarleadLoadout from "../../db/bots/loadouts/bossuntarlead.json";
+import bossuntarofficerLoadout from "../../db/bots/loadouts/bossuntarofficer.json";
 import { BotHelper } from "@spt/helpers/BotHelper";
 import { BotController } from "@spt/controllers/BotController";
 import { ItemHelper } from "@spt/helpers/ItemHelper";
 import { IBotType } from "@spt/models/eft/common/tables/IBotType";
+import { UNTARLogger } from "../logger";
 
 @injectable()
 export class UntarDBController {
@@ -38,10 +41,11 @@ export class UntarDBController {
         @inject("RandomUtil") protected randomUtil: RandomUtil,
         @inject("ConfigServer") protected configServer: ConfigServer,
         @inject("DatabaseService") protected databaseService: DatabaseService,
-        @inject("WinstonLogger") protected logger: ILogger,
+        @inject("WinstonLogger") protected wLogger: ILogger,
         @inject("HttpResponseUtil") protected httpResponse: HttpResponseUtil,
         @inject("BotHelper") protected botHelper: BotHelper,
-        @inject("BotController") protected botController: BotController
+        @inject("BotController") protected botController: BotController,
+        @inject("UNTARLogger") protected logger: UNTARLogger
     ) {}
 
     public addUntarToFactory(): void {
@@ -101,7 +105,7 @@ export class UntarDBController {
         (WildSpawnTypeNumber as any).FOLLOWERUNTARMARKSMAN = 1172;
         (WildSpawnTypeNumber as any).BOSSUNTAROFFICER = 1173;
 
-        this.logger.logWithColor(`Extended WildSpawnTypeNumber enum with UNTAR types ${(WildSpawnTypeNumber as any).FOLLOWERUNTAR}.`, LogTextColor.CYAN);
+        this.logger.logWithColor("Extended WildSpawnTypeNumber enum with UNTAR types.", LogTextColor.CYAN);
 
         const dbTables = this.databaseService.getTables();
         const botConfig = this.configServer.getConfig<IBotConfig>(ConfigTypes.BOT);
@@ -145,19 +149,19 @@ export class UntarDBController {
         botConfig.walletLoot["bossuntarlead"] = botConfig.walletLoot["followerSanitar"];
         presetBatch.bossuntarlead = 55;
         const loadoutBossLead: any = untarLeadLoadout;
-        dbTables.bots.types["bossuntarlead"] = loadout;
+        dbTables.bots.types["bossuntarlead"] = loadoutBossLead;
 
         botConfig.equipment["bossuntarofficer"] = untarBotInfo.equipmentSettings;
         botConfig.itemSpawnLimits["bossuntarofficer"] = {};
         botConfig.walletLoot["bossuntarofficer"] = botConfig.walletLoot["followerSanitar"];
         presetBatch.bossuntarofficer = 55;
         const loadoutBossOfficer: any = untarOfficerLoadout;
-        dbTables.bots.types["bossuntarofficer"] = loadout;
+        dbTables.bots.types["bossuntarofficer"] = loadoutBossOfficer;
 
-        this.processLoadouts("followeruntar", dbTables.bots.types["followeruntar"] as IBotType);
-        this.processLoadouts("followeruntarmarksman", dbTables.bots.types["followeruntarmarksman"] as IBotType);
-        this.processLoadouts("bossuntarlead", dbTables.bots.types["bossuntarlead"] as IBotType);
-        this.processLoadouts("bossuntarofficer", dbTables.bots.types["bossuntarofficer"] as IBotType);
+        this.processLoadouts("followeruntar", dbTables.bots.types["followeruntar"] as IBotType, followeruntarLoadout);
+        this.processLoadouts("followeruntarmarksman", dbTables.bots.types["followeruntarmarksman"] as IBotType, followeruntarLoadout);
+        this.processLoadouts("bossuntarlead", dbTables.bots.types["bossuntarlead"] as IBotType, bossuntarleadLoadout);
+        this.processLoadouts("bossuntarofficer", dbTables.bots.types["bossuntarofficer"] as IBotType, bossuntarofficerLoadout);
 
         const locales = Object.values(this.databaseService.getLocales().global) as Record<string, string>[];
 
@@ -209,7 +213,7 @@ export class UntarDBController {
 
         // Check if common directory exists
         if (!fs.existsSync(commonDir)) {
-            this.logger.warning(`Common loadouts directory not found: ${commonDir}`);
+            this.logger.warn(`Common loadouts directory not found: ${commonDir}`);
             return combinedLoadout;
         }
 
@@ -236,16 +240,16 @@ export class UntarDBController {
         return combinedLoadout;
     }
 
-    public processLoadouts(type: string, botData: IBotType): void {
+    public processLoadouts(type: string, botData: IBotType, baseLoadout: ILoadoutInfo): void {
         const commonLoadout: ILoadoutInfo = this.loadCommonLoadouts();
-        const loadoutInfo: ILoadoutInfo = loadouts as ILoadoutInfo;
+        const loadoutInfo: ILoadoutInfo = baseLoadout;
 
         const combinedInfo: ILoadoutInfo = this.deepMerge(commonLoadout, loadoutInfo);
 
         botData.inventory.mods = {};
 
-        for (const slot of Object.keys(loadoutInfo.equipment)) {
-            const slotData = loadoutInfo.equipment[slot];
+        for (const slot of Object.keys(combinedInfo.equipment)) {
+            const slotData = combinedInfo.equipment[slot];
             for (const item of Object.keys(slotData)) {
                 const itemData = slotData[item];
 
@@ -255,7 +259,9 @@ export class UntarDBController {
 
                 botData.inventory.equipment[slot][itemData.id] = itemData.chance ? itemData.chance : 100;
 
-                this.processItem(itemData.id, itemData.slots, type, combinedInfo, {});
+                const children: Record<string, ILoadoutItem> = {};
+                this.processChildren(children, itemData, combinedInfo, type);
+                this.processItem(itemData.id, itemData.slots, type, combinedInfo, children);
             }
         }
     }
@@ -359,7 +365,7 @@ export class UntarDBController {
             try {
                 resultTable = JSON.parse(output);
             } catch (e) {
-                this.logger.warning("Failed to parse output string to object.");
+                this.logger.warn("Failed to parse output string to object.");
             }
         }
 
@@ -388,7 +394,7 @@ export class UntarDBController {
 
             const botDetails = botTypesDb[botType];
             if (!botDetails?.difficulty) {
-                this.logger.warning(`Unable to find bot: ${botType} difficulty values`);
+                this.logger.warn(`Unable to find bot: ${botType} difficulty values`);
 
                 continue;
             }

@@ -1,4 +1,13 @@
 export interface IMainConfig {
+    debug: {
+        logs: boolean
+    },
+    patrols: {
+        minOfficerSize: number;
+        minSecondLeaderSize: number;
+        officerChance: number;
+        secondLeaderChance: number;
+    },
     locations: {
         [map: string]: {
             enablePatrols: boolean;

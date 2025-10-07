@@ -158,6 +158,17 @@
                 "id": "59fc48e086f77463b1118392"
             }
         },
+        "grips_mlok": {
+            "magpul afg mlok tan": {
+                "id": "57cffcd624597763133760c5"
+            },
+            "dd vert mlok tan": {
+                "id": "651a8e529829226ceb67c319"
+            },
+            "bcm mlok blk": {
+                "id": "665d5d9e338229cfd6078da1"
+            }
+        },
         "lasers_common": {
             "peq15": {
                 "id": "544909bb4bdc2d6f028b4577"
@@ -188,6 +199,22 @@
         "lights_25" : {
             "ultrafire wf": {
                 "id": "57d17c5e2459775a5c57d17d"
+            }
+        },
+        "plates_side": {
+            "sapi side": {
+                "id": "6557458f83942d705f0c4962"
+            },
+            "esapi side": {
+                "id": "64afdb577bb3bfe8fe03fd1d"
+            }
+        },
+        "plates": {
+            "sapi": {
+                "id": "655746010177119f4a097ff7"
+            },
+            "esapi": {
+                "id": "64afdcb83efdfea28601d041"
             }
         }
     }

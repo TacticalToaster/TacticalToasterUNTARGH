@@ -1,21 +1,30 @@
 {
+    "debug": {
+        "logs": true
+    },
+    "patrols": {
+        "minOfficerSize": 3,
+        "minSecondLeaderSize": 5,
+        "officerChance": 35,
+        "secondLeaderChance": 50
+    },
     "locations": {
         "woods": {
             "enablePatrols": true,
-            "patrolChance": 30,
+            "patrolChance": 100,
             "patrolAmount": 2,
-            "patrolMin": 3,
-            "patrolMax": 6,
+            "patrolMin": 13,
+            "patrolMax": 16,
             "patrolZones": ["ZoneRoad", "ZoneRedHouse", "ZoneClearVill"],
             "patrolTimeMin": -1,
-            "patrolTimeMax": 1680
+            "patrolTimeMax": -1
         },
         "bigmap": {
             "enablePatrols": true,
             "patrolChance": 50,
             "patrolAmount": 1,
-            "patrolMin": 4,
-            "patrolMax": 7,
+            "patrolMin": 14,
+            "patrolMax": 17,
             "patrolZones": ["ZoneBrige"],
             "patrolTimeMin": 600,
             "patrolTimeMax": 1200
@@ -24,8 +33,8 @@
             "enablePatrols": true,
             "patrolChance": 30,
             "patrolAmount": 2,
-            "patrolMin": 3,
-            "patrolMax": 6,
+            "patrolMin": 13,
+            "patrolMax": 16,
             "patrolZones": ["ZonePowerStation", "ZoneTrucks"],
             "patrolTimeMin": -1,
             "patrolTimeMax": 1600
@@ -34,8 +43,8 @@
             "enablePatrols": true,
             "patrolChance": 40,
             "patrolAmount": 1,
-            "patrolMin": 4,
-            "patrolMax": 7,
+            "patrolMin": 14,
+            "patrolMax": 17,
             "patrolZones": ["ZoneForestGasStation"],
             "patrolTimeMin": -1,
             "patrolTimeMax": 1600
