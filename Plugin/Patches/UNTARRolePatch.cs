@@ -10,6 +10,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using DrakiaXYZ.BigBrain;
 using TacticalToasterUNTARGH.Behavior;
 using TacticalToasterUNTARGH.Behavior.Brains;
 using static AITaskManager;
@@ -37,7 +38,8 @@ namespace TacticalToasterUNTARGH.Patches
         }
 
         [PatchPostfix]
-        [HarmonyBefore(["xyz.drakia.bigbrain"])]
+        [HarmonyPriority(Priority.First)] // Make sure this runs after BigBrain so we can override it
+        //[HarmonyBefore(["xyz.drakia.bigbrain"])]
         public static void PatchPostfix(StandartBotBrain __instance, BotOwner ___botOwner_0)
         {
             if (UNTAREnums.UNTARTypesDict.ContainsKey((int)___botOwner_0.Profile.Info.Settings.Role))

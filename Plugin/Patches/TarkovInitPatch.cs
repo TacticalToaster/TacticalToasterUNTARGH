@@ -23,15 +23,10 @@ namespace TacticalToasterUNTARGH.Patches
         [PatchPostfix]
         protected static void PatchPostfix(IAssetsManager assetsManager, InputTree inputTree)
         {
-            UNTARBrainManager.AddUntarBrainLayers();
-
             bool sainLoaded = Chainloader.PluginInfos.ContainsKey("me.sol.sain");
 
             if (sainLoaded)
-            {
-                Logger.LogMessage("SAIN detected, initializing SAIN interop for UNTARGH.");
-                new SAINInterop().Init();
-            }
+                UNTARBrainManager.AddUntarBrainLayers();
         }
     }
 }

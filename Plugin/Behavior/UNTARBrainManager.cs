@@ -11,16 +11,49 @@ namespace TacticalToasterUNTARGH.Behavior
 {
     public static class UNTARBrainManager
     {
+        private static readonly string[] commonVanillaLayersToRemove = new string[]
+        {
+            "Help",
+            "AdvAssaultTarget",
+            "Hit",
+            "Simple Target",
+            "Pmc",
+            "AssaultHaveEnemy",
+            "Assault Building",
+            "Enemy Building",
+            "PushAndSup",
+            "Pursuit",
+        };
+
         public static void AddUntarBrainLayers()
         {
-            var untarBrainList = new List<string>() { "UNTAR" };
-            var untarTypes = UNTAREnums.UNTARTypes.ConvertAll<WildSpawnType>(type => (WildSpawnType)type.wildSpawnType);
+            //var untarBrainList = new List<string>() { "UNTAR" };
+            //var untarTypes = UNTAREnums.UNTARTypes.ConvertAll<WildSpawnType>(type => (WildSpawnType)type.wildSpawnType);
             //BrainManager.AddCustomLayer(typeof(GoToCheckpointLayer), new List<string>() { "PMC", "ExUsec" }, 99, UNTAREnums.UNTARTypes.ConvertAll<WildSpawnType>(type => (WildSpawnType)type.wildSpawnType));
 
             //BrainManager.AddCustomLayer(typeof(GoToCheckpointLayer), untarBrainList, 4, untarTypes);
 
             //BrainManager.RemoveLayer("GoToCheckpoint", untarBrainList);
             //BrainManager.RestoreLayer("GoToCheckpoint", untarBrainList, untarTypes);
+
+            var untarBrainList = new List<string>() { "ExUsec" };
+            var untarTypes = UNTAREnums.UNTARTypes.ConvertAll<WildSpawnType>(type => (WildSpawnType)type.wildSpawnType);
+
+            var layers = new List<string>()
+            {
+                "Request",
+                //"FightReqNull",
+                //"PeacecReqNull",
+                "KnightFight",
+                //"PtrlBirdEye",
+				"PmcBear",
+                "PmcUsec",
+            };
+            layers.AddRange(commonVanillaLayersToRemove);
+
+            BrainManager.RemoveLayers(layers, untarBrainList, untarTypes);
+
+            Plugin.LogSource.LogMessage("Removed common vanilla layers from UNTAR brains.");
         }
     }
 }
