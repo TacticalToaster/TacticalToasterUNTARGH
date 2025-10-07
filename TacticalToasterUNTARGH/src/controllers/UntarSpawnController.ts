@@ -85,7 +85,7 @@ export class UntarSpawnController {
 
                         tables.locations[map].base.BossLocationSpawn.push(patrol);
 
-                        this.logger.info(`Added (${mapConfig.patrolChance}% chance) UNTAR patrol of size ${patrolSize} to ${map} in zone ${patrol.BossZone} with a spawn time of ${patrol.Time} minutes.`);
+                        this.logger.info(`Added (${mapConfig.patrolChance}% chance) UNTAR patrol of size ${patrolSize} to ${map} in zone ${patrol.BossZone} with a spawn time of ${patrol.Time} seconds.`);
 
                         //if (this.randomUtil.getChance100(mainConfig.locations[map].patrolChance)) {
                         //const patrolAmount = this.randomUtil.getInt(
