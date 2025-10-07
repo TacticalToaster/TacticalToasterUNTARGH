@@ -78,6 +78,11 @@ export class UntarSpawnController {
                             mapConfig.patrolTimeMax
                         );
 
+                        if (mainConfig.debug.spawnInstantlyAlawys) {
+                            this.logger.info(`Instantly spawning UNTAR patrol for ${map}.`);
+                            patrol.Time = -1;
+                        }
+
                         tables.locations[map].base.BossLocationSpawn.push(patrol);
 
                         this.logger.info(`Added (${mapConfig.patrolChance}% chance) UNTAR patrol of size ${patrolSize} to ${map} in zone ${patrol.BossZone} with a spawn time of ${patrol.Time} minutes.`);
