@@ -63,7 +63,7 @@ export class UntarSpawnController {
                         const patrolSize = this.randomUtil.getInt(mapConfig.patrolMin, mapConfig.patrolMax);
                         const patrol: IBossLocationSpawn = this.generatePatrol(
                             patrolSize,
-                            mapConfig.patrolChance
+                            mainConfig.debug.spawnAlways ? 100 : mapConfig.patrolChance
                         );
 
                         patrol.BossZone = this.randomUtil.getArrayValue(validZones);
@@ -78,7 +78,7 @@ export class UntarSpawnController {
                             mapConfig.patrolTimeMax
                         );
 
-                        if (mainConfig.debug.spawnInstantlyAlawys) {
+                        if (mainConfig.debug.spawnInstantlyAlways) {
                             this.logger.info(`Instantly spawning UNTAR patrol for ${map}.`);
                             patrol.Time = -1;
                         }

@@ -1,7 +1,8 @@
 {
     "debug": {
         "logs": true,
-        "spawnInstantlyAlawys": true
+        "spawnAlways": true,
+        "spawnInstantlyAlways": true
     },
     "patrols": {
         "minOfficerSize": 4,

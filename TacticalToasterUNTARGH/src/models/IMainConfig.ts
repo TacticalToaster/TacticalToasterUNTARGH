@@ -1,6 +1,8 @@
 export interface IMainConfig {
     debug: {
-        logs: boolean
+        logs: boolean;
+        spawnAlways: boolean;
+        spawnInstantlyAlways: boolean;
     },
     patrols: {
         minOfficerSize: number;
