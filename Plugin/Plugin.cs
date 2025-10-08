@@ -21,7 +21,7 @@ public class Plugin : BaseUnityPlugin
 {
     public static ManualLogSource LogSource;
 
-    public static string modPath = Path.Combine(Environment.CurrentDirectory, "user", "mods", "UNTARGH");
+    //public static string modPath = Path.Combine(Environment.CurrentDirectory, "user", "mods", "UNTARGH");
     public static string pluginPath = Path.Combine(Environment.CurrentDirectory, "BepInEx", "plugins", "UNTARGH");
     public static string resourcePath = Path.Combine(pluginPath, "Resources");
     public static string untarJsonPath = Path.Combine(pluginPath, "normalUNTARSettings.json");
