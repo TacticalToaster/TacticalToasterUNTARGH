@@ -24,7 +24,7 @@ public static class UNTARWildSpawnTypePatch
 
         suitableList = new List<int>();
 
-        UNTAREnums.AddBot("followeruntar", brain: (int)WildSpawnType.followerSanitar, suitableList: suitableList);
+        UNTAREnums.AddBot("followeruntar", brain: (int)WildSpawnType.exUsec, suitableList: suitableList);
         UNTAREnums.AddBot("bossuntarlead", brain: (int)WildSpawnType.exUsec, suitableList: suitableList);
         UNTAREnums.AddBot("followeruntarmarksman", brain: (int)WildSpawnType.exUsec, suitableList: suitableList);
         UNTAREnums.AddBot("bossuntarofficer", brain: (int)WildSpawnType.exUsec, suitableList: suitableList);
@@ -48,7 +48,7 @@ public static class UNTARWildSpawnTypePatch
     {
         var patcherLoc = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         var bepDir = Directory.GetParent(patcherLoc);
-        var modDllLoc = Path.Combine(bepDir.FullName, "plugins", "UNTARGH", "UNTARGHPlugin.dll");
+        var modDllLoc = Path.Combine(bepDir.FullName, "plugins", "tacticaltoaster-untargohome", "UNTARGHPlugin.dll");
 
         return File.Exists(modDllLoc);
     }

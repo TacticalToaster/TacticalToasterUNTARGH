@@ -1,66 +1,63 @@
-# Welcome to the SPT Modding Project
+# UNTAR Go Home!
+## Version 1.0.0
 
-This project is designed to streamline the initial setup process for building and creating mods in the SPT environment. Follow this guide to set up your environment efficiently.
+Yet they're still here in Tarkov...
 
-## **Table of Contents**
-- [NodeJS Setup](#nodejs-setup)
-- [IDE Setup](#ide-setup)
-- [Workspace Configuration](#workspace-configuration)
-- [Environment Setup](#environment-setup)
-- [Essential Concepts](#essential-concepts)
-- [Coding Guidelines](#coding-guidelines)
-- [Distribution Guidelines](#distribution-guidelines)
+UNTAR Go Home! adds UNTAR as a proper faction to SPT. Encounter roving patrols of peacekeepers. Their ROE states that they are only to shoot if threatened, so try not to piss them off!
 
-## **NodeJS Setup**
+# Features
 
-Before you begin, ensure to install NodeJS version `v20.11.1`, which has been tested thoroughly with our mod templates and build scripts. Download it from the [official NodeJS website](https://nodejs.org/).
+## New Bot Types
+UNTARGH adds completely custom bot types that don't replace existing bots, each with their own loadouts and roles.
 
-After installation, it's advised to reboot your system.
+### UNTAR Grunt
+The bulk of the UNTAR mission's combat-ready forces. They're meant to "keep the peace" and protect civilian members of the mission while they perform their duties. Expect them to be armed with a variety of western weapons while wearing standard UNTAR armor.
 
-## **IDE Setup**
+### UNTAR Squad Lead
+An NCO in charge of a squad of UNTAR grunts. They keep the group in check while donning equipment from their origin nation. They have fancier weapons and gear on average.
 
-For this project, you can work with either [VSCodium](https://vscodium.com/) or [VSCode](https://code.visualstudio.com/). However, we strongly recommend using VSCode, as all development and testing have been carried out using this IDE, ensuring a smoother experience and compatibility with the project setups. Either way, we have a prepared a workspace file to assist you in setting up your environment.
+### UNTAR Officer
+Officers are in charge of ensuring that the mission's objectives (extract capable civilians, distribute aid to those stranded, and ~~make a f#$% ton of money~~) are adhered to and completed. Currently, they're functionally similar to squad leaders besides the fact they always wear a blue beret, but I do intend on expanding their purpose.
 
-## **Workspace Configuration**
+## UNTAR Patrols
+Patrols can spawn across several maps in randomly generated patrols at random times during the raid. Their size and composition varies, with some larger patrols being lead by officers and potentially having multiple squad leaders. As more UNTAR types are added patrols will become more varied.
 
-With NodeJS and your chosen IDE ready, initiate the `mod.code-workspace` file using your IDE:
+### Maps
+Settings related to patrols can be adjusted in the config/main.json server file. This includes adding new maps and zones!
+Patrols will pick a random available spawn zone found in the config file and a time in a defined range. Maps can be configured to have multiple patrols rolled (which also means you can encounter multiple patrols in one raid).
 
-> File -> Open Workspace from File...
+Currently, patrols will spawn on:
 
-Upon project loading, consider installing recommended plugins like the ESLint plugin.
+- Woods, 2 possible patrols at a time, decent spawn chance, small-mid sized
+- Customs, 1 possible patrol, good spawn chance, mid-big sized
+- Interchange, 2 possible patrols at a time, meh spawn chance, small-mid sized
+- Shoreline, 1 possible patrol, decent spawn chance, small-mid sized
 
-## **Environment Setup**
+## Config
+The config folder in the server mod lets you configure things such as patrol spawning and supported maps. Adjust the conditions for different roles to spawn in patrols or add the chance for patrols to spawn on other maps. I'll add detailed explanations of the config options later but they're fairly self-explanatory at the moment.
 
-An automated task is available to configure your environment for Typescript utilization:
+# Compatability
 
-> Terminal -> Run Task... -> Show All Tasks... -> npm: install
+## SAIN
+UNTARGH has *full* (I might've missed something. If you notice any problems with SAIN or errors do let me know!) compatability with SAIN, with UNTAR bots using SAIN behaviors and having dedicated config options in SAIN's settings.
 
-Note: Preserve the `node_modules` folder as it contains necessary dependencies for Typescript and other functionalities.
+## Spawn Mods
+UNTARGH has no specific compatability code at the moment with any spawn mods. I still have to do some testing and collaborate with some authors to make sure UNTAR spawning works 100% with spawn mods. If you encounter any issues with spawning while using these sorts of mods I won't offer support, but I will accept logs so I can work on ironing out compatability.
 
-## **Essential Concepts**
+### MOAR
+MOAR seems to work with UNTARGH, but there's no additional compatability. Basically, UNTAR works off my spawn system, everything else works on MOAR's system.
 
-Prioritize understanding Dependency Injection and Inversion of Control, the architectural principles SPT adopts. Comprehensive guidelines will be available on the hub upon release.
+### ABPS
+ABPS currently prevents UNTAR from spawning entirely but AcidPhantasm is adding compatability with UNTARGH next ABPS update (tysm <3) so please standby!
 
-Some resources to get you started:
- - [A quick intro to Dependency Injection](https://www.freecodecamp.org/news/a-quick-intro-to-dependency-injection-what-it-is-and-when-to-use-it-7578c84fa88f/)
- - [Understanding Inversion of Control (IoC) Principle](https://medium.com/@amitkma/understanding-inversion-of-control-ioc-principle-163b1dc97454)
+## Other Bot Behavior Mods (Questing, Looting, etc)
+UNTARGH is relatively untested with these mods. Questing Bots and Looting Bots don't conflict at the very least, so you can play with those just fine from what I can tell. I'll be conducting some testing and patching in necessary compatability fixes. Eventually, I want to include functionality related to Questing Bots in particular but that's for a later update.
 
-## **Coding Guidelines**
+# Credits and Thanks
+Thanks to GrooveypenguinX and nameless___ for letting me reference yalls code, and specifically Groovey for giving me the run down on what I needed to do to get custom bots working. This mod wouldn't exist without that starting point.
 
-Focus your mod development around the `mod.ts` file. In the `package.json` file, only alter these properties: `"name"`, `"version"`, `"sptVersion"`, `"loadBefore"`, `"loadAfter"`, `"incompatibilities"`, `"isBundleMod"`, `"author"`, and `"license"`.
+Thanks to Solarint for making a mod I felt was necessary to have compatability for before publishing this mod. No, seriously, SAIN is amazing and if you don't already have it installed give it a look.
 
-New to Typescript? Find comprehensive documentation on the [official website](https://www.typescriptlang.org/docs/).
+Thanks DrakiXYZ for BigBrains and Waypoints, absolutely necessary mods for anything bot-related. I'll be using BigBrains heavily in future versions of this mod (and more coming mods) to implment some custom behaviors. The less I have to touch BSG's code the better lmao.
 
-## **Distribution Guidelines**
-
-Automated tasks are set up to bundle all necessary files for your mod to function in SPT:
-
-> Terminal -> Run Task... -> Show All Tasks... -> npm: build
-
-The ZIP output, located in the `dist` directory, contains all required files. Ensure all files are included and modify the `.buildignore` file as needed. This ZIP file is your uploadable asset for the hub.
-
-## **Conclusion**
-
-With this setup, you're ready to begin modding with SPT. If you run into any trouble be sure to check out the [modding documentation on the hub](https://hub.sp-tarkov.com/doc/lexicon/66-modding/). If you really get stuck feel free to join us in the [#mods-development](https://discord.com/channels/875684761291599922/875803116409323562) official Discord channel.
-
-Build something awesome!
+Goes without saying that thanks should be given to the SPT team for enabling any of this in the first place. Yall rock!

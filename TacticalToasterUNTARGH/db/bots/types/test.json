@@ -60,40 +60,41 @@
     },
     "weaponMods": {
       "mod_bipod": 0,
-      "mod_charge": 20,
+      "mod_barrel": 100,
+      "mod_charge": 50,
       "mod_charge_001": 1,
       "mod_flashlight": 100,
-      "mod_foregrip": 55,
-      "mod_handguard": 98,
+      "mod_foregrip": 80,
       "mod_launcher": 0,
+      "mod_handguard": 100,
       "mod_magazine": 100,
-      "mod_mount": 42,
-      "mod_mount_000": 30,
-      "mod_mount_001": 52,
-      "mod_mount_002": 15,
-      "mod_mount_003": 0,
-      "mod_mount_004": 7,
-      "mod_muzzle": 88,
+      "mod_mount": 100,
+      "mod_mount_000": 85,
+      "mod_mount_001": 75,
+      "mod_mount_002": 75,
+      "mod_mount_003": 50,
+      "mod_mount_004": 50,
+      "mod_muzzle": 100,
       "mod_muzzle_000": 96,
       "mod_muzzle_001": 95,
-      "mod_pistol_grip": 0,
+      "mod_pistol_grip": 100,
       "mod_reciever": 100,
       "mod_scope": 74,
       "mod_scope_000": 100,
       "mod_scope_001": 0,
       "mod_scope_002": 0,
-      "mod_sight_front": 89,
-      "mod_sight_rear": 79,
+      "mod_sight_front": 100,
+      "mod_sight_rear": 100,
       "mod_stock": 100,
       "mod_stock_000": 100,
       "mod_stock_001": 100,
       "mod_stock_002": 100,
-      "mod_tactical": 37,
+      "mod_tactical": 57,
       "mod_tactical_000": 42,
       "mod_tactical_001": 29,
-      "mod_tactical_002": 11,
+      "mod_tactical_002": 30,
       "mod_tactical_003": 39,
-      "mod_tactical_2": 100
+      "mod_tactical_2": 40
     }
   },
   "difficulty": {
@@ -414,9 +415,9 @@
         "COVER_SELF_ALWAYS_IF_DAMAGED": false,
         "DAMAGE_REDUCTION_TIME_SEC": 20,
         "DANGER_POINT_CHOOSE_COEF": 1,
-        "DEFAULT_BEAR_BEHAVIOUR": "AlwaysEnemies",
+        "DEFAULT_BEAR_BEHAVIOUR": "Warn",
         "DEFAULT_SAVAGE_BEHAVIOUR": "Warn",
-        "DEFAULT_USEC_BEHAVIOUR": "AlwaysEnemies",
+        "DEFAULT_USEC_BEHAVIOUR": "Warn",
         "DIST_TO_ENEMY_YO_CAN_HEAL": 30,
         "DIST_TO_FOUND_SQRT": 400,
         "DIST_TO_STOP_RUN_ENEMY": 15,
@@ -450,8 +451,10 @@
         "PROTECT_DELTA_HEAL_SEC": 10,
         "PROTECT_TIME_REAL": true,
         "REVENGE_BOT_TYPES": [
-          "pmcBot",
-          "gifter"
+          "gifter",
+          "followeruntar",
+          "bossuntarlead",
+          "bossuntarofficer"
         ],
         "REVENGE_FOR_SAVAGE_PLAYERS": false,
         "SEC_TO_MORE_DIST_TO_RUN": 10,
@@ -904,9 +907,9 @@
         "COVER_SELF_ALWAYS_IF_DAMAGED": false,
         "DAMAGE_REDUCTION_TIME_SEC": 20,
         "DANGER_POINT_CHOOSE_COEF": 1,
-        "DEFAULT_BEAR_BEHAVIOUR": "AlwaysEnemies",
+        "DEFAULT_BEAR_BEHAVIOUR": "Warn",
         "DEFAULT_SAVAGE_BEHAVIOUR": "Warn",
-        "DEFAULT_USEC_BEHAVIOUR": "AlwaysEnemies",
+        "DEFAULT_USEC_BEHAVIOUR": "Warn",
         "DIST_TO_ENEMY_YO_CAN_HEAL": 30,
         "DIST_TO_FOUND_SQRT": 400,
         "DIST_TO_STOP_RUN_ENEMY": 15,
@@ -940,8 +943,10 @@
         "PROTECT_DELTA_HEAL_SEC": 10,
         "PROTECT_TIME_REAL": true,
         "REVENGE_BOT_TYPES": [
-          "pmcBot",
-          "gifter"
+          "gifter",
+          "followeruntar",
+          "bossuntarlead",
+          "bossuntarofficer"
         ],
         "REVENGE_FOR_SAVAGE_PLAYERS": false,
         "SEC_TO_MORE_DIST_TO_RUN": 10,
@@ -1394,9 +1399,9 @@
         "COVER_SELF_ALWAYS_IF_DAMAGED": false,
         "DAMAGE_REDUCTION_TIME_SEC": 20,
         "DANGER_POINT_CHOOSE_COEF": 1,
-        "DEFAULT_BEAR_BEHAVIOUR": "AlwaysEnemies",
+        "DEFAULT_BEAR_BEHAVIOUR": "Warn",
         "DEFAULT_SAVAGE_BEHAVIOUR": "Warn",
-        "DEFAULT_USEC_BEHAVIOUR": "AlwaysEnemies",
+        "DEFAULT_USEC_BEHAVIOUR": "Warn",
         "DIST_TO_ENEMY_YO_CAN_HEAL": 30,
         "DIST_TO_FOUND_SQRT": 400,
         "DIST_TO_STOP_RUN_ENEMY": 15,
@@ -1430,8 +1435,10 @@
         "PROTECT_DELTA_HEAL_SEC": 10,
         "PROTECT_TIME_REAL": true,
         "REVENGE_BOT_TYPES": [
-          "pmcBot",
-          "gifter"
+          "gifter",
+          "followeruntar",
+          "bossuntarlead",
+          "bossuntarofficer"
         ],
         "REVENGE_FOR_SAVAGE_PLAYERS": false,
         "SEC_TO_MORE_DIST_TO_RUN": 10,
@@ -1889,7 +1896,7 @@
         "CAN_TALK": true,
         "CHACE_TO_DEACTIVATE": 75,
         "CHANCE_FUCK_YOU_ON_CONTACT_100": 0.01,
-        "CHANCE_SHOOT_WHEN_WARN_PLAYER_100": 100,
+        "CHANCE_SHOOT_WHEN_WARN_PLAYER_100": 40,
         "CHANCE_TO_RUN_CAUSE_DAMAGE_0_100": 35,
         "CHANCE_TO_STAY_WHEN_WARN_PLAYER_100": 80,
         "COVER_DIST_COEF": 1.5,
@@ -1897,7 +1904,7 @@
         "COVER_SELF_ALWAYS_IF_DAMAGED": false,
         "DAMAGE_REDUCTION_TIME_SEC": 20,
         "DANGER_POINT_CHOOSE_COEF": 1,
-        "DEFAULT_BEAR_BEHAVIOUR": "AlwaysEnemies",
+        "DEFAULT_BEAR_BEHAVIOUR": "Warn",
         "DEFAULT_SAVAGE_BEHAVIOUR": "Warn",
         "DEFAULT_USEC_BEHAVIOUR": "Warn",
         "DIST_TO_ENEMY_YO_CAN_HEAL": 30,
@@ -2096,15 +2103,20 @@
     "useSimpleAnimator": false
   },
   "firstName": [
-    "PFC John",
-    "PFC Alex",
-    "PFC Alexi",
-    "PFC Gus",
-    "PFC Matthew",
-    "CPL Michael",
-    "CPL Steven",
-    "CPL Zellig",
-    "CPL Tony"
+    "PFC",
+    "PVT",
+    "CPL"
+  ],
+  "lastName": [
+    "John",
+    "Alex",
+    "Alexi",
+    "Gus",
+    "Matthew",
+    "Michael",
+    "Steven",
+    "Zellig",
+    "Tony"
   ],
   "generation": {
     "items": {
@@ -2317,6 +2329,9 @@
       "Caliber40mmRU": {
         "5656eb674bdc2d35148b457c": 1
       },
+      "Caliber40x46": {
+        "5f0c892565703e5c461894e9": 1
+      },
       "Caliber545x39": {
         "56dff061d2720bb5668b4567": 91,
         "56dff3afd2720bba668b4567": 388
@@ -2390,9 +2405,7 @@
         "675ac888803644528007b3f6": 8416
       },
       "FirstPrimaryWeapon": {
-        "5447a9cd4bdc2dbd208b4567": 774,
-        "623063e994fc3f7b302a9696": 600,
-        "62e7c4fba689e8c9c50dfc38": 477
+        "5447a9cd4bdc2dbd208b4567": 774
       },
       "Headwear": {
         "5aa7d03ae5b5b00016327db5": 1401
@@ -4356,7 +4369,6 @@
           "55d44fd14bdc2d962f8b456e"
         ],
         "mod_magazine": [
-          "5aaa5e60e5b5b000140293d6",
           "55d4887d4bdc2d962f8b4570",
           "5448c1d04bdc2dff2f8b4569"
         ],
@@ -4521,7 +4533,6 @@
       }
     }
   },
-  "lastName": [],
   "skills": {
     "Common": {
       "BotReload": {
