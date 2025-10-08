@@ -110,25 +110,6 @@ export class UntarDBController {
         const dbTables = this.databaseService.getTables();
         const botConfig = this.configServer.getConfig<IBotConfig>(ConfigTypes.BOT);
         const presetBatch: any = botConfig.presetBatch;
-        /*const stupidfuckingbotsettings = {
-            "nvgIsActiveChanceDayPercent": 10,
-            "nvgIsActiveChanceNightPercent": 90,
-            "faceShieldIsActiveChancePercent": 100,
-            "lightIsActiveDayChancePercent": 25,
-            "lightIsActiveNightChancePercent": 90,
-            "weaponSightWhitelist": {},
-            "laserIsActiveChancePercent": 85,
-            "randomisation": [],
-            "blacklist": [],
-            "whitelist": [],
-            "weightingAdjustmentsByPlayerLevel": [],
-            "weightingAdjustmentsByBotLevel": [],
-            "forceStock": false,
-            "weaponModLimits": {
-                "scopeLimit": 1,
-                "lightLaserLimit": 1
-            }
-        };*/
 
         botConfig.equipment["followeruntar"] = untarBotInfo.equipmentSettings;
         botConfig.itemSpawnLimits["followeruntar"] = {};
