@@ -180,7 +180,7 @@ public class UntarSpawnController(
             supportsList.Add(new BossSupport
             {
                 BossEscortAmount = "1",
-                BossEscortDifficulty = new ListOrT<string>(null, "normal"),
+                BossEscortDifficulty = new ListOrT<string>(["normal"], null),
                 BossEscortType = secondLeader
             });
         }
@@ -188,7 +188,7 @@ public class UntarSpawnController(
         supportsList.Add(new BossSupport
         {
             BossEscortAmount = followers.ToString(),
-            BossEscortDifficulty = new ListOrT<string>(null, "normal"),
+            BossEscortDifficulty = new ListOrT<string>(["normal"], null),
             BossEscortType = "followeruntar"
         });
 

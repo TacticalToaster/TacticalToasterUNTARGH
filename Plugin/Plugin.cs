@@ -34,7 +34,7 @@ public class Plugin : BaseUnityPlugin
         LogSource = Logger;
         LogSource.LogInfo("plugin loaded!");
 
-        FieldInfo excludedDifficultiesField = typeof(GClass598).GetField("ExcludedDifficulties", BindingFlags.Static | BindingFlags.Public) ?? throw new InvalidOperationException("ExcludedDifficulties field not found.");
+        FieldInfo excludedDifficultiesField = typeof(LocalBotSettingsProviderClass).GetField("Dictionary_1", BindingFlags.Static | BindingFlags.Public) ?? throw new InvalidOperationException("ExcludedDifficulties field not found.");
         var excludedDifficulties = (Dictionary<WildSpawnType, List<BotDifficulty>>)excludedDifficultiesField.GetValue(null);
 
         var untarDifficulties = new List<BotDifficulty> {
@@ -50,7 +50,7 @@ public class Plugin : BaseUnityPlugin
                 excludedDifficulties.Add((WildSpawnType)botType.wildSpawnType, untarDifficulties);
                 Logger.LogInfo($"Successfully added {botType.typeName} to the excluded difficulties list");
             }
-            Traverse.Create(typeof(BotSettingsRepoClass)).Field<Dictionary<WildSpawnType, GClass790>>("dictionary_0").Value.Add((WildSpawnType)botType.wildSpawnType, new GClass790(true, true, false, $"ScavRole/{botType.scavRole}", (ETagStatus)0));
+            Traverse.Create(typeof(BotSettingsRepoClass)).Field<Dictionary<WildSpawnType, GClass790>>("Dictionary_0").Value.Add((WildSpawnType)botType.wildSpawnType, new GClass790(true, true, false, $"ScavRole/{botType.scavRole}", (ETagStatus)0));
         }
 
         /*if (!excludedDifficulties.ContainsKey((WildSpawnType)UNTAREnums.BotUNTARValue))

@@ -38,13 +38,13 @@ namespace TacticalToasterUNTARGH.Patches
         [PatchPostfix]
         [HarmonyPriority(Priority.First)] // Make sure this runs after BigBrain so we can override it
         //[HarmonyBefore(["xyz.drakia.bigbrain"])]
-        public static void PatchPostfix(StandartBotBrain __instance, BotOwner ___botOwner_0)
+        public static void PatchPostfix(StandartBotBrain __instance, BotOwner ___BotOwner_0)
         {
-            if (UNTAREnums.UNTARTypesDict.ContainsKey((int)___botOwner_0.Profile.Info.Settings.Role))
+            if (UNTAREnums.UNTARTypesDict.ContainsKey((int)___BotOwner_0.Profile.Info.Settings.Role))
             {
                 Logger.LogMessage("Inserting our UNTAR brain. How exciting!");
-                __instance.BaseBrain = GetUNTARBrain(___botOwner_0);
-                __instance.Agent = GetUNTARAgent(___botOwner_0, __instance.BaseBrain, __instance);
+                __instance.BaseBrain = GetUNTARBrain(___BotOwner_0);
+                __instance.Agent = GetUNTARAgent(___BotOwner_0, __instance.BaseBrain, __instance);
 
                 // This isn't critical, only knight, sanitar, and the attack event (khorvod generators, spring event, etc) behaviors use this
                 //__instance.OnSetStrategy?.Invoke(__instance.BaseBrain);
