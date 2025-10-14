@@ -1,0 +1,221 @@
+{
+    "equipment": {
+        
+    },
+    "weapons": {
+        
+    },
+    "categories": {
+        "scopes_mid": {
+            "elcan": {
+                "id": "57ac965c24597706be5f975c",
+                "chance": 10,
+                "children": {}
+            },
+            "tan elcan": {
+                "id": "57aca93d2459771f2c7e26db",
+                "chance": 10,
+                "children": {}
+            },
+            "ta51 mount": {
+                "id": "59db7eed86f77461f8380365",
+                "chance": 20,
+                "children": {},
+                "slots": {
+                    "mod_scope": ["optics_acog"]
+                }
+            }
+        },
+        "scopes_long": {
+            "geissele mount": {
+                "id": "618b9643526131765025ab35",
+                "chance": 10,
+                "children": {
+                    "ring cap": {
+                        "id": "618b9671d14d6d5ab879c5ea",
+                        "chance": 10,
+                        "children": {}
+                    }
+                },
+                "slots": {
+                    "mod_scope": ["optics_30"],
+                    "mod_mount": ["618b9671d14d6d5ab879c5ea"]
+                }
+            },
+            "nightforce mount": {
+                "id": "5aa66a9be5b5b0214e506e89",
+                "chance": 10,
+                "children": {},
+                "slots": {
+                    "mod_scope": ["optics_34"]
+                }
+            }
+        },
+        "optics_acog":{
+            "acog" : {
+                "id": "5c05293e0db83400232fff80",
+                "chance": 20,
+                "children": {}
+            },
+            "tan acog": {
+                "id": "5c052a900db834001a66acbd",
+                "chance": 20,
+                "children": {}
+            },
+            "weird acog": {
+                "id": "59db7e1086f77448be30ddf3",
+                "chance": 15,
+                "children": {}
+            }
+        },
+        "optics_30": {
+            "vudu": {
+                "id": "5b3b99475acfc432ff4dcbee",
+                "chance": 20,
+                "children": {}
+            },
+            "leupold": {
+                "id": "5a37cb10c4a282329a73b4e7",
+                "chance": 20,
+                "children": {}
+            },
+            "march": {
+                "id": "57c5ac0824597754771e88a9",
+                "chance": 20,
+                "children": {}
+            }
+        },
+        "optics_34": {
+            "atacr": {
+                "id": "5aa66be6e5b5b0214e506e97",
+                "chance": 20,
+                "children": {}
+            },
+            "pmii": {
+                "id": "61714eec290d254f5e6b2ffc",
+                "chance": 20,
+                "children": {}
+            }
+        },
+        "sights": {
+            "eotech 553": {
+                "id": "570fd6c2d2720bc6458b457f",
+                "chance": 50,
+                "children": {}
+            },
+            "xps32": {
+                "id": "584924ec24597768f12ae244",
+                "chance": 50,
+                "children": {}
+            },
+            "exps3": {
+                "id": "558022b54bdc2dac148b458d",
+                "chance": 40,
+                "children": {}
+            },
+            "compm4 mount": {
+                "id": "5c7d55f52e221644f31bff6a",
+                "chance": 60,
+                "children": {
+                    "compm4": {
+                        "id": "5c7d55de2e221644f31bff68",
+                        "chance": 60,
+                        "children": {},
+                        "slots": {}
+                    },
+                    "compm4 riser": {
+                        "id": "5c7d560b2e22160bc12c6139",
+                        "chance": 30,
+                        "children": {},
+                        "slots": {
+                            "mod_scope": ["compm4"]
+                        }
+                    }
+                },
+                "slots": {
+                    "mod_scope": ["compm4 riser"]
+                }
+            }
+        },
+        "compact_sights": {
+
+        },
+        "grips": {
+            "kac grip": {
+                "id": "5c87ca002e221600114cb150",
+                "chance": 40,
+                "children": {}
+            },
+            "magpul afg": {
+                "id": "588226d124597767ad33f787",
+                "chance": 40,
+                "children": {}
+            },
+            "tango bgv": {
+                "id": "661e52e29c8b4dadef008577"
+            },
+            "magpul rvg": {
+                "id": "59fc48e086f77463b1118392"
+            }
+        },
+        "grips_mlok": {
+            "magpul afg mlok tan": {
+                "id": "57cffcd624597763133760c5"
+            },
+            "dd vert mlok tan": {
+                "id": "651a8e529829226ceb67c319"
+            },
+            "bcm mlok blk": {
+                "id": "665d5d9e338229cfd6078da1"
+            }
+        },
+        "lasers_common": {
+            "peq15": {
+                "id": "544909bb4bdc2d6f028b4577"
+            },
+            "la5b": {
+                "id": "5c06595c0db834001a66af6c"
+            }
+        },
+        "lasers_top": {
+            "mawl": {
+                "id": "644a3df63b0b6f03e101e065"
+            }
+        },
+        "lasers_side": {
+
+        },
+        "lights": {
+            "wmx": {
+                "id": "626becf9582c3e319310b837"
+            },
+            "25mm": {
+                "id": "57d17e212459775a1179a0f5",
+                "slots": {
+                    "mod_flashlight": ["lights_25"]
+                }
+            }
+        },
+        "lights_25" : {
+            "ultrafire wf": {
+                "id": "57d17c5e2459775a5c57d17d"
+            }
+        },
+        "plates_side": {
+            "sapi side": {
+                "id": "6557458f83942d705f0c4962"
+            },
+            "esapi side": {
+                "id": "64afdb577bb3bfe8fe03fd1d"
+            }
+        },
+        "plates": {
+            "sapi": {
+                "id": "655746010177119f4a097ff7"
+            },
+            "esapi": {
+                "id": "64afdcb83efdfea28601d041"
+            }
+        }
+    }
+}

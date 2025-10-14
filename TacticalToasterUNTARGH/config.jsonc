@@ -1,0 +1,55 @@
+{
+    "debug": {
+        "logs": false,
+        "spawnAlways": false,
+        "spawnInstantlyAlways": false
+    },
+    "patrols": {
+        "minOfficerSize": 4,
+        "minSecondLeaderSize": 5,
+        "officerChance": 35,
+        "secondLeaderChance": 50
+    },
+    "locations": {
+        "woods": {
+            "enablePatrols": true,
+            "patrolChance": 45,
+            "patrolAmount": 2,
+            "patrolMin": 3,
+            "patrolMax": 6,
+            "patrolZones": ["ZoneRoad", "ZoneRedHouse", "ZoneClearVill"],
+            "patrolTimeMin": -1,
+            "patrolTimeMax": 1680
+        },
+        "bigmap": {
+            "enablePatrols": true,
+            "patrolChance": 50,
+            "patrolAmount": 1,
+            "patrolMin": 4,
+            "patrolMax": 7,
+            "patrolZones": ["ZoneBrige"],
+            "patrolTimeMin": 600,
+            "patrolTimeMax": 1200
+        },
+        "interchange": {
+            "enablePatrols": true,
+            "patrolChance": 30,
+            "patrolAmount": 2,
+            "patrolMin": 3,
+            "patrolMax": 6,
+            "patrolZones": ["ZonePowerStation", "ZoneTrucks"],
+            "patrolTimeMin": -1,
+            "patrolTimeMax": 1600
+        },
+        "shoreline": {
+            "enablePatrols": true,
+            "patrolChance": 40,
+            "patrolAmount": 1,
+            "patrolMin": 4,
+            "patrolMax": 7,
+            "patrolZones": ["ZoneForestGasStation"],
+            "patrolTimeMin": -1,
+            "patrolTimeMax": 1600
+        }
+    }
+}
