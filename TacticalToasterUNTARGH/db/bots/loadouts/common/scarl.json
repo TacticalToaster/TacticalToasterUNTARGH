@@ -1,71 +1,73 @@
 {
-    "categories": {
-        "scarl_barrels": {
-            "scarl 10": {
-                "id": "6183fc15d3a39d50044c13e9",
-                "slots": {
-                    "mod_muzzle": ["ar_556_muzzles"],
-                    "mod_sight_front": ["61816fcad92c473c770215cc"]
-                }
-            },
-            "scarl 14": {
-                "id": "6183fd911cb55961fa0fdce9",
-                "slots": {
-                    "mod_muzzle": ["ar_556_muzzles"],
-                    "mod_sight_front": ["61816fcad92c473c770215cc"]
-                }
-            }
-        },
-        "scar_bottom_rails": {
-            "scar_bottom_rail": {
-                "id": "61816df1d3a39d50044c139e",
-                "slots": {
-                    "mod_foregrip": ["grips"]
-                }
-            }
-        },
-        "scar_side_rails": {
-            "scar_side_rail": {
-                "id": "61816dfa6ef05c2ce828f1ad",
-                "slots": {
-                    "mod_tactical_000": ["lights"]
-                }
-            }
-        },
-        "scarl_blk_receivers": {
-            "scarl_blk_receiver": {
-                "id": "618405198004cc50514c3594",
-                "slots": {
-                    "mod_scope": ["scopes_mid", "sights"],
-                    "mod_tactical_000": ["lasers_common"],
-                    "mod_mount_000": ["scar_bottom_rails"],
-                    "mod_mount_001": ["scar_side_rails"],
-                    "mod_barrel": ["scarl_barrels"],
-                    "mod_sight_rear": ["61817865d3a39d50044c13a4"]
-                }
-            }
-        },
-        "scarl_blk_stocks": {
-            "scarl_blk_stock": {
-                "id": "61816734d8e3106d9806c1f3",
-                "children": {
-                    "scarl_blk retractable": {
-                        "id": "618167528004cc50514c34f9",
-                        "children": {
-                            "scarl buttpad": {
-                                "id": "618167616ef05c2ce828f1a8"
-                            }
-                        },
-                        "slots": {
-                            "mod_stock": ["scarl buttpad"]
-                        }
-                    }
-                },
-                "slots": {
-                    "mod_stock_001": ["scarl_blk retractable"],
-                    "mod_stock_002": ["618167441cb55961fa0fdc71"]
-                }
-            }
+  "equipment": {},
+  "weapons": {},
+  "categories": {
+    "scarl_barrels": {
+      "scarl 10": {
+        "id": "6183fc15d3a39d50044c13e9",
+        "slots": {
+          "mod_muzzle": [ "ar_556_muzzles" ],
+          "mod_sight_front": [ "61816fcad92c473c770215cc" ]
         }
+      },
+      "scarl 14": {
+        "id": "6183fd911cb55961fa0fdce9",
+        "slots": {
+          "mod_muzzle": [ "ar_556_muzzles" ],
+          "mod_sight_front": [ "61816fcad92c473c770215cc" ]
+        }
+      }
+    },
+    "scar_bottom_rails": {
+      "scar_bottom_rail": {
+        "id": "61816df1d3a39d50044c139e",
+        "slots": {
+          "mod_foregrip": [ "grips" ]
+        }
+      }
+    },
+    "scar_side_rails": {
+      "scar_side_rail": {
+        "id": "61816dfa6ef05c2ce828f1ad",
+        "slots": {
+          "mod_tactical_000": [ "lights" ]
+        }
+      }
+    },
+    "scarl_blk_receivers": {
+      "scarl_blk_receiver": {
+        "id": "618405198004cc50514c3594",
+        "slots": {
+          "mod_scope": [ "scopes_mid", "sights" ],
+          "mod_tactical_000": [ "lasers_common" ],
+          "mod_mount_000": [ "scar_bottom_rails" ],
+          "mod_mount_001": [ "scar_side_rails" ],
+          "mod_barrel": [ "scarl_barrels" ],
+          "mod_sight_rear": [ "61817865d3a39d50044c13a4" ]
+        }
+      }
+    },
+    "scarl_blk_stocks": {
+      "scarl_blk_stock": {
+        "id": "61816734d8e3106d9806c1f3",
+        "children": {
+          "scarl_blk retractable": {
+            "id": "618167528004cc50514c34f9",
+            "children": {
+              "scarl buttpad": {
+                "id": "618167616ef05c2ce828f1a8"
+              }
+            },
+            "slots": {
+              "mod_stock": [ "scarl buttpad" ]
+            }
+          }
+        },
+        "slots": {
+          "mod_stock_001": [ "scarl_blk retractable" ],
+          "mod_stock_002": [ "618167441cb55961fa0fdc71" ]
+        }
+      }
     }
+  }
 }

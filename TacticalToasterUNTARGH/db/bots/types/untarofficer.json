@@ -454,9 +454,9 @@
         "PROTECT_TIME_REAL": true,
         "REVENGE_BOT_TYPES": [
           "gifter",
-          "followeruntar",
-          "bossuntarlead",
-          "bossuntarofficer"
+          1170,
+          1171,
+          1172
         ],
         "REVENGE_FOR_SAVAGE_PLAYERS": false,
         "SEC_TO_MORE_DIST_TO_RUN": 10,
@@ -946,9 +946,9 @@
         "PROTECT_TIME_REAL": true,
         "REVENGE_BOT_TYPES": [
           "gifter",
-          "followeruntar",
-          "bossuntarlead",
-          "bossuntarofficer"
+          1170,
+          1171,
+          1172
         ],
         "REVENGE_FOR_SAVAGE_PLAYERS": false,
         "SEC_TO_MORE_DIST_TO_RUN": 10,
@@ -1438,9 +1438,9 @@
         "PROTECT_TIME_REAL": true,
         "REVENGE_BOT_TYPES": [
           "gifter",
-          "followeruntar",
-          "bossuntarlead",
-          "bossuntarofficer"
+          1170,
+          1171,
+          1172
         ],
         "REVENGE_FOR_SAVAGE_PLAYERS": false,
         "SEC_TO_MORE_DIST_TO_RUN": 10,
@@ -1943,9 +1943,9 @@
         "PROTECT_TIME_REAL": true,
         "REVENGE_BOT_TYPES": [
           "gifter",
-          "followeruntar",
-          "bossuntarlead",
-          "bossuntarofficer"
+          1170,
+          1171,
+          1172
         ],
         "REVENGE_FOR_SAVAGE_PLAYERS": false,
         "SEC_TO_MORE_DIST_TO_RUN": 10,

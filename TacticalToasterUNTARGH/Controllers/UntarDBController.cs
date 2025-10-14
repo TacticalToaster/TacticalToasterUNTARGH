@@ -231,7 +231,7 @@ public class UntarDBController
         }
     }
 
-    private T DeepMerge<T>(T target, T source)
+    /*private T DeepMerge<T>(T target, T source)
     {
         if (target == null || source == null)
             return target;
@@ -255,6 +255,138 @@ public class UntarDBController
         }
 
         return result;
+    }*/
+
+    private LoadoutInfo DeepMerge(LoadoutInfo target, LoadoutInfo source)
+    {
+        if (target == null) return source;
+        if (source == null) return target;
+
+        // Merge Equipment
+        foreach (var equipmentKey in source.Equipment.Keys)
+        {
+            if (!target.Equipment.ContainsKey(equipmentKey))
+            {
+                target.Equipment[equipmentKey] = new Dictionary<string, LoadoutItem>();
+            }
+
+            foreach (var itemKey in source.Equipment[equipmentKey].Keys)
+            {
+                if (target.Equipment[equipmentKey].ContainsKey(itemKey))
+                {
+                    target.Equipment[equipmentKey][itemKey] = DeepMergeLoadoutItem(
+                        target.Equipment[equipmentKey][itemKey],
+                        source.Equipment[equipmentKey][itemKey]
+                    );
+                }
+                else
+                {
+                    target.Equipment[equipmentKey][itemKey] = source.Equipment[equipmentKey][itemKey];
+                }
+            }
+        }
+
+        // Merge Weapons
+        foreach (var weaponKey in source.Weapons.Keys)
+        {
+            if (!target.Weapons.ContainsKey(weaponKey))
+            {
+                target.Weapons[weaponKey] = new Dictionary<string, List<string>>();
+            }
+
+            foreach (var weaponItemKey in source.Weapons[weaponKey].Keys)
+            {
+                if (target.Weapons[weaponKey].ContainsKey(weaponItemKey))
+                {
+                    target.Weapons[weaponKey][weaponItemKey].AddRange(
+                        source.Weapons[weaponKey][weaponItemKey].Except(target.Weapons[weaponKey][weaponItemKey])
+                    );
+                }
+                else
+                {
+                    target.Weapons[weaponKey][weaponItemKey] = new List<string>(source.Weapons[weaponKey][weaponItemKey]);
+                }
+            }
+        }
+
+        // Merge Categories
+        foreach (var categoryKey in source.Categories.Keys)
+        {
+            if (!target.Categories.ContainsKey(categoryKey))
+            {
+                target.Categories[categoryKey] = new Dictionary<string, LoadoutItem>();
+            }
+
+            foreach (var categoryItemKey in source.Categories[categoryKey].Keys)
+            {
+                if (target.Categories[categoryKey].ContainsKey(categoryItemKey))
+                {
+                    target.Categories[categoryKey][categoryItemKey] = DeepMergeLoadoutItem(
+                        target.Categories[categoryKey][categoryItemKey],
+                        source.Categories[categoryKey][categoryItemKey]
+                    );
+                }
+                else
+                {
+                    target.Categories[categoryKey][categoryItemKey] = source.Categories[categoryKey][categoryItemKey];
+                }
+            }
+        }
+
+        return target;
+    }
+
+    private LoadoutItem DeepMergeLoadoutItem(LoadoutItem target, LoadoutItem source)
+    {
+        if (target == null) return source;
+        if (source == null) return target;
+
+        // Merge properties
+        target.Chance = source.Chance ?? target.Chance;
+
+        // Merge Children
+        if (source.Children != null)
+        {
+            if (target.Children == null)
+            {
+                target.Children = new Dictionary<string, LoadoutItem>();
+            }
+
+            foreach (var childKey in source.Children.Keys)
+            {
+                if (target.Children.ContainsKey(childKey))
+                {
+                    target.Children[childKey] = DeepMergeLoadoutItem(target.Children[childKey], source.Children[childKey]);
+                }
+                else
+                {
+                    target.Children[childKey] = source.Children[childKey];
+                }
+            }
+        }
+
+        // Merge Slots
+        if (source.Slots != null)
+        {
+            if (target.Slots == null)
+            {
+                target.Slots = new Dictionary<string, List<string>>();
+            }
+
+            foreach (var slotKey in source.Slots.Keys)
+            {
+                if (target.Slots.ContainsKey(slotKey))
+                {
+                    target.Slots[slotKey].AddRange(source.Slots[slotKey].Except(target.Slots[slotKey]));
+                }
+                else
+                {
+                    target.Slots[slotKey] = new List<string>(source.Slots[slotKey]);
+                }
+            }
+        }
+
+        return target;
     }
 
     private LoadoutInfo LoadCommonLoadouts()
@@ -283,6 +415,8 @@ public class UntarDBController
             {
                 var fileContent = File.ReadAllText(file);
                 var loadoutData = _jsonUtil.Deserialize<LoadoutInfo>(fileContent);
+
+                _logger.Info($"Preparing merge of: {System.IO.Path.GetFileName(file)}");
 
                 combinedLoadout = DeepMerge(combinedLoadout, loadoutData);
                 _logger.Info($"Merged common loadout file: {System.IO.Path.GetFileName(file)}");
@@ -375,7 +509,7 @@ public class UntarDBController
         {
             return ProcessCategory(item, categoryOrItem, loadoutInfo, type, children);
         }
-        else if (_itemHelper.IsItemInDb(categoryOrItem))
+        else if (MongoId.IsValidMongoId(categoryOrItem) && _itemHelper.IsItemInDb(categoryOrItem))
         {
             return new List<string> { categoryOrItem };
         }

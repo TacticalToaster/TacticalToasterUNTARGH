@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace TacticalToasterUNTARGH.Models
 {
@@ -12,22 +13,26 @@ namespace TacticalToasterUNTARGH.Models
         /// <summary>
         /// Unique identifier for the category.
         /// </summary>
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         /// <summary>
         /// Display name for the category.
         /// </summary>
+        [JsonPropertyName("chance")]
         public int? Chance { get; set; }
 
         /// <summary>
         /// Parent category ID, if applicable.
         /// </summary>
-        public Dictionary<string, LoadoutItem> Children { get; set; }
+        [JsonPropertyName("children")]
+        public Dictionary<string, LoadoutItem>? Children { get; set; }
 
         /// <summary>
         /// Array of child category IDs.
         /// </summary>
-        public Dictionary<string, List<string>> Slots { get; set; }
+        [JsonPropertyName("slots")]
+        public Dictionary<string, List<string>>? Slots { get; set; }
     }
 
     public class LoadoutInfo
@@ -35,16 +40,19 @@ namespace TacticalToasterUNTARGH.Models
         /// <summary>
         /// Equipment loadout information.
         /// </summary>
-        public Dictionary<string, Dictionary<string, LoadoutItem>> Equipment { get; set; }
+        [JsonPropertyName("equipment")]
+        public Dictionary<string, Dictionary<string, LoadoutItem>>? Equipment { get; set; }
 
         /// <summary>
         /// Weapon loadout information.
         /// </summary>
-        public Dictionary<string, Dictionary<string, List<string>>> Weapons { get; set; }
+        [JsonPropertyName("weapons")]
+        public Dictionary<string, Dictionary<string, List<string>>>? Weapons { get; set; }
 
         /// <summary>
         /// Categories of loadouts.
         /// </summary>
-        public Dictionary<string, Dictionary<string, LoadoutItem>> Categories { get; set; }
+        [JsonPropertyName("categories")]
+        public Dictionary<string, Dictionary<string, LoadoutItem>>? Categories { get; set; }
     }
 }

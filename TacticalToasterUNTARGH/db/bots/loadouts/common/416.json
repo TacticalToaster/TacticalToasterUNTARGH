@@ -1,37 +1,39 @@
 {
-    "categories": {
-        "416 barrels": {
-            "416 10 barrel": {
-                "id": "5c6d85e02e22165df16b81f4",
-                "slots": {
-                    "mod_muzzle": ["ar_556_muzzles"],
-                    "mod_gas_block": ["5bb20dcad4351e3bac1212da"]
-                }
-            },
-            "416 11 barrel": {
-                "id": "5bb20d92d4351e00853263eb",
-                "slots": {
-                    "mod_muzzle": ["ar_556_muzzles"],
-                    "mod_gas_block": ["5bb20dcad4351e3bac1212da"]
-                }
-            },
-            "416 14 barrel": {
-                "id": "5bb20d9cd4351e00334c9d8a",
-                "slots": {
-                    "mod_muzzle": ["ar_556_muzzles"],
-                    "mod_gas_block": ["5bb20dcad4351e3bac1212da"]
-                }
-            }
-        },
-        "416 handguards": {
-            "416 handguard": {
-                "id": "5bb20de5d4351e0035629e59",
-                "slots": {
-                    "mod_tactical_000": ["lasers_common"],
-                    "mod_tactical_001": ["lights"],
-                    "mod_foregrip": ["grips"]
-                }
-            }
+  "equipment": {},
+  "weapons": {},
+  "categories": {
+    "416 barrels": {
+      "416 10 barrel": {
+        "id": "5c6d85e02e22165df16b81f4",
+        "slots": {
+          "mod_muzzle": [ "ar_556_muzzles" ],
+          "mod_gas_block": [ "5bb20dcad4351e3bac1212da" ]
         }
+      },
+      "416 11 barrel": {
+        "id": "5bb20d92d4351e00853263eb",
+        "slots": {
+          "mod_muzzle": [ "ar_556_muzzles" ],
+          "mod_gas_block": [ "5bb20dcad4351e3bac1212da" ]
+        }
+      },
+      "416 14 barrel": {
+        "id": "5bb20d9cd4351e00334c9d8a",
+        "slots": {
+          "mod_muzzle": [ "ar_556_muzzles" ],
+          "mod_gas_block": [ "5bb20dcad4351e3bac1212da" ]
+        }
+      }
+    },
+    "416 handguards": {
+      "416 handguard": {
+        "id": "5bb20de5d4351e0035629e59",
+        "slots": {
+          "mod_tactical_000": [ "lasers_common" ],
+          "mod_tactical_001": [ "lights" ],
+          "mod_foregrip": [ "grips" ]
+        }
+      }
     }
+  }
 }
