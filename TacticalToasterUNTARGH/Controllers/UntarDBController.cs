@@ -8,6 +8,7 @@ using SPTarkov.Server.Core.Models.Eft.ItemEvent;
 using SPTarkov.Server.Core.Models.Enums;
 using SPTarkov.Server.Core.Models.Spt.Config;
 using SPTarkov.Server.Core.Models.Spt.Logging;
+using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Services;
 using SPTarkov.Server.Core.Utils;
@@ -29,7 +30,7 @@ public class UntarDBController
     private readonly RandomUtil _randomUtil;
     private readonly ConfigServer _configServer;
     private readonly DatabaseService _databaseService;
-    private readonly ILogger _wLogger;
+    private readonly ISptLogger<UntarDBController> _wLogger;
     private readonly HttpResponseUtil _httpResponse;
     private readonly BotHelper _botHelper;
     private readonly BotController _botController;
@@ -44,7 +45,7 @@ public class UntarDBController
         RandomUtil randomUtil,
         ConfigServer configServer,
         DatabaseService databaseService,
-        ILogger wLogger,
+        ISptLogger<UntarDBController> wLogger,
         HttpResponseUtil httpResponse,
         BotHelper botHelper,
         BotController botController,

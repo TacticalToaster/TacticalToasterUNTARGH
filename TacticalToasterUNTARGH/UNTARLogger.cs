@@ -1,12 +1,13 @@
 using SPTarkov.DI.Annotations;
+using SPTarkov.Server.Core.Models.Utils;
 
 [Injectable(InjectionType.Singleton)]
 public class UNTARLogger
 {
     private readonly bool _enableLogs;
-    private readonly ILogger<UNTARLogger> _logger;
+    private readonly ISptLogger<UNTARLogger> _logger;
     public UNTARLogger(
-        ILogger<UNTARLogger> logger,
+        ISptLogger<UNTARLogger> logger,
         ConfigController configController)
     {
         _enableLogs = configController.ModConfig.debug.logs;
@@ -17,15 +18,15 @@ public class UNTARLogger
     {
         if (_enableLogs)
         {
-            _logger.LogInformation($"[UNTAR Mod] {message}");
+            _logger.Info($"[UNTAR Mod] {message}");
         }
     }
     public void Warn(string message)
     {
-        _logger.LogWarning($"[UNTAR Mod] WARNING: {message}");
+        _logger.Warning($"[UNTAR Mod] WARNING: {message}");
     }
     public void Error(string message)
     {
-        _logger.LogError($"[UNTAR Mod] ERROR: {message}");
+        _logger.Error($"[UNTAR Mod] ERROR: {message}");
     }
 }

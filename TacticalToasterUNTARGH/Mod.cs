@@ -19,14 +19,14 @@ public record ModMetadata : AbstractModMetadata
     public override List<string>? Contributors { get; init; } = new() { };
     public override SemanticVersioning.Version Version { get; init; } = new(2, 0, 0);
     public override SemanticVersioning.Range SptVersion { get; init; } = new("~4.0.0");
-    public override List<string>? Incompatibilities { get; init; } = new() { };
-    public override Dictionary<string, SemanticVersioning.Range>? ModDependencies { get; init; } = new() { };
-    public override string? Url { get; init; } = null;
-    public override bool? IsBundleMod { get; init; } = false;
+    public override List<string>? Incompatibilities { get; init; }
+    public override Dictionary<string, SemanticVersioning.Range>? ModDependencies { get; init; }
+    public override string? Url { get; init; }
+    public override bool? IsBundleMod { get; init; }
     public override string License { get; init; } = "MIT";
 }
 
-[Injectable(TypePriority = OnLoadOrder.PreSptModLoader)]
+[Injectable(TypePriority = OnLoadOrder.PreSptModLoader + 1)]
 public class UNTARModPreload : IOnLoad
 {
     public static MainConfig ModConfig = new();
@@ -50,11 +50,19 @@ public class UNTARModPreload : IOnLoad
     }
 }
 
-[Injectable(TypePriority = OnLoadOrder.PostDBModLoader)]
-public class UNTARModDBLoad(DatabaseService databaseService) : IOnLoad
+[Injectable(TypePriority = OnLoadOrder.PostDBModLoader + 1)]
+public class UNTARModDBLoad(
+    DatabaseService databaseService,
+    UNTARLogger logger,
+    UntarDBController untarDBController,
+    UntarSpawnController untarSpawnController
+    ) : IOnLoad
 {
     Task IOnLoad.OnLoad()
     {
+        untarDBController.AddUntarToDB();
+        untarSpawnController.AdjustAllUntarSpawns();
+
         return Task.CompletedTask;
     }
 }
