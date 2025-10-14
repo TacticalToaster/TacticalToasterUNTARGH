@@ -13,8 +13,6 @@ using System.Threading.Tasks;
 using DrakiaXYZ.BigBrain;
 using TacticalToasterUNTARGH.Behavior;
 using TacticalToasterUNTARGH.Behavior.Brains;
-using static AITaskManager;
-using static EFT.ClientPlayer.Control0;
 
 namespace TacticalToasterUNTARGH.Patches
 {
@@ -34,7 +32,7 @@ namespace TacticalToasterUNTARGH.Patches
         private static AICoreAgentClass<BotLogicDecision> GetUNTARAgent(BotOwner botOwner, BaseBrain brain, StandartBotBrain __instance)
         {
             var name = botOwner.name + " " + botOwner.Profile.Info.Settings.Role.ToString();
-            return new AICoreAgentClass<BotLogicDecision>(botOwner.BotsController.AICoreController, brain, NodeCreator.ActionsList(botOwner), botOwner.gameObject, name, new Func<BotLogicDecision, GClass168>(__instance.method_0));
+            return new AICoreAgentClass<BotLogicDecision>(botOwner.BotsController.AICoreController, brain, NodeCreator.ActionsList(botOwner), botOwner.gameObject, name, new Func<BotLogicDecision, BotNodeAbstractClass>(__instance.method_0));
         }
 
         [PatchPostfix]

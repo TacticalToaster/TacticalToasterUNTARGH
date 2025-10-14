@@ -14,7 +14,7 @@ namespace TacticalToasterUNTARGH.Behavior.Actions
         public static Vector3 patrolPoint = new Vector3(-140f, -1f, 410f);
 
         private CustomNavigationPoint guardPoint;
-        private GClass385 baseSteeringLogic = new GClass385();
+        private GClass395 baseSteeringLogic = new GClass395();
         private float checkDelay;
 
         private bool teleported = false;
