@@ -31,7 +31,8 @@
         "slots": {
           "mod_tactical_000": [ "lasers_common" ],
           "mod_tactical_001": [ "lights" ],
-          "mod_foregrip": [ "grips" ]
+          "mod_foregrip": [ "grips" ],
+          "mod_sight_front": [ "ar_front_sights" ]
         }
       }
     }

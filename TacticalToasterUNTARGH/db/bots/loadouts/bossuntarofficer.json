@@ -82,7 +82,7 @@
           "mod_stock": [ "fal_stocks", "fal_stocks_special" ],
           "mod_magazine": [ "fal_mags" ],
           "mod_barrel": [ "fal_barrels", "fal_barrels_special" ],
-          "mod_receiver": [ "fal_receiver_special" ]
+          "mod_reciever": [ "fal_receiver_special" ]
         }
       }
     },
