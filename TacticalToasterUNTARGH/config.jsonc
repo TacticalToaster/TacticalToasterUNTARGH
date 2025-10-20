@@ -1,24 +1,42 @@
 {
+  // Debug settings, don't touch unless you know what you're doing
   "debug": {
+    // Enable or disable additional debug logs
     "logs": false,
+    // Force patrols to spawn in every raid (as if patrolChance was 100%)
     "spawnAlways": false,
+    // Force patrols to always spawn at the start of raids
     "spawnInstantlyAlways": false
   },
+  // Settings for changing how patrols and their members are generated
   "patrols": {
+    // Minimum size a patrol needs to be to have a chance for an officer
     "minOfficerSize": 4,
+    // Minimum size a patrol needs to be to have a chance for a second leader
     "minSecondLeaderSize": 5,
+    // Chance (percentage) for a patrol to have an officer if it meets the minimum size
     "officerChance": 35,
+    // Chance (percentage) for a patrol to have a second leader if it meets the minimum size
     "secondLeaderChance": 50
   },
+  // Location-specific settings. You can add more locations by copying one of the existing ones and changing the name to the map's internal name
   "locations": {
     "woods": {
+      // Enable or disable patrols on this map
       "enablePatrols": true,
+      // Chance (percentage) for a patrol to spawn in a raid
       "patrolChance": 45,
+      // Maximum number of patrols that can spawn in a raid. Each patrol roll is independent, increasing the overall chance to encounter a patrol and allowing multiple patrols
       "patrolAmount": 2,
+      // Minimum members in a patrol
       "patrolMin": 3,
+      // Maximum members in a patrol
       "patrolMax": 6,
+      // Bot Zones to spawn patrols in. Picks randomly, eliminating choices for subsequent patrols until all are used, then resets
       "patrolZones": [ "ZoneRoad", "ZoneRedHouse", "ZoneClearVill" ],
+      // Minimum time a patrol can spawn after raid start
       "patrolTimeMin": -1,
+      // Maximum time a patrol can spawn after raid start
       "patrolTimeMax": 1680
     },
     "bigmap": {
