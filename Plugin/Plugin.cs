@@ -77,6 +77,7 @@ public class Plugin : BaseUnityPlugin
 
         //new UNTARPatch().Enable();
         new TarkovInitPatch().Enable();
+        new FixRaidEndSpawnType().Enable();
         new UNTARRolePatch().Enable();
         new UNTARBotControllerPatch().Enable();
         new UNTARShootGroundWarnPatch().Enable();
