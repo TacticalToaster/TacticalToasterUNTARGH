@@ -131,25 +131,35 @@ public class UntarDBController
         var botConfig = _configServer.GetConfig<BotConfig>();
         var presetBatch = botConfig.PresetBatch;
 
+        var lastnames = _modHelper.GetJsonDataFromFile<List<string>>(System.IO.Path.Combine(pathToBotsDb, "info"), "lastnames.json");
+
         botConfig.Equipment["followeruntar"] = untarBotInfo;
         botConfig.ItemSpawnLimits["followeruntar"] = new Dictionary<MongoId, double>();
         presetBatch["followeruntar"] = 55;
         dbTables.Bots.Types["followeruntar"] = _modHelper.GetJsonDataFromFile<BotType>(System.IO.Path.Combine(pathToBotsDb, "types"), "test.json");
+
+        dbTables.Bots.Types["followeruntar"].LastNames = lastnames;
 
         botConfig.Equipment["followeruntarmarksman"] = untarBotInfo;
         botConfig.ItemSpawnLimits["followeruntarmarksman"] = new Dictionary<MongoId, double>();
         presetBatch["followeruntarmarksman"] = 55;
         dbTables.Bots.Types["followeruntarmarksman"] = _modHelper.GetJsonDataFromFile<BotType>(System.IO.Path.Combine(pathToBotsDb, "types"), "test.json");
 
+        dbTables.Bots.Types["followeruntarmarksman"].LastNames = lastnames;
+
         botConfig.Equipment["bossuntarlead"] = untarBotInfo;
         botConfig.ItemSpawnLimits["bossuntarlead"] = new Dictionary<MongoId, double>();
         presetBatch["bossuntarlead"] = 55;
         dbTables.Bots.Types["bossuntarlead"] = _modHelper.GetJsonDataFromFile<BotType>(System.IO.Path.Combine(pathToBotsDb, "types"), "untarlead.json");
 
+        dbTables.Bots.Types["bossuntarlead"].LastNames = lastnames;
+
         botConfig.Equipment["bossuntarofficer"] = untarBotInfo;
         botConfig.ItemSpawnLimits["bossuntarofficer"] = new Dictionary<MongoId, double>();
         presetBatch["bossuntarofficer"] = 55;
         dbTables.Bots.Types["bossuntarofficer"] = _modHelper.GetJsonDataFromFile<BotType>(System.IO.Path.Combine(pathToBotsDb, "types"), "untarofficer.json");
+
+        dbTables.Bots.Types["bossuntarofficer"].LastNames = lastnames;
 
         ProcessLoadouts(
             "followeruntar",
