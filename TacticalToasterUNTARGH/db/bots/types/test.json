@@ -21,12 +21,14 @@
       "5fdb5950f5264a66150d1c6e": 1
     },
     "voice": {
-      "Bear_1_Eng": 3,
-      "Bear_2_Eng": 3,
-      "Usec_1": 2,
-      "Usec_2": 2,
-      "Usec_4": 2,
-      "Usec_5": 2
+      "6284d67f8e4092597733b7a4": 3,
+      "6284d6948e4092597733b7a5": 3,
+      "5fc1223595572123ae7384a3": 2,
+      "5fc614f40b735e7b024c76e9": 2,
+      "5fc615110b735e7b024c76ea": 2,
+      "6284d6a28e4092597733b7a6": 2,
+      "6284d6ab8e4092597733b7a7": 1,
+      "668677330ae95580780867c6": 1
     }
   },
   "chances": {
@@ -452,9 +454,9 @@
         "PROTECT_TIME_REAL": true,
         "REVENGE_BOT_TYPES": [
           "gifter",
-          "followeruntar",
-          "bossuntarlead",
-          "bossuntarofficer"
+          1170,
+          1171,
+          1172
         ],
         "REVENGE_FOR_SAVAGE_PLAYERS": false,
         "SEC_TO_MORE_DIST_TO_RUN": 10,
@@ -944,9 +946,9 @@
         "PROTECT_TIME_REAL": true,
         "REVENGE_BOT_TYPES": [
           "gifter",
-          "followeruntar",
-          "bossuntarlead",
-          "bossuntarofficer"
+          1170,
+          1171,
+          1172
         ],
         "REVENGE_FOR_SAVAGE_PLAYERS": false,
         "SEC_TO_MORE_DIST_TO_RUN": 10,
@@ -1436,9 +1438,9 @@
         "PROTECT_TIME_REAL": true,
         "REVENGE_BOT_TYPES": [
           "gifter",
-          "followeruntar",
-          "bossuntarlead",
-          "bossuntarofficer"
+          1170,
+          1171,
+          1172
         ],
         "REVENGE_FOR_SAVAGE_PLAYERS": false,
         "SEC_TO_MORE_DIST_TO_RUN": 10,
@@ -1877,6 +1879,7 @@
         "WAIT_NEW__LOOK_SENSOR": 7.8
       },
       "Mind": {
+        "SNIPER_FIRE_IMMUNE": true,
         "AGGRESSOR_LOYALTY_BONUS": 0,
         "AI_POWER_COEF": 120,
         "AMBUSH_WHEN_UNDER_FIRE": true,
@@ -1941,9 +1944,9 @@
         "PROTECT_TIME_REAL": true,
         "REVENGE_BOT_TYPES": [
           "gifter",
-          "followeruntar",
-          "bossuntarlead",
-          "bossuntarofficer"
+          1170,
+          1171,
+          1172
         ],
         "REVENGE_FOR_SAVAGE_PLAYERS": false,
         "SEC_TO_MORE_DIST_TO_RUN": 10,
@@ -2341,7 +2344,7 @@
         "54527ac44bdc2d36668b4567": 397,
         "59e68f6f86f7746c9f75e846": 19000,
         "59e6906286f7746c9f75e847": 5740,
-        "59e6920f86f77411d82aa167": 41000
+        "60194943740c5d77f6705eea": 4000
       },
       "Caliber68x51": {
         "6529243824cbe3c74a05e5c1": 35,
@@ -2358,9 +2361,7 @@
       },
       "Caliber762x51": {
         "58dd3ad986f77403051cba8f": 320,
-        "5e023e53d4353e3302577c4c": 27000,
-        "5e023e88277cce2b522ff2b1": 697,
-        "5efb0c1bd79ff02a1f5e68d9": 32
+        "6768c25aa7b238f14a08d3f6": 32
       },
       "Caliber9x19PARA": {
         "5c3df7d588a4501f290594e5": 570,

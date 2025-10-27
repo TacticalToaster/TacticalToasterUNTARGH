@@ -3,10 +3,13 @@ using BepInEx.Bootstrap;
 using BepInEx.Logging;
 using EFT;
 using HarmonyLib;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
+using TacticalToasterUNTARGH.Components;
 using TacticalToasterUNTARGH.Interop;
 using TacticalToasterUNTARGH.Patches;
 using UnityEngine;
@@ -34,7 +37,7 @@ public class Plugin : BaseUnityPlugin
         LogSource = Logger;
         LogSource.LogInfo("plugin loaded!");
 
-        FieldInfo excludedDifficultiesField = typeof(GClass598).GetField("ExcludedDifficulties", BindingFlags.Static | BindingFlags.Public) ?? throw new InvalidOperationException("ExcludedDifficulties field not found.");
+        FieldInfo excludedDifficultiesField = typeof(LocalBotSettingsProviderClass).GetField("Dictionary_1", BindingFlags.Static | BindingFlags.Public) ?? throw new InvalidOperationException("ExcludedDifficulties field not found.");
         var excludedDifficulties = (Dictionary<WildSpawnType, List<BotDifficulty>>)excludedDifficultiesField.GetValue(null);
 
         var untarDifficulties = new List<BotDifficulty> {
@@ -50,7 +53,7 @@ public class Plugin : BaseUnityPlugin
                 excludedDifficulties.Add((WildSpawnType)botType.wildSpawnType, untarDifficulties);
                 Logger.LogInfo($"Successfully added {botType.typeName} to the excluded difficulties list");
             }
-            Traverse.Create(typeof(BotSettingsRepoClass)).Field<Dictionary<WildSpawnType, GClass769>>("dictionary_0").Value.Add((WildSpawnType)botType.wildSpawnType, new GClass769(true, true, false, $"ScavRole/{botType.scavRole}", (ETagStatus)0));
+            Traverse.Create(typeof(BotSettingsRepoClass)).Field<Dictionary<WildSpawnType, GClass790>>("Dictionary_0").Value.Add((WildSpawnType)botType.wildSpawnType, new GClass790(true, true, false, $"ScavRole/{botType.scavRole}", (ETagStatus)0));
         }
 
         /*if (!excludedDifficulties.ContainsKey((WildSpawnType)UNTAREnums.BotUNTARValue))
@@ -75,15 +78,29 @@ public class Plugin : BaseUnityPlugin
             Logger.LogMessage("SAIN not detected, skipping SAIN interop for UNTARGH.");
         }
 
-        //new UNTARPatch().Enable();
         new TarkovInitPatch().Enable();
+        new FixRaidEndSpawnType().Enable();
         new UNTARRolePatch().Enable();
         new UNTARBotControllerPatch().Enable();
         new UNTARShootGroundWarnPatch().Enable();
         new UNTARFenceLoyaltyPatch().Enable();
-        //new UNTARWarnmethod8().Enable();
-        //new UNTARWarnmethod10().Enable();
-        //new UNTARFenceLoyaltyPatch().Enable();
+        new BotOwnerActivatePatch().Enable();
+        new BotsControllerInitPatch().Enable();
+
+        int oldWildSpawnTypeConverter = Array.FindIndex<JsonConverter>(JsonSerializerSettingsClass.Converters, c => c.GetType() == typeof(GClass1866<WildSpawnType>));
+        LogSource.LogInfo($"Old WildSpawnTypeFromInt converter index: {oldWildSpawnTypeConverter} {JsonSerializerSettingsClass.Converters[oldWildSpawnTypeConverter]}");
+        JsonSerializerSettingsClass.Converters[oldWildSpawnTypeConverter] = new WildSpawnTypeFromInt<WildSpawnType>(true);
+
+        /*JsonConverter[] newArray = new JsonConverter[JsonSerializerSettingsClass.Converters.Length + 1];
+        newArray[0] = new WildSpawnTypeFromInt<WildSpawnType>(false);
+        Array.Copy(JsonSerializerSettingsClass.Converters, 0, newArray, 1, JsonSerializerSettingsClass.Converters.Length);
+
+        JsonSerializerSettingsClass.SerializerSettings.Converters = newArray;*/
+
+        //JsonSerializerSettingsClass.Converters.AddItem(new WildSpawnTypeFromInt<WildSpawnType>(false));
+        //JsonSerializerSettingsClass.Converters.
+
+        this.GetOrAddComponent<UntarCheckpointManager>();
     }
 
     public static void LoadUNTARSettings()
@@ -103,7 +120,7 @@ public class Plugin : BaseUnityPlugin
         }
         else
         {
-            LogSource.LogError($"UNTAR bot settings file not found at {untarJsonPath}");
+            LogSource.LogInfo($"UNTAR bot settings file not found at {untarJsonPath}");
         }
     }
 }

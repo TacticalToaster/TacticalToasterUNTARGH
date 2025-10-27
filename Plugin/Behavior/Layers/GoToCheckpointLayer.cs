@@ -1,73 +1,94 @@
 ﻿using DrakiaXYZ.BigBrain.Brains;
 using EFT;
+using System;
 using TacticalToasterUNTARGH.Behavior.Actions;
+using TacticalToasterUNTARGH.Components;
+using TacticalToasterUNTARGH.Controllers;
 using UnityEngine;
 
 namespace TacticalToasterUNTARGH.Behavior.Layers
 {
     internal class GoToCheckpointLayer : CustomLayer
     {
+        protected BotUntarManager untarManager { get; private set; }
+
         public static float innerRadius = 10f;
         public static float outerRadius = 45f;
         public static Vector3 patrolPoint = new Vector3(-140f, -1f, 410f);
 
-        public bool isInside = false;
-        public bool hasRun = false;
-        public float runTime;
+        public Type lastAction;
+        public Type nextAction;
+        public string nextActionReason;
 
         public GoToCheckpointLayer(BotOwner botOwner, int priority) : base(botOwner, priority)
         {
+            untarManager = botOwner.GetOrAddUntarManager();
         }
 
         public override void Start()
         {
-            isInside = BotOwner.Position.SqrDistance(patrolPoint) <= (outerRadius * outerRadius);
-            hasRun = true;
-            runTime = Time.time + 2f;
             base.Start();
         }
 
         public override void Stop()
         {
-            isInside = BotOwner.Position.SqrDistance(patrolPoint) <= (outerRadius * outerRadius);
-            hasRun = false;
+            untarManager.guardPointDirty = true;
+            untarManager.AtCheckpoint = false;
+            untarManager.ShouldSwitchCover = false;
             base.Stop();
         }
 
         public override string GetName()
         {
-            return "GoToCheckpoint";
+            return "GuardCheckpoint";
+        }
+
+        public void setNextAction(Type actionType, string reason)
+        {
+            nextAction = actionType;
+            nextActionReason = reason;
         }
 
         public override Action GetNextAction()
         {
-            return new Action(typeof(GoToCheckpointAction), "ToCheckpoint");
+            lastAction = nextAction;
+
+            return new Action(lastAction, nextActionReason);
         }
 
         public override bool IsActive()
         {
-            if (BotOwner.Position.SqrDistance(patrolPoint) <= (outerRadius * outerRadius))
+            if (!untarManager.CanDoCheckpointActions())
+                return false;
+
+            
+            getNextAction();
+            return true;
+        }
+
+        public void getNextAction()
+        {
+            lastAction = nextAction;
+
+            if (untarManager.AtCheckpoint)
             {
-                if (!isInside && !hasRun)
+                if (untarManager.ShouldSwitchCover)
                 {
-                    runTime = Time.time + 2f;
-                    //isInside = true;
+                    nextAction = typeof(SwitchCheckpointCover);
+                    nextActionReason = "SwitchCover";
+                    return;
                 }
+                nextAction = typeof(SitAtCheckpoint);
+                nextActionReason = "AtCheckpoint";
+                return;
             }
-            //isInside = BotOwner.Position.SqrDistance(patrolPoint) < (outerRadius * outerRadius);
-            //Plugin.LogSource.LogMessage($"Checking is active! {BotOwner.Position.SqrDistance(patrolPoint) > (innerRadius * innerRadius)}");
-            // (!hasRun || Time.time < runTime);
-            return (!isInside && BotOwner.Position.SqrDistance(patrolPoint) > (innerRadius * innerRadius) || runTime > Time.time) || BotOwner.Position.SqrDistance(patrolPoint) > (outerRadius * outerRadius) ;//BotOwner.Position.SqrDistance(patrolPoint) > (outerRadius * outerRadius);
+            nextAction = typeof(GoToCheckpoint);
+            nextActionReason = "ToCheckpoint";
         }
 
         public override bool IsCurrentActionEnding()
         {
-            if (CurrentAction?.Type == typeof(GoToCheckpointAction))
-            {
-                return false;
-            }
-
-            return true;
+            return nextAction != lastAction;
         }
     }
 }

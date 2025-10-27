@@ -1,153 +1,166 @@
 {
-    "equipment": {
-        "FirstPrimaryWeapon": {
-            "m4a1": {
-                "id": "5447a9cd4bdc2dbd208b4567",
-                "chance": 20,
-                "slots": {
-                    "mod_pistol_grip": ["ar_pg"],
-                    "mod_reciever": ["ar_receiver"],
-                    "mod_charge": ["ar_charge"],
-                    "mod_magazine": ["ar_mags"],
-                    "mod_stock": ["ar_buffer"]
-                }
-            },
-            "g36": {
-                "id": "623063e994fc3f7b302a9696",
-                "chance": 30,
-                "slots": {
-                    "mod_barrel": ["g36_barrels"],
-                    "mod_mount": ["g36_magwells"],
-                    "mod_handguard": ["g36_handguards"],
-                    "mod_magazine": ["g36_mags", "ar_mags"],
-                    "mod_stock": ["g36_stocks"],
-                    "mod_scope": ["g36_scopes"]
-                }
-            },
-            "scarl black": {
-                "id": "6184055050224f204c1da540",
-                "chance": 30,
-                "slots": {
-                    "mod_reciever": ["scarl_blk_receivers"],
-                    "mod_pistol_grip": ["ar_pg"],
-                    "mod_magazine": ["ar_mags"],
-                    "mod_stock": ["scarl_blk_stocks"],
-                    "mod_charge": ["6181688c6c780c1e710c9b04"]
-                }
-            },
-            "416": {
-                "id": "5bb2475ed4351e00853264e3",
-                "chance": 30,
-                "children": {
-                    "416 upper": {
-                        "id": "5bb20d53d4351e4502010a69",
-                        "slots": {
-                            "mod_barrel": ["416 barrels"],
-                            "mod_handguard": ["416 handguards"],
-                            "mod_sight_rear": ["ar_rear_sights"],
-                            "mod_scope": ["scopes_mid", "sights"]
-                        }
-                    },
-                    "416 buffer": {
-                        "id": "5bb20e58d4351e00320205d7",
-                        "slots": {
-                            "mod_stock_000": ["ar_stocks", "5bb20e70d4351e0035629f8f", "5c87a07c2e2216001219d4a2"]
-                        }
-                    }
-                },
-                "slots": {
-                    "mod_reciever": ["416 upper"],
-                    "mod_pistol_grip": ["ar_pg"],
-                    "mod_magazine": ["ar_mags"],
-                    "mod_stock": ["416 buffer"],
-                    "mod_charge": ["ar_charge"]
-                }
-            },
-            "auga3": {
-                "id": "63171672192e68c5460cebc5",
-                "chance": 30,
-                "slots": {
-                    "mod_magazine": ["aug_mags"],
-                    "mod_reciever": ["aug_recievers"],
-                    "mod_charge": ["62e7c880f68e7a0676050c7c"]
-                }
-            }
-        },
-        "ArmorVest": {
-            "untar vest": {
-                "id": "5ab8e4ed86f7742d8e50c7fa",
-                "chance": 20,
-                "slots": {
-                    "Soft_armor_front": ["657044e971369562b300ce9b"],
-                    "Soft_armor_back": ["657045741bd9beedc40b7299"],
-                    "Soft_armor_left": ["657045b97e80617cee095bda"],
-                    "soft_armor_right": ["6570460471369562b300ce9f"]
-                }
-            },
-            "iotv fast": {
-                "id": "5b44d0de86f774503d30cba8",
-                "chance": 80,
-                "slots": {
-                    "Front_plate": ["plates"],
-                    "Back_plate": ["plates"],
-                    "Left_side_plate": ["plates_side"],
-                    "Right_side_plate": ["plates_side"],
-                    "Soft_armor_front": ["6575c342efc786cd9101a5e5"],
-                    "Soft_armor_back": ["6575c34bc6700bd6b40e8a84"],
-                    "Soft_armor_left": ["6575c35bc6700bd6b40e8a88"],
-                    "soft_armor_right": ["6575c366c6700bd6b40e8a8c"],
-                    "Collar": ["6575c373dc9932aed601c5ec"],
-                    "Groin": ["6575c385dc9932aed601c5f0"],
-                    "Groin_back": ["6575c390efc786cd9101a5e9"]
-                }
-            },
-            "interceptor": {
-                "id": "64abd93857958b4249003418",
-                "chance": 50,
-                "slots": {
-                    "Front_plate": ["plates"],
-                    "Back_plate": ["plates"],
-                    "Soft_armor_front": ["6570f30b0921c914bf07964c"],
-                    "Soft_armor_back": ["6570f35cd67d0309980a7acb"],
-                    "Soft_armor_left": ["6570f3890b4ae5847f060dad"],
-                    "soft_armor_right": ["6570f3bb0b4ae5847f060db2"]
-                }
-            }
-        },
-        "TacticalVest": {
-            "rbav": {
-                "id": "628dc750b910320f4c27a732",
-                "chance": 50,
-                "slots": {
-                    "Front_plate": ["plates"],
-                    "Back_plate": ["plates"],
-                    "Left_side_plate": ["plates_side"],
-                    "Right_side_plate": ["plates_side"],
-                    "Soft_armor_front": ["6572f1ca4c8d903cc60c874e"],
-                    "Soft_armor_back": ["6572f1d60103b4a3270332db"],
-                    "Soft_armor_left": ["6572f1e10103b4a3270332df"],
-                    "soft_armor_right": ["6572f1edea457732140ce875"],
-                    "Groin": ["6572f1f7ea457732140ce879"]
-                }
-            },
-            "mmac": {
-                "id": "61bc85697113f767765c7fe7",
-                "chance": 30,
-                "slots": {
-                    "Front_plate": ["plates"],
-                    "Back_plate": ["plates"],
-                    "Left_side_plate": ["plates_side"],
-                    "Right_side_plate": ["plates_side"],
-                    "Soft_armor_front": ["6572fc809a866b80ab07eb59"],
-                    "Soft_armor_back": ["6572fc8c9a866b80ab07eb5d"],
-                    "Soft_armor_left": ["6572fc989a866b80ab07eb61"],
-                    "soft_armor_right": ["6572fca39a866b80ab07eb65"]
-                }
-            }
+  "equipment": {
+    "FirstPrimaryWeapon": {
+      "m4a1": {
+        "id": "5447a9cd4bdc2dbd208b4567",
+        "chance": 20,
+        "slots": {
+          "mod_pistol_grip": [ "ar_pg" ],
+          "mod_reciever": [ "ar_receiver" ],
+          "mod_charge": [ "ar_charge" ],
+          "mod_magazine": [ "ar_mags" ],
+          "mod_stock": [ "ar_buffer" ]
         }
+      },
+      "g36": {
+        "id": "623063e994fc3f7b302a9696",
+        "chance": 30,
+        "slots": {
+          "mod_barrel": [ "g36_barrels" ],
+          "mod_mount": [ "g36_magwells" ],
+          "mod_handguard": [ "g36_handguards" ],
+          "mod_magazine": [ "g36_mags", "ar_mags" ],
+          "mod_stock": [ "g36_stocks" ],
+          "mod_scope": [ "g36_scopes" ]
+        }
+      },
+      "scarl black": {
+        "id": "6184055050224f204c1da540",
+        "chance": 30,
+        "slots": {
+          "mod_reciever": [ "scarl_blk_receivers" ],
+          "mod_pistol_grip": [ "ar_pg" ],
+          "mod_magazine": [ "ar_mags" ],
+          "mod_stock": [ "scarl_blk_stocks" ],
+          "mod_charge": [ "6181688c6c780c1e710c9b04" ]
+        }
+      },
+      "416": {
+        "id": "5bb2475ed4351e00853264e3",
+        "chance": 30,
+        "children": {
+          "416 upper": {
+            "id": "5bb20d53d4351e4502010a69",
+            "slots": {
+              "mod_barrel": [ "416 barrels" ],
+              "mod_handguard": [ "416 handguards" ],
+              "mod_sight_rear": [ "ar_rear_sights" ],
+              "mod_scope": [ "scopes_mid", "sights" ]
+            }
+          },
+          "416 buffer": {
+            "id": "5bb20e58d4351e00320205d7",
+            "slots": {
+              "mod_stock_000": [ "ar_stocks", "5bb20e70d4351e0035629f8f", "5c87a07c2e2216001219d4a2" ]
+            }
+          }
+        },
+        "slots": {
+          "mod_reciever": [ "416 upper" ],
+          "mod_pistol_grip": [ "ar_pg" ],
+          "mod_magazine": [ "ar_mags" ],
+          "mod_stock": [ "416 buffer" ],
+          "mod_charge": [ "ar_charge" ]
+        }
+      },
+      "auga3": {
+        "id": "63171672192e68c5460cebc5",
+        "chance": 30,
+        "slots": {
+          "mod_magazine": [ "aug_mags" ],
+          "mod_reciever": [ "aug_recievers" ],
+          "mod_charge": [ "62e7c880f68e7a0676050c7c" ]
+        }
+      },
+      "fal": {
+        "id": "5b0bbe4e5acfc40dc528a72d",
+        "chance": 30,
+        "slots": {
+          "mod_pistol_grip": [ "fal_pg" ],
+          "mod_handguard": [ "fal_handguard", "fal_handguard_special" ],
+          "mod_sight_rear": [ "5b0bc22d5acfc47a8607f085" ],
+          "mod_stock": [ "fal_stocks", "fal_stocks_special" ],
+          "mod_magazine": [ "fal_mags" ],
+          "mod_barrel": [ "fal_barrels", "fal_barrels_special" ],
+          "mod_reciever": [ "fal_receiver_special" ]
+        }
+      }
     },
-    "weapons": {},
-    "categories": {
-        
+    "ArmorVest": {
+      "untar vest": {
+        "id": "5ab8e4ed86f7742d8e50c7fa",
+        "chance": 20,
+        "slots": {
+          "Soft_armor_front": [ "657044e971369562b300ce9b" ],
+          "Soft_armor_back": [ "657045741bd9beedc40b7299" ],
+          "Soft_armor_left": [ "657045b97e80617cee095bda" ],
+          "soft_armor_right": [ "6570460471369562b300ce9f" ]
+        }
+      },
+      "iotv fast": {
+        "id": "5b44d0de86f774503d30cba8",
+        "chance": 80,
+        "slots": {
+          "Front_plate": [ "plates" ],
+          "Back_plate": [ "plates" ],
+          "Left_side_plate": [ "plates_side" ],
+          "Right_side_plate": [ "plates_side" ],
+          "Soft_armor_front": [ "6575c342efc786cd9101a5e5" ],
+          "Soft_armor_back": [ "6575c34bc6700bd6b40e8a84" ],
+          "Soft_armor_left": [ "6575c35bc6700bd6b40e8a88" ],
+          "soft_armor_right": [ "6575c366c6700bd6b40e8a8c" ],
+          "Collar": [ "6575c373dc9932aed601c5ec" ],
+          "Groin": [ "6575c385dc9932aed601c5f0" ],
+          "Groin_back": [ "6575c390efc786cd9101a5e9" ]
+        }
+      },
+      "interceptor": {
+        "id": "64abd93857958b4249003418",
+        "chance": 50,
+        "slots": {
+          "Front_plate": [ "plates" ],
+          "Back_plate": [ "plates" ],
+          "Soft_armor_front": [ "6570f30b0921c914bf07964c" ],
+          "Soft_armor_back": [ "6570f35cd67d0309980a7acb" ],
+          "Soft_armor_left": [ "6570f3890b4ae5847f060dad" ],
+          "soft_armor_right": [ "6570f3bb0b4ae5847f060db2" ]
+        }
+      }
+    },
+    "TacticalVest": {
+      "rbav": {
+        "id": "628dc750b910320f4c27a732",
+        "chance": 50,
+        "slots": {
+          "Front_plate": [ "plates" ],
+          "Back_plate": [ "plates" ],
+          "Left_side_plate": [ "plates_side" ],
+          "Right_side_plate": [ "plates_side" ],
+          "Soft_armor_front": [ "6572f1ca4c8d903cc60c874e" ],
+          "Soft_armor_back": [ "6572f1d60103b4a3270332db" ],
+          "Soft_armor_left": [ "6572f1e10103b4a3270332df" ],
+          "soft_armor_right": [ "6572f1edea457732140ce875" ],
+          "Groin": [ "6572f1f7ea457732140ce879" ]
+        }
+      },
+      "mmac": {
+        "id": "61bc85697113f767765c7fe7",
+        "chance": 30,
+        "slots": {
+          "Front_plate": [ "plates" ],
+          "Back_plate": [ "plates" ],
+          "Left_side_plate": [ "plates_side" ],
+          "Right_side_plate": [ "plates_side" ],
+          "Soft_armor_front": [ "6572fc809a866b80ab07eb59" ],
+          "Soft_armor_back": [ "6572fc8c9a866b80ab07eb5d" ],
+          "Soft_armor_left": [ "6572fc989a866b80ab07eb61" ],
+          "soft_armor_right": [ "6572fca39a866b80ab07eb65" ]
+        }
+      }
     }
+  },
+  "weapons": {},
+  "categories": {
+
+  }
 }

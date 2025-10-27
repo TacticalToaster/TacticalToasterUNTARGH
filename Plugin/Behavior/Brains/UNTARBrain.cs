@@ -11,60 +11,60 @@ namespace TacticalToasterUNTARGH.Behavior.Brains
         public UNTARBrain(BotOwner owner, bool withPursuit)
             : base(owner)
         {
-            GClass45 gclass = new GClass45(owner, 80);
+            var gclass = new GClass48(owner, 80);
             base.method_0(5, gclass, true);
-            GClass115 gclass2 = new GClass115(owner, 78);
+            var gclass2 = new GClass118(owner, 78);
             base.method_0(12, gclass2, true);
-            GClass81 gclass3 = new GClass81(owner, 70);
+            var gclass3 = new GClass84(owner, 70);
             base.method_0(9, gclass3, true);
-            GClass139 gclass4 = new GClass139(owner, 60);
+            var gclass4 = new GClass142(owner, 60);
             base.method_0(1, gclass4, true);
-            GClass39 gclass5 = new GClass39(owner, 50);
+            var gclass5 = new GClass39(owner, 50);
             base.method_0(6, gclass5, true);
-            GClass136 gclass6 = new GClass136(owner, 30);
+            var gclass6 = new GClass139(owner, 30);
             base.method_0(4, gclass6, true);
             if (withPursuit)
             {
-                Class104 @class = new Class104(owner, 25);
+                var @class = new Class105(owner, 25);
                 base.method_0(13, @class, true);
             }
-            GClass159 gclass7 = new GClass159(owner, 15);
+            var gclass7 = new GClass166(owner, 15);
             base.method_0(14, gclass7, true);
-            Class97 class2 = new Class97(owner, 9, false);
+            var class2 = new Class99(owner, 9, false);
             base.method_0(3, class2, true);
-            GClass129 gclass8 = new GClass129(owner, 3);
+            var gclass8 = new GClass132(owner, 3);
             base.method_0(8, gclass8, true);
             //GClass132 stayPos = new GClass132(owner, 0, true, CoverLevel.Stay, false);
             //base.method_0(2, stayPos, true);
-            GClass83 gclass9 = new GClass83(owner, 2); // PatrolFollower
+            var gclass9 = new GClass86(owner, 2); // PatrolFollower
             base.method_0(7, gclass9, true);
-            GClass130 gclass10 = new GClass130(owner, 0); // PatrolAssault (for the leader of group)
+            var gclass10 = new GClass133(owner, 0); // PatrolAssault (for the leader of group)
             base.method_0(2, gclass10, true);
-            if (this._owner.Boss.IamBoss)
+            if (this.Owner.Boss.IamBoss)
             {
                 Singleton<BotEventHandler>.Instance.OnKill += this.method_6;
             }
         }
 
         // Token: 0x06001E6C RID: 7788 RVA: 0x0017EE2E File Offset: 0x0017D02E
-        public override GClass649 EventsPriority()
+        public override GClass671 EventsPriority()
         {
-            return new GClass649(-1, 75, 55, 76, 56, -1);
+            return new GClass671(-1, 75, 55, 76, 56, -1);
         }
 
         // Token: 0x06001E6D RID: 7789 RVA: 0x002BF450 File Offset: 0x002BD650
         public void method_6(IPlayer killer, IPlayer target)
         {
-            if (this._owner.Boss.IamBoss && Singleton<GameWorld>.Instance.GetAlivePlayerByProfileID(target.ProfileId) == this._owner.GetPlayer)
+            if (this.Owner.Boss.IamBoss && Singleton<GameWorld>.Instance.GetAlivePlayerByProfileID(target.ProfileId) == this.Owner.GetPlayer)
             {
                 foreach (Player player in Singleton<GameWorld>.Instance.allAlivePlayersByID.Values)
                 {
                     if (!player.AIData.IsAI)
                     {
-                        this._owner.BotsGroup.AddEnemy(player, EBotEnemyCause.pmcBossKill);
+                        this.Owner.BotsGroup.AddEnemy(player, EBotEnemyCause.pmcBossKill);
                     }
                 }
-                this._owner.BotsGroup.SetAggressiveToAllNewPlayers(true);
+                this.Owner.BotsGroup.SetAggressiveToAllNewPlayers(true);
                 Singleton<BotEventHandler>.Instance.OnKill -= this.method_6;
             }
         }

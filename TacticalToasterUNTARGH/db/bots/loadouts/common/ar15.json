@@ -1,216 +1,218 @@
 {
-    "categories": {
-        "ar_pg": {
-            "ar a2": {
-                "id": "55d4b9964bdc2d1d4e8b456e"
-            },
-            "ecs fde": {
-                "id": "571659bb2459771fb2755a12"
-            },
-            "hk battle": {
-                "id": "5bb20e18d4351e00320205d5"
-            }
-        },
-        "ar_receiver": {
-            "m4a1 receiver": {
-                "id": "55d355e64bdc2d962f8b4569",
-                "slots": {
-                    "mod_scope": ["scopes_mid", "sights"],
-                    "mod_handguard": ["ar_handguards"],
-                    "mod_barrel": ["ar_barrels"],
-                    "mod_sight_rear": ["ar_rear_sights"]
-                }
-            }
-        },
-        "ar_barrels": {
-            "ar 145 barrel": {
-                "id": "55d3632e4bdc2d972f8b4569",
-                "children": {
-                    "m203": {
-                        "id": "6357c98711fb55120211f7e1"
-                    }
-                },
-                "slots": {
-                    "mod_muzzle": ["ar_556_muzzles"],
-                    "mod_gas_block": ["ar_gas_blocks"],
-                    "mod_launcher": ["m203"]
-                }
-            },
-            "ar 135 barrel": {
-                "id": "63d3ce0446bd475bcb50f55f",
-                "children": {
-                    "m203": {
-                        "id": "6357c98711fb55120211f7e1"
-                    }
-                },
-                "slots": {
-                    "mod_muzzle": ["ar_556_muzzles"],
-                    "mod_gas_block": ["ar_gas_blocks"],
-                    "mod_launcher": ["m203"]
-                }
-            }
-        },
-        "ar_gas_blocks": {
-            "m4 sight block": {
-                "id": "5ae30e795acfc408fb139a0b"
-            },
-            "ar dd mk12": {
-                "id": "56eabcd4d2720b66698b4574"
-            },
-            "ar rail block": {
-                "id": "56ea8d2fd2720b7c698b4570",
-                "slots": {
-                    "mod_sight_front": ["ar_front_sights"]
-                }
-            }
-        },
-        "ar_556_muzzles": {
-            "usgi a2": {
-                "id": "544a38634bdc2d58388b4568"
-            },
-            "sf3p": {
-                "id": "5c7fb51d2e2216001219ce11",
-                "children": {
-                    "socom rc2": {
-                        "id": "5ea17bbc09aa976f2e7a51cd"
-                    }
-                },
-                "slots": {
-                    "mod_muzzle": ["socom rc2"]
-                }
-            }
-        },
-        "ar_handguards": {
-            "kac ris": {
-                "id": "55d459824bdc2d892f8b4573",
-                "children": {
-                    "kac ris lower": {
-                        "id": "637f57b78d137b27f70c496a",
-                        "slots": {
-                            "mod_foregrip": ["grips"]
-                        }
-                    }
-                },
-                "slots": {
-                    "mod_tactical": ["lasers_common"],
-                    "mod_tactical_2": ["lights"],
-                    "mod_tactical_003": [],
-                    "mod_handguard": ["kac ris lower"]
-                }
-            },
-            "smr mk16 short": {
-                "id": "5ea16acdfadf1d18c87b0784",
-                "slots": {
-                    "mod_tactical_000": ["lasers_common"],
-                    "mod_sight_front": ["ar_front_sights"]
-                }
-            }
-        },
-        "ar_charge": {
-            "ar colt charge": {
-                "id": "55d44fd14bdc2d962f8b456e"
-            },
-            "badger charge": {
-                "id": "56ea7165d2720b6e518b4583"
-            }
-        },
-        "ar_mags": {
-            "stanag": {
-                "id": "55d4887d4bdc2d962f8b4570"
-            },
-            "hk stanag": {
-                "id": "5c05413a0db834001c390617"
-            },
-            "pmag 30": {
-                "id": "5aaa5dfee5b5b000140293d3"
-            }
-        },
-        "ar_buffer": {
-            "colt buffer": {
-                "id": "5649be884bdc2d79388b4577",
-                "slots": {
-                    "mod_stock_000": ["ar_stocks"]
-                }
-            }
-        },
-        "ar_stocks": {
-            "m4ss stock": {
-                "id": "55d4ae6c4bdc2d8b2f8b456e"
-            },
-            "sopmod stock": {
-                "id": "5ae30c9a5acfc408fb139a03"
-            }
-        },
-        "ar_front_sights": {
-            "kac front sight": {
-                "id": "5c17804b2e2216152006c02f"
-            }
-        },
-        "ar_rear_sights": {
-            "kac rear sight": {
-                "id": "5c1780312e221602b66cc189"
-            }
-        },
-        "ar_receiver_lead": {
-            "m4a1 receiver": {
-                "id": "55d355e64bdc2d962f8b4569",
-                "slots": {
-                    "mod_scope": ["scopes_mid", "sights"],
-                    "mod_handguard": ["ar_handguards_lead"],
-                    "mod_barrel": ["ar_barrels"],
-                    "mod_sight_rear": ["ar_rear_sights"]
-                }
-            }
-        },
-        "ar_handguards_lead": {
-            "kac ris": {
-                "id": "55d459824bdc2d892f8b4573",
-                "slots": {
-                    "mod_tactical": ["lasers_common"],
-                    "mod_tactical_2": ["lights"]
-                }
-            },
-            "smr mk16 short": {
-                "id": "5ea16acdfadf1d18c87b0784",
-                "slots": {
-                    "mod_tactical_000": ["lasers_common"],
-                    "mod_sight_front": ["ar_front_sights"],
-                    "mod_foregrip": ["grips_mlok"]
-                }
-            },
-            "smr mk16 long": {
-                "id": "5ea16ada09aa976f2e7a51be",
-                "slots": {
-                    "mod_tactical_000": ["lasers_common"],
-                    "mod_sight_front": ["ar_front_sights"],
-                    "mod_foregrip": ["grips_mlok"]
-                }
-            },
-            "dd ris2 12": {
-                "id": "5c9a25172e2216000f20314e",
-                "children": {
-                    "dd ris2 12 lower": {
-                        "id": "638f2003bbd47aeb9e0ff637",
-                        "slots": {
-                            "mod_foregrip": ["grips"]
-                        }
-                    }
-                },
-                "slots": {
-                    "mod_tactical_000": ["lasers_common"],
-                    "mod_tactical_002": ["lights"],
-                    "mod_sight_front": ["ar_front_sights"],
-                    "mod_handguard": ["dd ris2 12 lower"]
-                }
-            },
-            "dd ris2 9 coyote": {
-                "id": "55f84c3c4bdc2d5f408b4576",
-                "slots": {
-                    "mod_tactical": ["lasers_common"],
-                    "mod_tactical002": ["lights"],
-                    "mod_sight_front": ["ar_front_sights"]
-                }
-            }
+  "equipment": {},
+  "weapons": {},
+  "categories": {
+    "ar_pg": {
+      "ar a2": {
+        "id": "55d4b9964bdc2d1d4e8b456e"
+      },
+      "ecs fde": {
+        "id": "571659bb2459771fb2755a12"
+      },
+      "hk battle": {
+        "id": "5bb20e18d4351e00320205d5"
+      }
+    },
+    "ar_receiver": {
+      "m4a1 receiver": {
+        "id": "55d355e64bdc2d962f8b4569",
+        "slots": {
+          "mod_scope": [ "scopes_mid", "sights" ],
+          "mod_handguard": [ "ar_handguards" ],
+          "mod_barrel": [ "ar_barrels" ],
+          "mod_sight_rear": [ "ar_rear_sights" ]
         }
+      }
+    },
+    "ar_barrels": {
+      "ar 145 barrel": {
+        "id": "55d3632e4bdc2d972f8b4569",
+        "children": {
+          "m203": {
+            "id": "6357c98711fb55120211f7e1"
+          }
+        },
+        "slots": {
+          "mod_muzzle": [ "ar_556_muzzles" ],
+          "mod_gas_block": [ "ar_gas_blocks" ],
+          "mod_launcher": [ "m203" ]
+        }
+      },
+      "ar 135 barrel": {
+        "id": "63d3ce0446bd475bcb50f55f",
+        "children": {
+          "m203": {
+            "id": "6357c98711fb55120211f7e1"
+          }
+        },
+        "slots": {
+          "mod_muzzle": [ "ar_556_muzzles" ],
+          "mod_gas_block": [ "ar_gas_blocks" ],
+          "mod_launcher": [ "m203" ]
+        }
+      }
+    },
+    "ar_gas_blocks": {
+      "m4 sight block": {
+        "id": "5ae30e795acfc408fb139a0b"
+      },
+      "ar dd mk12": {
+        "id": "56eabcd4d2720b66698b4574"
+      },
+      "ar rail block": {
+        "id": "56ea8d2fd2720b7c698b4570",
+        "slots": {
+          "mod_sight_front": [ "ar_front_sights" ]
+        }
+      }
+    },
+    "ar_556_muzzles": {
+      "usgi a2": {
+        "id": "544a38634bdc2d58388b4568"
+      },
+      "sf3p": {
+        "id": "5c7fb51d2e2216001219ce11",
+        "children": {
+          "socom rc2": {
+            "id": "5ea17bbc09aa976f2e7a51cd"
+          }
+        },
+        "slots": {
+          "mod_muzzle": [ "socom rc2" ]
+        }
+      }
+    },
+    "ar_handguards": {
+      "kac ris": {
+        "id": "55d459824bdc2d892f8b4573",
+        "children": {
+          "kac ris lower": {
+            "id": "637f57b78d137b27f70c496a",
+            "slots": {
+              "mod_foregrip": [ "grips" ]
+            }
+          }
+        },
+        "slots": {
+          "mod_tactical": [ "lasers_common" ],
+          "mod_tactical_2": [ "lights" ],
+          "mod_tactical_003": [],
+          "mod_handguard": [ "kac ris lower" ]
+        }
+      },
+      "smr mk16 short": {
+        "id": "5ea16acdfadf1d18c87b0784",
+        "slots": {
+          "mod_tactical_000": [ "lasers_common" ],
+          "mod_sight_front": [ "ar_front_sights" ]
+        }
+      }
+    },
+    "ar_charge": {
+      "ar colt charge": {
+        "id": "55d44fd14bdc2d962f8b456e"
+      },
+      "badger charge": {
+        "id": "56ea7165d2720b6e518b4583"
+      }
+    },
+    "ar_mags": {
+      "stanag": {
+        "id": "55d4887d4bdc2d962f8b4570"
+      },
+      "hk stanag": {
+        "id": "5c05413a0db834001c390617"
+      },
+      "pmag 30": {
+        "id": "5aaa5dfee5b5b000140293d3"
+      }
+    },
+    "ar_buffer": {
+      "colt buffer": {
+        "id": "5649be884bdc2d79388b4577",
+        "slots": {
+          "mod_stock_000": [ "ar_stocks" ]
+        }
+      }
+    },
+    "ar_stocks": {
+      "m4ss stock": {
+        "id": "55d4ae6c4bdc2d8b2f8b456e"
+      },
+      "sopmod stock": {
+        "id": "5ae30c9a5acfc408fb139a03"
+      }
+    },
+    "ar_front_sights": {
+      "kac front sight": {
+        "id": "5c17804b2e2216152006c02f"
+      }
+    },
+    "ar_rear_sights": {
+      "kac rear sight": {
+        "id": "5c1780312e221602b66cc189"
+      }
+    },
+    "ar_receiver_lead": {
+      "m4a1 receiver": {
+        "id": "55d355e64bdc2d962f8b4569",
+        "slots": {
+          "mod_scope": [ "scopes_mid", "sights" ],
+          "mod_handguard": [ "ar_handguards_lead" ],
+          "mod_barrel": [ "ar_barrels" ],
+          "mod_sight_rear": [ "ar_rear_sights" ]
+        }
+      }
+    },
+    "ar_handguards_lead": {
+      "kac ris": {
+        "id": "55d459824bdc2d892f8b4573",
+        "slots": {
+          "mod_tactical": [ "lasers_common" ],
+          "mod_tactical_2": [ "lights" ]
+        }
+      },
+      "smr mk16 short": {
+        "id": "5ea16acdfadf1d18c87b0784",
+        "slots": {
+          "mod_tactical_000": [ "lasers_common" ],
+          "mod_sight_front": [ "ar_front_sights" ],
+          "mod_foregrip": [ "grips_mlok" ]
+        }
+      },
+      "smr mk16 long": {
+        "id": "5ea16ada09aa976f2e7a51be",
+        "slots": {
+          "mod_tactical_000": [ "lasers_common" ],
+          "mod_sight_front": [ "ar_front_sights" ],
+          "mod_foregrip": [ "grips_mlok" ]
+        }
+      },
+      "dd ris2 12": {
+        "id": "5c9a25172e2216000f20314e",
+        "children": {
+          "dd ris2 12 lower": {
+            "id": "638f2003bbd47aeb9e0ff637",
+            "slots": {
+              "mod_foregrip": [ "grips" ]
+            }
+          }
+        },
+        "slots": {
+          "mod_tactical_000": [ "lasers_common" ],
+          "mod_tactical_002": [ "lights" ],
+          "mod_sight_front": [ "ar_front_sights" ],
+          "mod_handguard": [ "dd ris2 12 lower" ]
+        }
+      },
+      "dd ris2 9 coyote": {
+        "id": "55f84c3c4bdc2d5f408b4576",
+        "slots": {
+          "mod_tactical": [ "lasers_common" ],
+          "mod_tactical002": [ "lights" ],
+          "mod_sight_front": [ "ar_front_sights" ]
+        }
+      }
     }
+  }
 }

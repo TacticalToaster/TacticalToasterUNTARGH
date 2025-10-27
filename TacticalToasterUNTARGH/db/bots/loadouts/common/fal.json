@@ -1,0 +1,94 @@
+{
+  "equipment": {},
+  "weapons": {},
+  "categories": {
+    "fal_pg": {
+      "fal pg": {
+        "id": "5b7d678a5acfc4001a5c4022"
+      },
+      "fal ribbed pg": {
+        "id": "5b099b965acfc400186331e6"
+      }
+    },
+    "fal_handguard": {
+      "fal belgian hg": {
+        "id": "5b7d671b5acfc43d82528ddd"
+      }
+    },
+    "fal_handguard_special": {
+      "fal 4rail full": {
+        "id": "5b7be1ca5acfc400170e2d2f",
+        "slots": {
+          "mod_tactical_000": [ "lasers_common" ],
+          "mod_tactical_002": [ "lights" ],
+          "mod_foregrip": [ "grips" ]
+        }
+      },
+      "fal 4rail short": {
+        "id": "5b099a9d5acfc47a8607efe7",
+        "slots": {
+          "mod_tactical_000": [ "lasers_common" ],
+          "mod_tactical_002": [ "lights" ],
+          "mod_foregrip": [ "grips" ]
+        }
+      }
+    },
+    "fal_stocks": {
+      "fal folding": {
+        "id": "5b7d63cf5acfc4001876c8df"
+      },
+      "fal hump": {
+        "id": "5b7d645e5acfc400170e2f90"
+      }
+    },
+    "fal_stocks_special": {
+      "fal brs": {
+        "id": "5b7d64555acfc4001876c8e2"
+      },
+      "fal prs2": {
+        "id": "5b7d63b75acfc400170e2f8a"
+      }
+    },
+    "fal_mags": {
+      "fal 20 standard": {
+        "id": "5b099ac65acfc400186331e1"
+      },
+      "fal 30 standard": {
+        "id": "5b7bef5d5acfc43bca7067a3"
+      },
+      "fal 30 l1a1": {
+        "id": "5b7d37845acfc400170e2f87"
+      }
+    },
+    "fal_barrels": {
+      "fal 21 barrel": {
+        "id": "5b7be1265acfc400161d0798",
+        "slots": {
+          "mod_muzzle": [ "5b7d68af5acfc400170e30c3" ]
+        }
+      }
+    },
+    "fal_barrels_special": {
+      "fal 16 barrel": {
+        "id": "5b7be1125acfc4001876c0e5",
+        "slots": {
+          "mod_muzzle": [ "5b099b7d5acfc400186331e4", "5b7d68af5acfc400170e30c3" ]
+        }
+      },
+      "fal 11 barrel": {
+        "id": "5b099a765acfc47a8607efe3",
+        "slots": {
+          "mod_muzzle": [ "5b099b7d5acfc400186331e4", "615d8eb350224f204c1da1cf" ]
+        }
+      }
+    },
+    "fal_receiver_special": {
+      "fal rail receiver": {
+        "id": "5b099bb25acfc400186331e8",
+        "slots": {
+          "mod_scope": [ "scopes_mid", "sights" ]
+        }
+      }
+    }
+  }
+}

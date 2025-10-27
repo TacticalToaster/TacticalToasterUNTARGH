@@ -21,7 +21,7 @@ internal class UNTARPatch : ModulePatch
         {
             if (Plugin.untarText != null)
             {
-                __result = BotSettingsComponents.Create(Plugin.untarText.text);
+                //__result = BotSettingsComponents.Create(Plugin.untarText.text);
 
                 //BotSettingsRepoClass.smethod_0(UNTARWildSpawnTypePatch.suitableList.Select(i => (WildSpawnType)i).ToList());
                 return false;

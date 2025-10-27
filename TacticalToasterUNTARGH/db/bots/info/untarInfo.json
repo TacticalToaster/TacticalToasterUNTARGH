@@ -1,43 +1,23 @@
 {
-    "equipmentSettings": {
-        "nvgIsActiveChanceDayPercent": 0,
-        "nvgIsActiveChanceNightPercent": 75,
-        "faceShieldIsActiveChancePercent": 100,
-        "lightIsActiveDayChancePercent": 40,
-        "lightIsActiveNightChancePercent": 90,
-        "laserIsActiveChancePercent": 75,
-        "weaponSightWhitelist": {},
-        "weightingAdjustmentsByBotLevel": [],
-        "weightingAdjustmentsByPlayerLevel": [],
-        "randomisation": [],
-        "armorPlateWeighting": [],
-        "blacklist": [],
-        "whitelist": [],
-        "weaponModLimits": {
-            "scopeLimit": 2,
-            "lightLaserLimit": 2
-        },
-        "filterPlatesByLevel": false,
-        "forceOnlyArmoredRigWhenNoArmor": true,
-        "forceStock": false,
-        "weaponSlotIdsToMakeRequired": []
-    },
-    "walletSettings": {
-        "chancePercent": 50,
-        "itemCount": {
-            "max": 1000,
-            "min": 100
-        },
-        "stackSizeWeight": {
-            "5449016a4bdc2d6f028b456f": 75,
-            "5696686a4bdc2da3298b456a": 15,
-            "569668774bdc2da2298b4568": 25
-        },
-        "currencyWeight": {
-            "5449016a4bdc2d6f028b456f": 75,
-            "5696686a4bdc2da3298b456a": 15,
-            "569668774bdc2da2298b4568": 25
-        },
-        "walletTplPool": ["5783c43d2459774bbe137486", "60b0f6c058e0b0481a09ad11"]
-    }
+  "nvgIsActiveChanceDayPercent": 0,
+  "nvgIsActiveChanceNightPercent": 75,
+  "faceShieldIsActiveChancePercent": 100,
+  "lightIsActiveDayChancePercent": 40,
+  "lightIsActiveNightChancePercent": 90,
+  "laserIsActiveChancePercent": 75,
+  "weaponSightWhitelist": {},
+  "weightingAdjustmentsByBotLevel": [],
+  "weightingAdjustmentsByPlayerLevel": [],
+  "randomisation": [],
+  "armorPlateWeighting": [],
+  "blacklist": [],
+  "whitelist": [],
+  "weaponModLimits": {
+    "scopeLimit": 2,
+    "lightLaserLimit": 2
+  },
+  "filterPlatesByLevel": false,
+  "forceOnlyArmoredRigWhenNoArmor": true,
+  "forceStock": false,
+  "weaponSlotIdsToMakeRequired": []
 }

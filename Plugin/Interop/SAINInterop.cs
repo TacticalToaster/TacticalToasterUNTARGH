@@ -77,7 +77,7 @@ namespace TacticalToasterUNTARGH.Interop
             //BrainManager.AddCustomLayer(typeof(CombatSquadLayer), untarBrainList, settings.SAINCombatSquadLayerPriority, untarTypes);
             //BrainManager.AddCustomLayer(typeof(CombatSoloLayer), untarBrainList, settings.SAINCombatSoloLayerPriority, untarTypes);
 
-            var untarBrainList = new List<string>() { "ExUsec" };
+            var untarBrainList = new List<string>() { "PMC", "FollowerGluharProtect", "ExUsec", "Assault" };
             var untarTypes = UNTAREnums.UNTARTypes.ConvertAll<WildSpawnType>(type => (WildSpawnType)type.wildSpawnType);
 
             var layers = new List<string>()
@@ -89,6 +89,7 @@ namespace TacticalToasterUNTARGH.Interop
                 //"PtrlBirdEye",
 				"PmcBear",
                 "PmcUsec",
+                "StationaryWS"
             };
             layers.AddRange(commonVanillaLayersToRemove);
 
@@ -191,7 +192,7 @@ namespace TacticalToasterUNTARGH.Interop
                 Description = "An UNTAR grunt.",
                 Section = "UNTAR",
                 WildSpawnType = (WildSpawnType)UNTAREnums.UNTARTypes.Find(bot => bot.typeName == "followeruntar").wildSpawnType,
-                BaseBrain = "ExUsec"
+                BaseBrain = "PMC"
             };
             botTypes.Add(followeruntar);
 

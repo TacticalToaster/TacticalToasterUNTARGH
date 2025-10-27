@@ -13,8 +13,6 @@ using System.Threading.Tasks;
 using DrakiaXYZ.BigBrain;
 using TacticalToasterUNTARGH.Behavior;
 using TacticalToasterUNTARGH.Behavior.Brains;
-using static AITaskManager;
-using static EFT.ClientPlayer.Control0;
 
 namespace TacticalToasterUNTARGH.Patches
 {
@@ -28,25 +26,25 @@ namespace TacticalToasterUNTARGH.Patches
         private static BaseBrain GetUNTARBrain(BotOwner botOwner)
         {
             // GOTO: After I talk with Solarint and see if custom brain support can be added to SAIN, I'll assign the custom UNTAR brain here
-            return new ExUsecBrainClass(botOwner);//new UNTARBrain(botOwner, false);//GClass340(botOwner, false);
+            return new ExUsecBrainClass(botOwner);//GClass355(botOwner);//GClass349(botOwner, false);//new UNTARBrain(botOwner, false);//GClass349(botOwner, false);
         }
 
         private static AICoreAgentClass<BotLogicDecision> GetUNTARAgent(BotOwner botOwner, BaseBrain brain, StandartBotBrain __instance)
         {
             var name = botOwner.name + " " + botOwner.Profile.Info.Settings.Role.ToString();
-            return new AICoreAgentClass<BotLogicDecision>(botOwner.BotsController.AICoreController, brain, NodeCreator.ActionsList(botOwner), botOwner.gameObject, name, new Func<BotLogicDecision, GClass168>(__instance.method_0));
+            return new AICoreAgentClass<BotLogicDecision>(botOwner.BotsController.AICoreController, brain, NodeCreator.ActionsList(botOwner), botOwner.gameObject, name, new Func<BotLogicDecision, BotNodeAbstractClass>(__instance.method_0));
         }
 
         [PatchPostfix]
         [HarmonyPriority(Priority.First)] // Make sure this runs after BigBrain so we can override it
         //[HarmonyBefore(["xyz.drakia.bigbrain"])]
-        public static void PatchPostfix(StandartBotBrain __instance, BotOwner ___botOwner_0)
+        public static void PatchPostfix(StandartBotBrain __instance, BotOwner ___BotOwner_0)
         {
-            if (UNTAREnums.UNTARTypesDict.ContainsKey((int)___botOwner_0.Profile.Info.Settings.Role))
+            if (UNTAREnums.UNTARTypesDict.ContainsKey((int)___BotOwner_0.Profile.Info.Settings.Role))
             {
                 Logger.LogMessage("Inserting our UNTAR brain. How exciting!");
-                __instance.BaseBrain = GetUNTARBrain(___botOwner_0);
-                __instance.Agent = GetUNTARAgent(___botOwner_0, __instance.BaseBrain, __instance);
+                __instance.BaseBrain = GetUNTARBrain(___BotOwner_0);
+                __instance.Agent = GetUNTARAgent(___BotOwner_0, __instance.BaseBrain, __instance);
 
                 // This isn't critical, only knight, sanitar, and the attack event (khorvod generators, spring event, etc) behaviors use this
                 //__instance.OnSetStrategy?.Invoke(__instance.BaseBrain);
