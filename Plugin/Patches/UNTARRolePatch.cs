@@ -26,7 +26,7 @@ namespace TacticalToasterUNTARGH.Patches
         private static BaseBrain GetUNTARBrain(BotOwner botOwner)
         {
             // GOTO: After I talk with Solarint and see if custom brain support can be added to SAIN, I'll assign the custom UNTAR brain here
-            return new ExUsecBrainClass(botOwner);//new UNTARBrain(botOwner, false);//GClass340(botOwner, false);
+            return new ExUsecBrainClass(botOwner);//GClass355(botOwner);//GClass349(botOwner, false);//new UNTARBrain(botOwner, false);//GClass349(botOwner, false);
         }
 
         private static AICoreAgentClass<BotLogicDecision> GetUNTARAgent(BotOwner botOwner, BaseBrain brain, StandartBotBrain __instance)

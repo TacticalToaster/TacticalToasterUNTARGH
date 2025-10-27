@@ -36,7 +36,7 @@ namespace TacticalToasterUNTARGH.Behavior
             //BrainManager.RemoveLayer("GoToCheckpoint", untarBrainList);
             //BrainManager.RestoreLayer("GoToCheckpoint", untarBrainList, untarTypes);
 
-            var untarBrainList = new List<string>() { "ExUsec" };
+            var untarBrainList = new List<string>() { "PMC", "FollowerGluharProtect", "ExUsec", "Assault" };
             var untarTypes = UNTAREnums.UNTARTypes.ConvertAll<WildSpawnType>(type => (WildSpawnType)type.wildSpawnType);
 
             var layers = new List<string>()
@@ -48,10 +48,12 @@ namespace TacticalToasterUNTARGH.Behavior
                 //"PtrlBirdEye",
 				"PmcBear",
                 "PmcUsec",
+                "StationaryWS"
             };
             layers.AddRange(commonVanillaLayersToRemove);
 
             BrainManager.RemoveLayers(layers, untarBrainList, untarTypes);
+            BrainManager.AddCustomLayer(typeof(GoToCheckpointLayer), untarBrainList, 4, untarTypes);
 
             Plugin.LogSource.LogMessage("Removed common vanilla layers from UNTAR brains.");
         }

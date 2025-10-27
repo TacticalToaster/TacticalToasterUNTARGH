@@ -72,14 +72,17 @@ public class CustomDynamicRouter : DynamicRouter
 {
     private static HttpResponseUtil _httpResponseUtil;
     private static UntarDBController _untarDBController;
+    private static ConfigController _configController;
 
     public CustomDynamicRouter(
         JsonUtil jsonUtil,
         HttpResponseUtil httpResponseUtil,
-        UntarDBController untarDBController) : base(jsonUtil, GetCustomRoutes())
+        UntarDBController untarDBController,
+        ConfigController configController) : base(jsonUtil, GetCustomRoutes())
     {
         _httpResponseUtil = httpResponseUtil;
         _untarDBController = untarDBController;
+        _configController = configController;
     }
     private static List<RouteAction> GetCustomRoutes()
     {
@@ -93,6 +96,18 @@ public class CustomDynamicRouter : DynamicRouter
                     output
                 ) => {
                     var result = _untarDBController.getBotDifficulties(url, (EmptyRequestData)info, sessionID, output);
+                    return await new ValueTask<string>(_httpResponseUtil.NoBody(result));
+                }
+            ),
+            new RouteAction(
+                "/untar/checkpoints",
+                async (
+                    url,
+                    info,
+                    sessionID,
+                    output
+                ) => {
+                    var result = _configController.ModConfig;
                     return await new ValueTask<string>(_httpResponseUtil.NoBody(result));
                 }
             )

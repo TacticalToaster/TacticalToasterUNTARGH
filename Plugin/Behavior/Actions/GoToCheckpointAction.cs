@@ -5,37 +5,42 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TacticalToasterUNTARGH.Components;
+using TacticalToasterUNTARGH.Controllers;
 using UnityEngine;
 
 namespace TacticalToasterUNTARGH.Behavior.Actions
 {
-    internal class GoToCheckpointAction : CustomLogic
+    internal class GoToCheckpoint : CustomLogic
     {
-        public static Vector3 patrolPoint = new Vector3(-140f, -1f, 410f);
+        protected BotUntarManager untarManager { get; private set; }
 
-        private CustomNavigationPoint guardPoint;
-        private GClass395 baseSteeringLogic = new GClass395();
+        private GClass395 baseSteeringLogic;
         private float checkDelay;
+        private GClass212 goToCoverPoint;
 
         private bool teleported = false;
 
-        public GoToCheckpointAction(BotOwner botOwner) : base(botOwner)
+        public GoToCheckpoint(BotOwner botOwner) : base(botOwner)
         {
+            untarManager = botOwner.GetOrAddUntarManager();
+            goToCoverPoint = new GClass212(BotOwner);
+            baseSteeringLogic = new GClass395();
         }
 
         public override void Start()
         {
-            BotOwner.StopMove();
-            BotOwner.BotRun.EndMove();
+            //var patrolPoint = untarManager.GetAssignedCheckpoint().Position;
+            //var randomPoint = patrolPoint + (Vector3)UnityEngine.Random.insideUnitCircle * 25f;
 
-            //BotOwner.PatrollingData.Status = PatrolStatus.pause;
-            BotOwner.PatrollingData.Pause();
-            BotOwner.PatrollingData.PointControl.SetTarget(null, -1);
+           // Plugin.LogSource.LogInfo($"[{BotOwner.Profile.Nickname}] Start going to checkpoint 3.");
 
-            BotOwner.Memory.BotCurrentCoverInfo.SetCover(null, false);
-            BotOwner.Memory.SetCoverPoints(null, "");
+            //var searchData = new CoverSearchData(randomPoint, BotOwner.CoverSearchInfo, CoverShootType.hide, 35f * 35f, 0f, CoverSearchType.distToToCenter, null, null, null, ECheckSHootHide.shootAndHide, new CoverSearchDefenceDataClass(BotOwner.Settings.FileSettings.Cover.MIN_DEFENCE_LEVEL), PointsArrayType.byShootType, true);
+            untarManager.UpdateGuardPoint();
+            BotOwner.Memory.SetCoverPoints(untarManager.guardPoint, "");
 
-            BotOwner.GoToSomePointData.SetPoint(Vector3.zero);
+            BotOwner.AimingManager.CurrentAiming.LoseTarget();
+
 
             /*if (teleported == false)
             {
@@ -52,34 +57,30 @@ namespace TacticalToasterUNTARGH.Behavior.Actions
 
         public override void Stop()
         {
+            //Plugin.LogSource.LogInfo($"[{BotOwner.Profile.Nickname}] Stop going to checkpoint 3.");
+
+            BotOwner.Mover.Sprint(false);
             base.Stop();
         }
 
         public override void Update(CustomLayer.ActionData data)
         {
+            untarManager.UpdateGuardPoint();
+            BotOwner.Memory.SetCoverPoints(untarManager.guardPoint, "");
+            goToCoverPoint.UpdateNodeByMain(data);
+
+            
+            //Plugin.LogSource.LogInfo($"Patrol status update | {BotOwner.GoToSomePointData.Point} : {BotOwner.GoToSomePointData.HaveTarget()} : {BotOwner.GoToSomePointData.PointhRefreshed} | tp:{BotOwner.Mover.TargetPoint} dcp:{BotOwner.Mover.DirCurPoint} rdp:{BotOwner.Mover.RealDestPoint}");
+
             UpdateBotMovement();
             UpdateSteering();
-            BotOwner.MagazineChecker.ManualUpdate();
 
-            if (guardPoint == null)
+            if (BotOwner.Mover.IsComeTo(.7f, true, untarManager.guardPoint))
             {
-                var searchData = new CoverSearchData(patrolPoint, BotOwner.CoverSearchInfo, CoverShootType.hide, 35f * 35f, 0f, CoverSearchType.distToToCenter, null, null, patrolPoint, ECheckSHootHide.shootAndHide, new CoverSearchDefenceDataClass(BotOwner.Settings.FileSettings.Cover.MIN_DEFENCE_LEVEL), PointsArrayType.byShootType, true);
-                guardPoint = BotOwner.BotsGroup.CoverPointMaster.GetCoverPointMain(searchData, true);
-                BotOwner.Memory.BotCurrentCoverInfo.SetCover(guardPoint, true);
-                BotOwner.Memory.SetCoverPoints(guardPoint, "");
+                untarManager.AtCheckpoint = true;
             }
+            //BotOwner.MagazineChecker.ManualUpdate();
 
-            if (Time.time > checkDelay)
-            {
-                if (BotOwner.Mover.IsComeTo(0.6f, true, guardPoint))
-                {
-                    BotOwner.Sprint(false, false);
-                    BotOwner.Memory.ComeToPoint();
-                    return;
-                }
-                BotOwner.Mover.GoToPoint(guardPoint.Position, true, 1f, true);
-                checkDelay = Time.time + 0.75f;
-            }
         }
 
         public void UpdateBotMovement() 
@@ -87,8 +88,8 @@ namespace TacticalToasterUNTARGH.Behavior.Actions
             BotOwner.SetPose(1f);
             BotOwner.BotLay.GetUp(true);
 
-            BotOwner.SetTargetMoveSpeed(1f);
             BotOwner.Mover.Sprint(true);
+            BotOwner.SetTargetMoveSpeed(1f);
         }
 
         public void UpdateSteering()
@@ -99,7 +100,7 @@ namespace TacticalToasterUNTARGH.Behavior.Actions
 
         public override void BuildDebugText(StringBuilder stringBuilder)
         {
-            stringBuilder.AppendLine($"-- GoToCheckpointAction -- {guardPoint.Position}");
+            stringBuilder.AppendLine($"-- GoToCheckpointAction -- {untarManager.guardPoint.Position}");
             base.BuildDebugText(stringBuilder);
         }
     }

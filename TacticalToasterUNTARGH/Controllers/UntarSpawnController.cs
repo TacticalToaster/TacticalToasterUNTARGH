@@ -5,11 +5,13 @@ using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Enums;
 using SPTarkov.Server.Core.Models.Spt.Config;
 using SPTarkov.Server.Core.Models.Spt.Mod;
+using SPTarkov.Server.Core.Models.Spt.Server;
 using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Services;
 using SPTarkov.Server.Core.Utils;
 using SPTarkov.Server.Core.Utils.Json;
+using System;
 
 namespace TacticalToasterUNTARGH.Controllers;
 
@@ -47,41 +49,21 @@ public class UntarSpawnController(
                 }
 
                 var mapConfig = mainConfig.locations[map];
+                var patrolConfig = mapConfig.patrol;
+                var checkpointConfig = mapConfig.checkpoint;
                 var spawns = tables.Locations.GetDictionary()[map].Base.BossLocationSpawn;
 
                 // Remove existing UNTAR spawns
                 spawns.RemoveAll(x => x.BossName.Contains("untar"));
 
-                if (mapConfig.enablePatrols)
+                if (patrolConfig.enablePatrols)
                 {
-                    _logger.Info($"Enabling UNTAR patrols for {map}.");
-                    var validZones = new List<string>(mapConfig.patrolZones);
+                    AdjustPatrolSpawnsForMap(map, mapConfig, mainConfig, spawns);
+                }
 
-                    for (int i = 0; i < mapConfig.patrolAmount; i++)
-                    {
-                        var patrolSize = _randomUtil.GetInt(mapConfig.patrolMin, mapConfig.patrolMax);
-                        var patrol = GeneratePatrol(patrolSize, mainConfig.debug.spawnAlways ? 100 : mapConfig.patrolChance);
-
-                        patrol.BossZone = _randomUtil.GetArrayValue(validZones);
-                        validZones.Remove(patrol.BossZone);
-
-                        if (!validZones.Any())
-                        {
-                            validZones = new List<string>(mapConfig.patrolZones);
-                        }
-
-                        patrol.Time = _randomUtil.GetInt(mapConfig.patrolTimeMin, mapConfig.patrolTimeMax);
-
-                        if (mainConfig.debug.spawnInstantlyAlways)
-                        {
-                            _logger.Info($"Instantly spawning UNTAR patrol for {map}.");
-                            patrol.Time = -1;
-                        }
-
-                        spawns.Add(patrol);
-
-                        _logger.Info($"Added ({mapConfig.patrolChance}% chance) UNTAR patrol of size {patrolSize} to {map} in zone {patrol.BossZone} with a spawn time of {patrol.Time} seconds.");
-                    }
+                if (checkpointConfig.enableCheckpoints)
+                {
+                    AdjustCheckpointSpawnsForMap(map, mapConfig, mainConfig, spawns);
                 }
             }
         }
@@ -149,22 +131,96 @@ public class UntarSpawnController(
     }
     */
 
-    private BossLocationSpawn GeneratePatrol(int patrolSize, float chance)
+    private void AdjustPatrolSpawnsForMap(string map, MapConfig mapConfig, MainConfig mainConfig, List<BossLocationSpawn> spawns)
+    {
+        var patrolConfig = mapConfig.patrol;
+
+        _logger.Info($"Enabling UNTAR patrols for {map}.");
+        var validZones = new List<string>(patrolConfig.patrolZones);
+
+        for (int i = 0; i < patrolConfig.patrolAmount; i++)
+        {
+            var patrolSize = _randomUtil.GetInt(patrolConfig.patrolMin, patrolConfig.patrolMax);
+            var patrol = GeneratePatrol(patrolSize, mainConfig.debug.spawnAlways ? 100 : patrolConfig.patrolChance);
+
+            patrol.BossZone = _randomUtil.GetArrayValue(validZones);
+            validZones.Remove(patrol.BossZone);
+
+            if (validZones.Count == 0)
+            {
+                validZones = new List<string>(patrolConfig.patrolZones);
+            }
+
+            patrol.Time = _randomUtil.GetInt(patrolConfig.patrolTimeMin, patrolConfig.patrolTimeMax);
+
+            if (mainConfig.debug.spawnInstantlyAlways)
+            {
+                _logger.Info($"Instantly spawning UNTAR patrol for {map}.");
+                patrol.Time = -1;
+            }
+
+            spawns.Add(patrol);
+
+            _logger.Info($"Added ({patrolConfig.patrolChance}% chance) UNTAR patrol of size {patrolSize} to {map} in zone {patrol.BossZone} with a spawn time of {patrol.Time} seconds.");
+        }
+    }
+
+    private void AdjustCheckpointSpawnsForMap(string map, MapConfig mapConfig, MainConfig mainConfig, List<BossLocationSpawn> spawns)
+    {
+        var checkpointConfig = mapConfig.checkpoint;
+
+        _logger.Info($"Enabling UNTAR checkpoint for {map}.");
+        var validZones = new List<ZoneCheckpointConfig>(checkpointConfig.checkpointZones);
+
+        for (int i = 0; i < checkpointConfig.checkpointAmount; i++)
+        {
+            var checkpointZoneConfig = _randomUtil.GetArrayValue(validZones);
+            validZones.Remove(checkpointZoneConfig);
+
+            var patrolSize = _randomUtil.GetInt(checkpointZoneConfig.checkpointMin, checkpointZoneConfig.checkpointMax);
+            var patrol = GeneratePatrol(patrolSize, mainConfig.debug.spawnAlways ? 100 : checkpointZoneConfig.checkpointChance, false);
+
+            patrol.BossZone = checkpointZoneConfig.checkpointZone;
+
+            if (validZones.Count == 0)
+            {
+                validZones = [.. checkpointConfig.checkpointZones];
+            }
+
+            patrol.Time = -1;//_randomUtil.GetInt(patrolConfig.patrolTimeMin, patrolConfig.patrolTimeMax);
+
+            if (mainConfig.debug.spawnInstantlyAlways)
+            {
+                _logger.Info($"Instantly spawning UNTAR checkpoint for {map}.");
+                patrol.Time = -1;
+            }
+
+            spawns.Add(patrol);
+
+            _logger.Info($"Added ({checkpointZoneConfig.checkpointChance}% chance) UNTAR checkpoint of size {patrolSize} to {map} in zone {patrol.BossZone} with a spawn time of {patrol.Time} seconds.");
+        }
+    }
+
+    private BossLocationSpawn GeneratePatrol(int patrolSize, float chance, bool isPatrol = true)
     {
         var bossType = "bossuntarlead";
         var secondLeader = string.Empty;
         var followers = patrolSize - 1;
         var mainConfig = _configController.ModConfig;
+        var genConfig = mainConfig.patrols;
+
+        if (isPatrol == false)
+            genConfig = mainConfig.checkpoints;
 
         _logger.Info($"Generating UNTAR patrol of size {patrolSize}.");
 
-        if (patrolSize >= mainConfig.patrols.minOfficerSize && _randomUtil.GetChance100(mainConfig.patrols.officerChance))
+        if (patrolSize >= genConfig.minOfficerSize && _randomUtil.GetChance100(genConfig.officerChance))
         {
             _logger.Info("UNTAR patrol leader changed to Officer.");
             bossType = "bossuntarofficer";
         }
 
-        if (patrolSize >= mainConfig.patrols.minSecondLeaderSize && _randomUtil.GetChance100(mainConfig.patrols.secondLeaderChance))
+        if (patrolSize >= genConfig.minSecondLeaderSize && _randomUtil.GetChance100(genConfig.secondLeaderChance))
         {
             _logger.Info("UNTAR patrol second leader added.");
             secondLeader = "bossuntarlead";

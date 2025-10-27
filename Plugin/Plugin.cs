@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using TacticalToasterUNTARGH.Components;
 using TacticalToasterUNTARGH.Interop;
 using TacticalToasterUNTARGH.Patches;
 using UnityEngine;
@@ -83,6 +84,8 @@ public class Plugin : BaseUnityPlugin
         new UNTARBotControllerPatch().Enable();
         new UNTARShootGroundWarnPatch().Enable();
         new UNTARFenceLoyaltyPatch().Enable();
+        new BotOwnerActivatePatch().Enable();
+        new BotsControllerInitPatch().Enable();
 
         int oldWildSpawnTypeConverter = Array.FindIndex<JsonConverter>(JsonSerializerSettingsClass.Converters, c => c.GetType() == typeof(GClass1866<WildSpawnType>));
         LogSource.LogInfo($"Old WildSpawnTypeFromInt converter index: {oldWildSpawnTypeConverter} {JsonSerializerSettingsClass.Converters[oldWildSpawnTypeConverter]}");
@@ -97,6 +100,7 @@ public class Plugin : BaseUnityPlugin
         //JsonSerializerSettingsClass.Converters.AddItem(new WildSpawnTypeFromInt<WildSpawnType>(false));
         //JsonSerializerSettingsClass.Converters.
 
+        this.GetOrAddComponent<UntarCheckpointManager>();
     }
 
     public static void LoadUNTARSettings()
