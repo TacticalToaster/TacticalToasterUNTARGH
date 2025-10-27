@@ -27,15 +27,14 @@ namespace TacticalToasterUNTARGH.Behavior
 
         public static void AddUntarBrainLayers()
         {
-            //var untarBrainList = new List<string>() { "UNTAR" };
-            //var untarTypes = UNTAREnums.UNTARTypes.ConvertAll<WildSpawnType>(type => (WildSpawnType)type.wildSpawnType);
-            //BrainManager.AddCustomLayer(typeof(GoToCheckpointLayer), new List<string>() { "PMC", "ExUsec" }, 99, UNTAREnums.UNTARTypes.ConvertAll<WildSpawnType>(type => (WildSpawnType)type.wildSpawnType));
+            var untarBrainList = new List<string>() { "PMC", "FollowerGluharProtect", "ExUsec", "Assault" };
+            var untarTypes = UNTAREnums.UNTARTypes.ConvertAll<WildSpawnType>(type => (WildSpawnType)type.wildSpawnType);
 
-            //BrainManager.AddCustomLayer(typeof(GoToCheckpointLayer), untarBrainList, 4, untarTypes);
+            BrainManager.AddCustomLayer(typeof(GoToCheckpointLayer), untarBrainList, 4, untarTypes);
+        }
 
-            //BrainManager.RemoveLayer("GoToCheckpoint", untarBrainList);
-            //BrainManager.RestoreLayer("GoToCheckpoint", untarBrainList, untarTypes);
-
+        public static void AddUntarBrainLayersSAIN()
+        {
             var untarBrainList = new List<string>() { "PMC", "FollowerGluharProtect", "ExUsec", "Assault" };
             var untarTypes = UNTAREnums.UNTARTypes.ConvertAll<WildSpawnType>(type => (WildSpawnType)type.wildSpawnType);
 

@@ -26,6 +26,8 @@ namespace TacticalToasterUNTARGH.Patches
             bool sainLoaded = Chainloader.PluginInfos.ContainsKey("me.sol.sain");
 
             if (sainLoaded)
+                UNTARBrainManager.AddUntarBrainLayersSAIN();
+            else
                 UNTARBrainManager.AddUntarBrainLayers();
         }
     }
