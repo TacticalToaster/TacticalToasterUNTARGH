@@ -1879,6 +1879,7 @@
         "WAIT_NEW__LOOK_SENSOR": 7.8
       },
       "Mind": {
+        "SNIPER_FIRE_IMMUNE": true,
         "AGGRESSOR_LOYALTY_BONUS": 0,
         "AI_POWER_COEF": 120,
         "AMBUSH_WHEN_UNDER_FIRE": true,
