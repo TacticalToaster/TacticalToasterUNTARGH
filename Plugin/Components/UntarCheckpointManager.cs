@@ -71,7 +71,7 @@ namespace TacticalToasterUNTARGH.Components
             var checkpointConfig = mainConfig.locations[RaidChangesUtil.LocationId.ToLower()].checkpoint;
 
             ZoneCheckpoints.Clear();
-            
+
             if (!checkpointConfig.enableCheckpoints)
                 return;
 

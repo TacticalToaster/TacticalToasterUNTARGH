@@ -3,7 +3,8 @@
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Helpers;
 using System.Reflection;
-using TacticalToasterUNTARGH;
+
+namespace TacticalToasterUNTARGH;
 
 [Injectable(InjectionType.Singleton)]
 public class ConfigController

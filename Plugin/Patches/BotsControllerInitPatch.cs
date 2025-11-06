@@ -1,14 +1,6 @@
-﻿using BepInEx.Bootstrap;
-using EFT;
-using EFT.InputSystem;
+﻿using EFT;
 using SPT.Reflection.Patching;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using TacticalToasterUNTARGH.Behavior;
 using TacticalToasterUNTARGH.Components;
 
 namespace TacticalToasterUNTARGH.Patches

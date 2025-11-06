@@ -453,10 +453,7 @@
         "PROTECT_DELTA_HEAL_SEC": 10,
         "PROTECT_TIME_REAL": true,
         "REVENGE_BOT_TYPES": [
-          "gifter",
-          1170,
-          1171,
-          1172
+          "gifter"
         ],
         "REVENGE_FOR_SAVAGE_PLAYERS": false,
         "SEC_TO_MORE_DIST_TO_RUN": 10,
@@ -945,10 +942,7 @@
         "PROTECT_DELTA_HEAL_SEC": 10,
         "PROTECT_TIME_REAL": true,
         "REVENGE_BOT_TYPES": [
-          "gifter",
-          1170,
-          1171,
-          1172
+          "gifter"
         ],
         "REVENGE_FOR_SAVAGE_PLAYERS": false,
         "SEC_TO_MORE_DIST_TO_RUN": 10,
@@ -1437,10 +1431,7 @@
         "PROTECT_DELTA_HEAL_SEC": 10,
         "PROTECT_TIME_REAL": true,
         "REVENGE_BOT_TYPES": [
-          "gifter",
-          1170,
-          1171,
-          1172
+          "gifter"
         ],
         "REVENGE_FOR_SAVAGE_PLAYERS": false,
         "SEC_TO_MORE_DIST_TO_RUN": 10,
@@ -1943,10 +1934,7 @@
         "PROTECT_DELTA_HEAL_SEC": 10,
         "PROTECT_TIME_REAL": true,
         "REVENGE_BOT_TYPES": [
-          "gifter",
-          1170,
-          1171,
-          1172
+          "gifter"
         ],
         "REVENGE_FOR_SAVAGE_PLAYERS": false,
         "SEC_TO_MORE_DIST_TO_RUN": 10,
@@ -2396,7 +2384,6 @@
       },
       "Eyewear": {
         "557ff21e4bdc2d89578b4586": 26250,
-        "59e770b986f7742cbd762754": 26590,
         "603409c80ca681766b6a0fb2": 5034,
         "62a61c988ec41a51b34758d5": 2179
       },

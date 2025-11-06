@@ -1,15 +1,10 @@
-﻿using BepInEx.Bootstrap;
+﻿using DrakiaXYZ.BigBrain.Brains;
 using EFT;
 using EFT.InputSystem;
 using SPT.Reflection.Patching;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using TacticalToasterUNTARGH.Behavior;
-using TacticalToasterUNTARGH.Interop;
+using TacticalToasterUNTARGH.Behavior.Layers;
 
 namespace TacticalToasterUNTARGH.Patches
 {
@@ -23,12 +18,10 @@ namespace TacticalToasterUNTARGH.Patches
         [PatchPostfix]
         protected static void PatchPostfix(IAssetsManager assetsManager, InputTree inputTree)
         {
-            bool sainLoaded = Chainloader.PluginInfos.ContainsKey("me.sol.sain");
+            var untarBrainList = new List<string>() { "PMC", "ExUsec" };
+            var untarTypes = new List<int>() { 1170, 1171, 1172, 1173 }.ConvertAll(x => (WildSpawnType)x);
 
-            if (sainLoaded)
-                UNTARBrainManager.AddUntarBrainLayersSAIN();
-            else
-                UNTARBrainManager.AddUntarBrainLayers();
+            BrainManager.AddCustomLayer(typeof(GoToCheckpointLayer), untarBrainList, 4, untarTypes);
         }
     }
 }
