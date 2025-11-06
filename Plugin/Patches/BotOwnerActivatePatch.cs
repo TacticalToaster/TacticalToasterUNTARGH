@@ -1,12 +1,6 @@
 ﻿using EFT;
 using SPT.Reflection.Patching;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using TacticalToasterUNTARGH.Components;
 using TacticalToasterUNTARGH.Controllers;
 
 namespace TacticalToasterUNTARGH.Patches
@@ -21,6 +15,9 @@ namespace TacticalToasterUNTARGH.Patches
         [PatchPostfix]
         protected static void PatchPostfix(BotOwner __instance)
         {
+            if (!WildSpawnTypeExtensions.IsUNTAR(__instance.Profile.Info.Settings.Role))
+                return;
+
             var manager = __instance.GetOrAddUntarManager();
             manager.OnBotActivate();
         }

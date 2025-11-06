@@ -1,14 +1,8 @@
 ﻿using Comfort.Common;
 using EFT;
 using SPT.SinglePlayer.Utils.InRaid;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TacticalToasterUNTARGH.Models;
-using TacticalToasterUNTARGH.Prepatches;
 using UnityEngine;
 
 namespace TacticalToasterUNTARGH.Components
@@ -23,13 +17,12 @@ namespace TacticalToasterUNTARGH.Components
         public CustomNavigationPoint guardPoint;
 
         private UntarCheckpoint assignedCheckpoint;
-        private Stopwatch stopwatch = new Stopwatch();
 
         public void Init(BotOwner botOwner)
         {
             this.botOwner = botOwner;
 
-            if (!botOwner.Profile.Info.Settings.Role.IsUNTAR())
+            if (!WildSpawnTypeExtensions.IsUNTAR(botOwner.Profile.Info.Settings.Role))
                 return;
 
 
@@ -42,17 +35,16 @@ namespace TacticalToasterUNTARGH.Components
                 if (HasAssignedCheckpoint())
                 {
                     botOwner.Mover.Teleport(assignedCheckpoint.Position);
-                    botOwner.Mover.GoToPoint(assignedCheckpoint.Position, true, 1f, true);
+                    //botOwner.Mover.GoToPoint(assignedCheckpoint.Position, true, 1f, true);
                 }
             }
         }
 
         public void OnBotActivate()
         {
-            if (!botOwner.Profile.Info.Settings.Role.IsUNTAR())
+            if (!WildSpawnTypeExtensions.IsUNTAR(botOwner.Profile.Info.Settings.Role))
                 return;
 
-            stopwatch.Restart();
             CheckPlayerLoyalty();
         }
 
@@ -68,9 +60,16 @@ namespace TacticalToasterUNTARGH.Components
             if (pkLevel < 3)
                 return;
 
-            foreach (IPlayer bot in allBots)
+            foreach (var groupie in Singleton<GameWorld>.Instance.AllAlivePlayersList.GroupPlayers(player.GroupId))
             {
-                if ((!bot.AIData.IsAI || bot.AIData.BotOwner.BotState == EBotState.Active) && bot.IsAI && bot.Profile.Info.Settings.Role.IsUNTAR())
+                botOwner.BotsGroup.RemoveEnemy(groupie);
+                botOwner.BotsGroup.AddAlly((Player)groupie);
+                botOwner.Memory.DeleteInfoAboutEnemy(groupie);
+            }
+
+            /*foreach (IPlayer bot in allBots)
+            {
+                if ((!bot.AIData.IsAI || bot.AIData.BotOwner.BotState == EBotState.Active) && bot.IsAI && WildSpawnTypeExtensions.IsUNTAR(bot.Profile.Info.Settings.Role))
                 {
                     bot.AIData.BotOwner.BotsGroup.RemoveEnemy(player);
                     bot.AIData.BotOwner.BotsGroup.AddAlly(player);
@@ -89,7 +88,7 @@ namespace TacticalToasterUNTARGH.Components
                         player.AIData.BotOwner.Brain.BaseBrain.CalcActionNextFrame();
                     }
                 }
-            }
+            }*/
         }
 
         public CustomNavigationPoint GetCheckpointCoverPoint()
@@ -121,7 +120,7 @@ namespace TacticalToasterUNTARGH.Components
         public bool CanDoCheckpointActions()
         {
             //Plugin.LogSource.LogInfo($"[{botOwner.Profile.Nickname}] can do checkpoint action? {HasAssignedCheckpoint() && stopwatch.ElapsedMilliseconds >= 5000}");
-            return HasAssignedCheckpoint() && stopwatch.ElapsedMilliseconds >= 5000;
+            return HasAssignedCheckpoint() && RaidTimeUtil.GetSecondsSinceSpawning() > 0;
         }
 
         public bool HasAssignedCheckpoint()

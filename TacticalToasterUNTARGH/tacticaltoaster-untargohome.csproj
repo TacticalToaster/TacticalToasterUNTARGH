@@ -15,11 +15,15 @@
 
   <ItemGroup>
     <None Remove="config.jsonc" />
+    <None Remove="db\bots\sharedConfig\untar.jsonc" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="config.jsonc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="db\bots\sharedConfig\untar.jsonc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
@@ -37,5 +41,16 @@
 
   <ItemGroup>
     <Folder Include="Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="MoreBotsServer">
+      <Private>false</Private>
+      <HintPath>..\Reference\MoreBotsServer\MoreBotsServer.dll</HintPath>
+    </Reference>
+    <Reference Include="WTT-ServerCommonLib">
+      <Private>false</Private>
+      <HintPath>..\Reference\WTT-ServerCommonLib\WTT-ServerCommonLib.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>

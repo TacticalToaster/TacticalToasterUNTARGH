@@ -40,7 +40,7 @@ namespace TacticalToasterUNTARGH.Behavior.Layers
 
         public override string GetName()
         {
-            return "GuardCheckpoint";
+            return "GuardCheckpointUntar";
         }
 
         public void setNextAction(Type actionType, string reason)
@@ -61,8 +61,9 @@ namespace TacticalToasterUNTARGH.Behavior.Layers
             if (!untarManager.CanDoCheckpointActions())
                 return false;
 
-            
+
             getNextAction();
+            BotOwner.PatrollingData.Pause();
             return true;
         }
 

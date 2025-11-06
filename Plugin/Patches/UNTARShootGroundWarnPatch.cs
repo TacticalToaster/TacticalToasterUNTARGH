@@ -1,13 +1,7 @@
 ﻿using EFT;
 using HarmonyLib;
 using SPT.Reflection.Patching;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using TacticalToasterUNTARGH.Prepatches;
 using UnityEngine;
 
 namespace TacticalToasterUNTARGH.Patches
@@ -25,7 +19,7 @@ namespace TacticalToasterUNTARGH.Patches
         [PatchPrefix]
         public static bool PatchPrefix(WarnPlayerRequest __instance)
         {
-            if (!__instance.Executor.Profile.Info.Settings.Role.IsUNTAR()) // only affect UNTAR bots
+            if (!WildSpawnTypeExtensions.IsUNTAR(__instance.Executor.Profile.Info.Settings.Role)) // only affect UNTAR bots
             {
                 Logger.LogInfo($"Role {__instance.Executor.Profile.Info.Settings.Role} is not UNTAR, skipping shoot ground warning.");
                 return true;

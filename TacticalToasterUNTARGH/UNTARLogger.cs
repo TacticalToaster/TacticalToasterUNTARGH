@@ -1,6 +1,8 @@
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.Models.Utils;
 
+namespace TacticalToasterUNTARGH;
+
 [Injectable(InjectionType.Singleton)]
 public class UNTARLogger
 {
