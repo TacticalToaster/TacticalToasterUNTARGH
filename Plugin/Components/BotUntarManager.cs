@@ -45,7 +45,7 @@ namespace TacticalToasterUNTARGH.Components
             if (!WildSpawnTypeExtensions.IsUNTAR(botOwner.Profile.Info.Settings.Role))
                 return;
 
-            CheckPlayerLoyalty();
+            //CheckPlayerLoyalty();
         }
 
         public void CheckPlayerLoyalty()
