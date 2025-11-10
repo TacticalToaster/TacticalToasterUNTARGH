@@ -44,7 +44,6 @@ namespace TacticalToasterUNTARGH.Behavior.Actions
 
         public override void Update(CustomLayer.ActionData data)
         {
-            //Plugin.LogSource.LogInfo($"[{BotOwner.Profile.Nickname}] Sitting at checkpoint2 for {(sitDuration - stopwatch.ElapsedMilliseconds) / 1000f} more seconds. {stopwatch.ElapsedMilliseconds} {sitDuration} {UntarManager.AtCheckpoint}");
             UntarManager.UpdateGuardPoint();
             holdPosition.UpdateNodeByMain(data);
             baseSteeringLogic.Update(BotOwner);
@@ -52,7 +51,6 @@ namespace TacticalToasterUNTARGH.Behavior.Actions
             {
                 UntarManager.ShouldSwitchCover = true;
                 UntarManager.guardPointDirty = true;
-                //Plugin.LogSource.LogInfo($"[{BotOwner.Profile.Nickname}] Done sitting at checkpoint.");
                 sitDuration = UnityEngine.Random.Range(10f, 30f);
                 sitStart = -1f;
             }
