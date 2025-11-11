@@ -95,7 +95,7 @@
         "patrolAmount": 1,
         "patrolMin": 4,
         "patrolMax": 7,
-        "patrolZones": [ "ZoneBridge" ],
+        "patrolZones": [ "ZoneBrige" ],
         "patrolTimeMin": 420,
         "patrolTimeMax": 1200
       },
@@ -104,7 +104,7 @@
         "checkpointAmount": 2,
         "checkpointZones": [
           {
-            "checkpointZone": "ZoneBridge",
+            "checkpointZone": "ZoneBrige",
             "checkpointChance": 50,
             "checkpointMin": 2,
             "checkpointMax": 5,
