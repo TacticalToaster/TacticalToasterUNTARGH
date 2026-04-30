@@ -86,6 +86,24 @@
             "z": 290.255
           }
         ]
+      },
+      "hunt": {
+        // Enable or disable hunts on this map
+        "enableHunts": true,
+        // List of hunts for different factions
+        "hunts": {
+          // Specific hunts (only raider is supported)
+          "raider": {
+            // Zones the hunt can spawn in
+            "huntZones": "ZoneScavBase2,ZoneBigRocks",
+            // Minimum members in the hunt
+            "huntMin": 3,
+            // Maximum members in the hunt
+            "huntMax": 4,
+            // Chance the hunt will spawn
+            "huntChance": 30
+          }
+        }
       }
     },
     "bigmap": {
@@ -124,6 +142,17 @@
             "z": -75.92
           }
         ]
+      },
+      "hunt": {
+        "enableHunts": true,
+        "hunts": {
+          "raider": {
+            "huntZones": "ZoneFactoryCenter,ZoneOldAZS",
+            "huntMin": 3,
+            "huntMax": 4,
+            "huntChance": 30
+          }
+        }
       }
     },
     "interchange": {
@@ -143,6 +172,17 @@
         "checkpointZones": [
           
         ]
+      },
+      "hunt": {
+        "enableHunts": false,
+        "hunts": {
+          "raider": {
+            "huntZones": "",
+            "huntMin": 3,
+            "huntMax": 4,
+            "huntChance": 30
+          }
+        }
       }
     },
     "shoreline": {
@@ -162,6 +202,17 @@
         "checkpointZones": [
 
         ]
+      },
+      "hunt": {
+        "enableHunts": false,
+        "hunts": {
+          "raider": {
+            "huntZones": "",
+            "huntMin": 3,
+            "huntMax": 4,
+            "huntChance": 30
+          }
+        }
       }
     },
     "tarkovstreets": {
@@ -190,6 +241,17 @@
             "z": 358.39
           }
         ]
+      },
+      "hunt": {
+        "enableHunts": false,
+        "hunts": {
+          "raider": {
+            "huntZones": "",
+            "huntMin": 3,
+            "huntMax": 4,
+            "huntChance": 30
+          }
+        }
       }
     }
   }

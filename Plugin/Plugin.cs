@@ -1,7 +1,10 @@
 ﻿using BepInEx;
 using BepInEx.Logging;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using EFT;
+using MoreBotsAPI.Components;
 using TacticalToasterUNTARGH.Components;
 using TacticalToasterUNTARGH.Patches;
 using UnityEngine;
@@ -11,6 +14,7 @@ namespace TacticalToasterUNTARGH;
 // first string below is your plugin's GUID, it MUST be unique to any other mod. Read more about it in BepInEx docs. Be sure to update it if you copy this project.
 [BepInDependency("xyz.drakia.bigbrain", BepInDependency.DependencyFlags.SoftDependency)]
 [BepInDependency("me.sol.sain", BepInDependency.DependencyFlags.SoftDependency)]
+[BepInDependency("com.morebotsapi.tacticaltoaster")]
 [BepInPlugin(ClientInfo.UNTARGHGUID, ClientInfo.UNTARGHPluginName, ClientInfo.UNTARGHVersion)]
 public class Plugin : BaseUnityPlugin
 {
@@ -33,6 +37,14 @@ public class Plugin : BaseUnityPlugin
         new BotOwnerActivatePatch().Enable();
         new BotsControllerInitPatch().Enable();
         new UNTARShootGroundWarnPatch().Enable();
+        
+        var untarEnums = new List<int> { 1170, 1171, 1172, 1173 }
+            .ConvertAll(x => (WildSpawnType)x);
+
+        MonoBehaviourSingleton<HuntManager>.Instance.AddHuntRoles(new List<WildSpawnType>()
+        {
+            WildSpawnType.pmcBot
+        }, untarEnums);
 
         this.GetOrAddComponent<UntarCheckpointManager>();
     }

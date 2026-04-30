@@ -4,6 +4,7 @@ using EFT.InputSystem;
 using SPT.Reflection.Patching;
 using System.Collections.Generic;
 using System.Reflection;
+using MoreBotsAPI.Behavior.Layers;
 using TacticalToasterUNTARGH.Behavior.Layers;
 
 namespace TacticalToasterUNTARGH.Patches
@@ -22,6 +23,7 @@ namespace TacticalToasterUNTARGH.Patches
             var untarTypes = new List<int>() { 1170, 1171, 1172, 1173 }.ConvertAll(x => (WildSpawnType)x);
 
             BrainManager.AddCustomLayer(typeof(GoToCheckpointLayer), untarBrainList, 4, untarTypes);
+            BrainManager.AddCustomLayer(typeof(HuntTargetLayer), new List<string> { "PMC" }, 5, new List<WildSpawnType>{ WildSpawnType.pmcBot });
         }
     }
 }
