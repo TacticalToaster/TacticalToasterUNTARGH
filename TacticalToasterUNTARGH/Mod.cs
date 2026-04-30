@@ -17,10 +17,14 @@ public record ModMetadata : AbstractModMetadata
     public override string Name { get; init; } = "UNTAR Go Home!";
     public override string Author { get; init; } = "TacticalToaster";
     public override List<string>? Contributors { get; init; } = new() { };
-    public override SemanticVersioning.Version Version { get; init; } = new(3, 0, 0);
+    public override SemanticVersioning.Version Version { get; init; } = new(3, 1, 0);
     public override SemanticVersioning.Range SptVersion { get; init; } = new("~4.0.0");
     public override List<string>? Incompatibilities { get; init; }
-    public override Dictionary<string, SemanticVersioning.Range>? ModDependencies { get; init; }
+    public override Dictionary<string, SemanticVersioning.Range>? ModDependencies { get; init; } = new()
+    {
+        { "com.morebotsapi.tacticaltoaster", new SemanticVersioning.Range(">=2.0.0") },
+        { "com.wtt.commonlib", new SemanticVersioning.Range(">=2.0.0") }
+    };
     public override string? Url { get; init; }
     public override bool? IsBundleMod { get; init; }
     public override string License { get; init; } = "MIT";
@@ -105,6 +109,11 @@ public class UntarGoHomeBots(
         {
             factionService.AddWarnByFaction(typeList, "ruaf");
         }
+        
+        if (modList.Any(mod => mod.ModMetadata.ModGuid == "com.blackdiv.tacticaltoaster"))
+        {
+            factionService.AddWarnByFaction(typeList, "blackdiv");
+        }
 
         // Use WTT to add locales
         await commonLib.CustomLocaleService.CreateCustomLocales(Assembly.GetExecutingAssembly());
@@ -133,7 +142,9 @@ public class UntarGoHomeLoadFaction(
                 (WildSpawnType)1171,
                 (WildSpawnType)1172,
                 (WildSpawnType)1173
-            }
+            },
+            RevengeAfterRaids = true,
+            RevengeRaidAmount = 3
         });
 
         await Task.CompletedTask;

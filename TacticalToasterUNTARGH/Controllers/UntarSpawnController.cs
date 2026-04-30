@@ -2,6 +2,7 @@ using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Helpers;
 using SPTarkov.Server.Core.Models.Eft.Common;
+using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Enums;
 using SPTarkov.Server.Core.Models.Spt.Config;
 using SPTarkov.Server.Core.Models.Spt.Mod;
@@ -36,13 +37,14 @@ public class UntarSpawnController(
         try
         {
             var tables = _databaseService.GetTables();
+            var locations = _databaseService.GetLocations();
             var mainConfig = _configController.ModConfig;
 
             foreach (var map in mainConfig.locations.Keys)
             {
                 _logger.Info($"Adjusting UNTAR spawns for {map}.");
 
-                if (!tables.Locations.GetDictionary().ContainsKey(map))
+                if (!tables.Locations.GetDictionary().ContainsKey(locations.GetMappedKey(map)))
                 {
                     _logger.Info($"No location data found for {map}. Skipping UNTAR spawn adjustment.");
                     continue;
@@ -51,7 +53,9 @@ public class UntarSpawnController(
                 var mapConfig = mainConfig.locations[map];
                 var patrolConfig = mapConfig.patrol;
                 var checkpointConfig = mapConfig.checkpoint;
-                var spawns = tables.Locations.GetDictionary()[map].Base.BossLocationSpawn;
+                var huntConfig = mapConfig.hunt;
+                var location = locations.GetDictionary()[locations.GetMappedKey(map)].Base;
+                var spawns = location.BossLocationSpawn;
 
                 // Remove existing UNTAR spawns
                 spawns.RemoveAll(x => x.BossName.Contains("untar"));
@@ -64,6 +68,11 @@ public class UntarSpawnController(
                 if (checkpointConfig.enableCheckpoints)
                 {
                     AdjustCheckpointSpawnsForMap(map, mapConfig, mainConfig, spawns);
+                }
+                
+                if (huntConfig.enableHunts)
+                {
+                    AdjustHuntSpawnsForMap(location, mapConfig, mainConfig, spawns);
                 }
             }
         }
@@ -200,6 +209,54 @@ public class UntarSpawnController(
             _logger.Info($"Added ({checkpointZoneConfig.checkpointChance}% chance) UNTAR checkpoint of size {patrolSize} to {map} in zone {patrol.BossZone} with a spawn time of {patrol.Time} seconds.");
         }
     }
+    
+    private void AdjustHuntSpawnsForMap(LocationBase location, MapConfig mapConfig, MainConfig mainConfig, List<BossLocationSpawn> spawns)
+    {
+        if (mapConfig.hunt.hunts.ContainsKey("raider"))
+        {
+            spawns.RemoveAll(x => x.TriggerId == "hunt" && x.BossName.Contains("pmcBot"));
+            AddRaiderHuntToMap(location, mapConfig, mainConfig, spawns);
+        }
+    }
+    
+    private void AddRaiderHuntToMap(LocationBase location, MapConfig? mapConfig, MainConfig mainConfig, List<BossLocationSpawn> spawns)
+    {
+        var huntConfig = mapConfig.hunt.hunts["raider"];
+
+        logger.Info($"Enabling Raider hunt for {location.Name}.");
+
+        var patrolSize = randomUtil.GetInt(huntConfig.huntMin, huntConfig.huntMax);
+        var patrol = new BossLocationSpawn
+        {
+            BossChance = huntConfig.huntChance,
+            BossDifficulty = "normal",
+            BossEscortAmount = patrolSize.ToString(),
+            BossEscortDifficulty = "normal",
+            BossEscortType = "pmcBot",
+            BossName = "pmcBot",
+            IsBossPlayer = false,
+            BossZone = string.Empty,
+            ForceSpawn = false,
+            IgnoreMaxBots = false,
+            IsRandomTimeSpawn = false,
+            SpawnMode = new[] { "regular", "pve" },
+            Supports = new List<BossSupport>(),
+            Time = (location.EscapeTimeLimit ?? 45) * randomUtil.GetDouble(0.1, 0.9) * 60,
+            TriggerId = string.Empty,
+            TriggerName = string.Empty
+        };
+
+        patrol.Time = -1;
+
+        patrol.BossZone = huntConfig.huntZones;
+        patrol.TriggerName = "botEvent";
+        patrol.TriggerId = "hunt";
+        patrol.ForceSpawn = true;
+
+        spawns.Add(patrol);
+
+        logger.Info($"Added Raider Hunt of size {patrolSize} to {location.Name} in zone {patrol.BossZone} with a spawn time of {patrol.Time} seconds.");
+    }
 
     private BossLocationSpawn GeneratePatrol(int patrolSize, float chance, bool isPatrol = true)
     {
@@ -259,7 +316,7 @@ public class UntarSpawnController(
             IsBossPlayer = false,
             BossZone = string.Empty,
             ForceSpawn = false,
-            IgnoreMaxBots = true,
+            IgnoreMaxBots = false,
             IsRandomTimeSpawn = false,
             SpawnMode = new[] { "regular", "pve" },
             Supports = supportsList,

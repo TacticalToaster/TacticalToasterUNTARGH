@@ -20,10 +20,11 @@ namespace Prepatch.Prepatches
 				"PmcBear",
                 "PmcUsec",
                 "StationaryWS",
-                "ExURequest"
+                "ExURequest",
+                "Utility peace"
             };
 
-            int untarBrainInt = 24;//9;
+            int untarBrainInt = 9;//24;//9;
 
             // rifleman
             var untarBot = new CustomWildSpawnType(1170, "followeruntar", "UNTAR", untarBrainInt, true, true, false);
@@ -39,7 +40,8 @@ namespace Prepatch.Prepatches
                 Section = "UNTAR",
                 BaseBrain = "PMC",
                 BrainsToApply = untarBrains,
-                LayersToRemove = untarLayers
+                LayersToRemove = untarLayers,
+                DifficultyModifier = .5f
             };
 
             untarBot.SetSAINSettings(settings);
@@ -60,7 +62,8 @@ namespace Prepatch.Prepatches
                 Section = "UNTAR",
                 BaseBrain = "PMC",
                 BrainsToApply = untarBrains,
-                LayersToRemove = untarLayers
+                LayersToRemove = untarLayers,
+                DifficultyModifier = .66f
             };
 
             untarBot.SetSAINSettings(settings);
@@ -81,7 +84,8 @@ namespace Prepatch.Prepatches
                 Section = "UNTAR",
                 BaseBrain = "PMC",
                 BrainsToApply = untarBrains,
-                LayersToRemove = untarLayers
+                LayersToRemove = untarLayers,
+                DifficultyModifier = .5f
             };
 
             untarBot.SetSAINSettings(settings);
@@ -102,7 +106,8 @@ namespace Prepatch.Prepatches
                 Section = "UNTAR",
                 BaseBrain = "PMC",
                 BrainsToApply = untarBrains,
-                LayersToRemove = untarLayers
+                LayersToRemove = untarLayers,
+                DifficultyModifier = .7f
             };
 
             untarBot.SetSAINSettings(settings);
