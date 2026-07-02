@@ -7,5 +7,5 @@ public static class ClientInfo
     public const string UNTARGHPreLoadGUID = "com.untarghprepatch.tacticaltoaster";
     public const string UNTARGHPluginName = "TacticalToaster-UNTARGH";
     public const string UNTARGHPreLoadName = "TacticalToaster-UNTARGHPrePatch";
-    public const string UNTARGHVersion = "3.1.0";
+    public const string UNTARGHVersion = "3.1.1";
 }

@@ -64,5 +64,41 @@
     "Reed",
     "Carter",
     "Morgan"
-  ]
+  ],
+  "difficulty": {
+    "all": {
+      "Shoot": {
+        "MAX_SUCCESS_GRENADE_LAUNCHER_SHOOT_ATTEMPTS": 2,
+        "MAX_TIME_SEEN_TO_SWITCH_TO_GRENADE_LAUNCHER": 30,
+        "SHOOT_PROBABILITY_GRENADE_LAUNCHER": 80
+      },
+      "Mind": {
+        "CHANCE_SHOOT_WHEN_WARN_PLAYER_100": 25,
+        "CHANCE_TO_STAY_WHEN_WARN_PLAYER_100": 80,
+        "DEFAULT_BEAR_BEHAVIOUR": "Warn",
+        "DEFAULT_SAVAGE_BEHAVIOUR": "AlwaysEnemies",
+        "DEFAULT_USEC_BEHAVIOUR": "Warn",
+        "REVENGE_BOT_TYPES": [
+          1170,
+          1171,
+          1172,
+          1173,
+          "gifter"
+        ],
+        "WARN_BOT_TYPES": [
+          "pmcBear",
+          "pmcUsec",
+          "exUsec"
+        ],
+        "ENEMY_BOT_TYPES": [],
+        "FRIENDLY_BOT_TYPES": [
+          1170,
+          1171,
+          1172,
+          1173,
+          "gifter"
+        ]
+      }
+    }
+  }
 }

@@ -249,7 +249,7 @@ public class UntarSpawnController(
         patrol.Time = -1;
 
         patrol.BossZone = huntConfig.huntZones;
-        patrol.TriggerName = "botEvent";
+        patrol.TriggerName = string.Empty;
         patrol.TriggerId = "hunt";
         patrol.ForceSpawn = true;
 
