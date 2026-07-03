@@ -32,6 +32,8 @@ namespace TacticalToasterUNTARGH.Behavior.Actions
                 BotOwner.SetPose(1);
             else
                 BotOwner.SetPose(0);
+            
+            BotOwner.GetPlayer.MovementContext.SetPatrol(true);
         }
 
         public override void Stop()
@@ -40,6 +42,7 @@ namespace TacticalToasterUNTARGH.Behavior.Actions
             //Plugin.LogSource.LogInfo($"[{BotOwner.Profile.Nickname}] Stop Sitting at checkpoint.");
             //UntarManager.ShouldSwitchCover = true;
             sitStart = -1f;
+            BotOwner.GetPlayer.MovementContext.SetPatrol(false);
         }
 
         public override void Update(CustomLayer.ActionData data)
