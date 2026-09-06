@@ -11,7 +11,7 @@ namespace TacticalToasterUNTARGH.Patches
     public class UNTARShootGroundWarnPatch : ModulePatch
     {
         protected override MethodBase GetTargetMethod() =>
-        AccessTools.Method(typeof(WarnPlayerRequest), nameof(WarnPlayerRequest.method_5));
+        AccessTools.Method(typeof(WarnPlayerRequest), nameof(WarnPlayerRequest.CachePointToShoot));
 
         private static float nextSwitch = 0;
         private static Vector3 shootOffset = Vector3.zero;
@@ -33,27 +33,27 @@ namespace TacticalToasterUNTARGH.Patches
 
             if (Time.time > nextSwitch)
             {
-                if (GClass856.RandomBool(50)) // shoot ground
+                if (MyExtensions.RandomBool(50)) // shoot ground
                 {
                     //bone = __instance.playerToWarn.PlayerBones.LeftThigh2;
-                    shootOffset = new Vector3(GClass856.Random(-2f, 2f), GClass856.Random(-3f, -1f), GClass856.Random(-2f, 2f));
+                    shootOffset = new Vector3(MyExtensions.Random(-2f, 2f), MyExtensions.Random(-3f, -1f), MyExtensions.Random(-2f, 2f));
                 }
                 else // shoot sky instead
                 {
                     //bone = __instance.playerToWarn.PlayerBones.Head;
-                    shootOffset = new Vector3(GClass856.Random(-3f, 3f), GClass856.Random(5f, 10f), GClass856.Random(-3f, 3f));
+                    shootOffset = new Vector3(MyExtensions.Random(-3f, 3f), MyExtensions.Random(5f, 10f), MyExtensions.Random(-3f, 3f));
                 }
 
                 nextSwitch = Time.time + 3;
             }
             else
             {
-                shootOffset = shootOffset + new Vector3(GClass856.Random(-1f, 1f), 0, GClass856.Random(-1f, 1f));
+                shootOffset = shootOffset + new Vector3(MyExtensions.Random(-1f, 1f), 0, MyExtensions.Random(-1f, 1f));
             }
 
             var vector = vectorBetween + shootOffset;
 
-            __instance.CachedPointToShoot = vector;
+            __instance._cachedPointToShoot = vector;
             __instance.Executor.Steering.LookToPoint(vector);
 
             return false;

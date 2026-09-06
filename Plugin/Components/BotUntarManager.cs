@@ -1,5 +1,6 @@
 ﻿using Comfort.Common;
 using EFT;
+using EFT.Game.Spawning;
 using SPT.SinglePlayer.Utils.InRaid;
 using System.Diagnostics;
 using TacticalToasterUNTARGH.Models;
@@ -97,7 +98,7 @@ namespace TacticalToasterUNTARGH.Components
             var patrolPoint = checkpoint.Position;
             var randomPoint = patrolPoint + (Vector3)UnityEngine.Random.insideUnitCircle * checkpoint.Radius;
 
-            var searchData = new CoverSearchData(randomPoint, botOwner.CoverSearchInfo, CoverShootType.hide, (checkpoint.Radius * .5f) * (checkpoint.Radius * .5f), 0f, CoverSearchType.distToToCenter, null, null, null, ECheckSHootHide.shootAndHide, new CoverSearchDefenceDataClass(botOwner.Settings.FileSettings.Cover.MIN_DEFENCE_LEVEL), PointsArrayType.byShootType, true);
+            var searchData = new CoverSearchData(randomPoint, botOwner.CoverSearchInfo, CoverShootType.hide, (checkpoint.Radius * .5f) * (checkpoint.Radius * .5f), 0f, CoverSearchType.distToToCenter, null, null, null, ECheckSHootHide.shootAndHide, new CoverSearchDefenceData(botOwner.Settings.FileSettings.Cover.MIN_DEFENCE_LEVEL), PointsArrayType.byShootType, true);
             return botOwner.BotsGroup.CoverPointMaster.GetCoverPointMain(searchData, true);
         }
 

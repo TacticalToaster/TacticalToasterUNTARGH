@@ -1,4 +1,5 @@
-﻿using EFT;
+﻿using CommonAssets.Scripts.AI.CustomBehaviourNodes.Debug;
+using EFT;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,200 +10,200 @@ namespace TacticalToasterUNTARGH.Behavior;
 public class NodeCreator
 {
     // Token: 0x060014C0 RID: 5312 RVA: 0x002BD980 File Offset: 0x002BBB80
-    public static BotNodeAbstractClass CreateNode(BotLogicDecision type, BotOwner bot)
+    public static AICoreNode CreateNode(BotLogicDecision type, BotOwner bot)
     {
         switch (type)
         {
             case BotLogicDecision.doorOpen:
-                return new GClass259(bot);
+                return new OpenDoorRequestDecision(bot);
             case BotLogicDecision.warnPlayer:
-                return new GClass289(bot);
+                return new WarnPlayerDecision(bot);
             case BotLogicDecision.shootToSmoke:
-                return new GClass185(bot);
+                return new AimingToSmoke(bot);
             case BotLogicDecision.holdPosition:
-                return new GClass278(bot);
+                return new HoldPosition(bot);
             case BotLogicDecision.runToCover:
-                return new GClass228(bot);
+                return new RunToCover(bot);
             case BotLogicDecision.attackMoving:
-                return new GClass205(bot);
+                return new AttackMoving(bot);
             case BotLogicDecision.attackMovingWithSuppress:
-                return new GClass206(bot);
+                return new AttackMovingWithSuppress(bot);
             case BotLogicDecision.shootFromPlace:
-                return new GClass276(bot);
+                return new ShootFromPlace(bot);
             case BotLogicDecision.goToEnemy:
-                return new GClass223(bot);
+                return new GoToEnemy(bot);
             case BotLogicDecision.heal:
-                return new GClass197(bot);
+                return new HealNode(bot);
             case BotLogicDecision.goToCoverPoint:
-                return new GClass212(bot);
+                return new GoToCoverPoint(bot);
             case BotLogicDecision.repairMalfunction:
-                return new GClass273(bot);
+                return new RepairMalfunctionNode(bot);
             case BotLogicDecision.goToCoverPointTactical:
-                return new GClass238(bot);
+                return new GoToCoverTactical(bot);
             case BotLogicDecision.goToPointTactical:
-                return new GClass239(bot);
+                return new GoToPointTacticalNode(bot);
             case BotLogicDecision.lay:
-                return new GClass198(bot);
+                return new LayNode(bot);
             case BotLogicDecision.search:
-                return new GClass235(bot);
+                return new SearchInvisibleEnemy(bot);
             case BotLogicDecision.shootFromCover:
-                return new GClass277(bot);
+                return new ShootFromCover(bot);
             case BotLogicDecision.dogFight:
-                return new GClass203(bot);
+                return new DogFightNode(bot);
             case BotLogicDecision.turnAwayLight:
-                return new GClass288(bot);
+                return new TurnAwayNode(bot);
             case BotLogicDecision.standBy:
-                return new GClass282(bot);
+                return new StandByNode(bot);
             case BotLogicDecision.suppressFire:
-                return new GClass281(bot);
+                return new ShootSuppressNode(bot);
             case BotLogicDecision.suppressGrenade:
-                return new GClass195(bot);
+                return new GrenadeSuppressNode(bot);
             case BotLogicDecision.throwGrenadeFromPlace:
-                return new GClass287(bot);
+                return new ThrowGrenadeRequestNode(bot);
             case BotLogicDecision.runAndThrowGrenadeFromPlace:
-                return new GClass286(bot);
+                return new ThrowGrenadeFromPlaceNode(bot);
             case BotLogicDecision.runToEnemy:
-                return new GClass227(bot);
+                return new RunToEnemy(bot);
             case BotLogicDecision.runToEnemyZigZag:
-                return new GClass226(bot);
+                return new RunToEnemyZigZag(bot);
             case BotLogicDecision.goToEnemyZigZag:
-                return new GClass225(bot);
+                return new GoToEnemyZigZag(bot);
             case BotLogicDecision.goToPoint:
-                return new GClass219(bot);
+                return new GoToSomePoint(bot);
             case BotLogicDecision.panicSitting:
-                return new GClass260(bot);
+                return new PanicSitNode(bot);
             case BotLogicDecision.runToStationary:
-                return new GClass234(bot);
+                return new RunToStationary(bot);
             case BotLogicDecision.shootFromStationary:
-                return new GClass280(bot);
+                return new ShootFromStationary(bot);
             case BotLogicDecision.suppressStationary:
-                return new GClass284(bot);
+                return new SuppressStationaryNode(bot);
             case BotLogicDecision.healStimulators:
-                return new GClass283(bot);
+                return new StimulatorsNode(bot);
             case BotLogicDecision.axeTarget:
-                return new GClass246(bot);
+                return new PatrolAxeTarget(bot);
             case BotLogicDecision.healAnotherTarget:
-                return new GClass196(bot);
+                return new HealAnotherNode(bot);
             case BotLogicDecision.oneMeleeAttack:
-                return new GClass242(bot);
+                return new OneMeleeAttackNode(bot);
             case BotLogicDecision.grenadeSuicide:
-                return new GClass194(bot);
+                return new GrenadeSuicideNode(bot);
             case BotLogicDecision.leaveMap:
-                return new GClass243(bot);
+                return new GoLeaveNode(bot);
             case BotLogicDecision.deadBody:
-                return new GClass202(bot);
+                return new DeadBodiesWorkNode(bot);
             case BotLogicDecision.friendlyTilt:
-                return new GClass262(bot);
+                return new FriendlyTiltNode(bot);
             case BotLogicDecision.eatDrink:
-                return new GClass261(bot);
+                return new EatDrinkNode(bot);
             case BotLogicDecision.watchSecondWeapon:
-                return new GClass271(bot);
+                return new WatchSecondWeaponNode(bot);
             case BotLogicDecision.peaceHardAim:
-                return new GClass267(bot);
+                return new PeaceHardAimNode(bot);
             case BotLogicDecision.peaceLook:
-                return new GClass268(bot);
+                return new PeaceLookNode(bot);
             case BotLogicDecision.gesture:
-                return new GClass263(bot);
+                return new GestureNode(bot);
             case BotLogicDecision.peaceful:
-                return new GClass266(bot);
+                return new PeacefulNode(bot);
             case BotLogicDecision.botDropItem:
-                return new GClass264(bot);
+                return new PatrolDropItemsNode(bot);
             case BotLogicDecision.botTakeItem:
-                return new GClass265(bot);
+                return new PatrolTakeItemsNode(bot);
             case BotLogicDecision.followerPatrol:
-                return new GClass248(bot);
+                return new PatrollingFollower(bot);
             case BotLogicDecision.alternativePatrol:
-                return new GClass247(bot);
+                return new PatrollingAlternative(bot);
             case BotLogicDecision.simplePatrol:
-                return new GClass250(bot);
+                return new PatrolSimpleNode(bot);
             case BotLogicDecision.runAwayGrenade:
-                return new GClass232(bot);
+                return new RunAwayGrenade(bot);
             case BotLogicDecision.runAwayArtillery:
-                return new GClass230(bot);
+                return new RunAwayArtillery(bot);
             case BotLogicDecision.runAwayBTR:
-                return new GClass231(bot);
+                return new RunAwayBTR(bot);
             case BotLogicDecision.followMeRequest:
-                return new GClass215(bot);
+                return new GoToFollowRequest(bot);
             case BotLogicDecision.runToCoverZigZag:
-                return new GClass229(bot);
+                return new RunToCoverZigZag(bot);
             case BotLogicDecision.flashed:
-                return new GClass188(bot);
+                return new FlashedNode(bot);
             case BotLogicDecision.teleportToCover:
-                return new GClass258(bot);
+                return new TeleportNode(bot);
             case BotLogicDecision.crawl:
-                return new GClass207(bot);
+                return new CrawlNode(bot);
             case BotLogicDecision.moveStealthy:
-                return new GClass210(bot);
+                return new MoveStealthy(bot);
             case BotLogicDecision.plantMine:
-                return new GClass272(bot);
+                return new PlantMineNode(bot);
             case BotLogicDecision.attackMovingFlank:
-                return new GClass209(bot);
+                return new AttackMovingFlank(bot);
             case BotLogicDecision.deactivateMine:
-                return new GClass201(bot);
+                return new DeactivateMineNode(bot);
             case BotLogicDecision.goToLootPointNode:
-                return new GClass245(bot);
+                return new GoToLootPointNode(bot);
             case BotLogicDecision.goToExfiltrationPointNode:
-                return new GClass244(bot);
+                return new GoToExfiltrationPointNode(bot);
             case BotLogicDecision.khorovodChristmasEvent:
-                return new GClass191(bot);
+                return new BotKhorovodNode(bot);
             case BotLogicDecision.doGiftChristmasEvent:
-                return new GClass192(bot);
+                return new GiftNode(bot);
             case BotLogicDecision.summon:
-                return new GClass193(bot);
+                return new SummonNode(bot);
             case BotLogicDecision.followPlayer:
-                return new GClass204(bot);
+                return new PlayerFollowNode(bot);
             case BotLogicDecision.debugMove:
-                return new GClass252(bot);
+                return new DebugMoveNode(bot);
             case BotLogicDecision.debugRun:
-                return new GClass255(bot);
+                return new DebugRunToCover(bot);
             case BotLogicDecision.debugDrop:
-                return new GClass291(bot);
+                return new DebugBotDropItemNode(bot);
             case BotLogicDecision.debugTake:
-                return new GClass292(bot);
+                return new DebugBotTakeItemNode(bot);
             case BotLogicDecision.debugGestus:
-                return new GClass263(bot);
+                return new GestureNode(bot);
             case BotLogicDecision.debugMeleeChange:
-                return new GClass295(bot);
+                return new DebugGetMeleeNode(bot);
             case BotLogicDecision.debugGrenade:
-                return new GClass296(bot);
+                return new DebugGrenadeNode(bot);
             case BotLogicDecision.debugLay:
-                return new GClass297(bot);
+                return new DebugLayNode(bot);
             case BotLogicDecision.debugMelee:
-                return new GClass299(bot);
+                return new DebugMeleeAttackNode(bot);
             case BotLogicDecision.debugShuttle:
-                return new GClass253(bot);
+                return new DebugMoveShuttleNode(bot);
             case BotLogicDecision.debugTacticalShuttle:
-                return new GClass240(bot);
+                return new DebugMoveShuttleTacticalNode(bot);
             case BotLogicDecision.debugRotateHead:
-                return new GClass300(bot);
+                return new DebugRotateHeadNode(bot);
             case BotLogicDecision.debugRotate:
-                return new GClass301(bot);
+                return new DebugRotateNode(bot);
             case BotLogicDecision.debugRotateLay:
-                return new GClass302(bot);
+                return new DebugRotateLayNode(bot);
             case BotLogicDecision.debugRunToPoint:
-                return new GClass256(bot);
+                return new DebugRunToPointNode(bot);
             case BotLogicDecision.debugShoot:
-                return new GClass304(bot);
+                return new DebugShootNode(bot);
             case BotLogicDecision.debugStationary:
-                return new GClass305(bot);
+                return new DebugStationaryNode(bot);
             case BotLogicDecision.debugWeaponChange:
-                return new GClass307(bot);
+                return new DebugWeaponChangeNode(bot);
             case BotLogicDecision.debugStationaryInstantTake:
-                return new GClass306(bot);
+                return new DebugStationaryInstantNode(bot);
             case BotLogicDecision.debugRunToCloseCover:
-                return new GClass254(bot);
+                return new DebugRunToCloseCoverNode(bot);
             case BotLogicDecision.debugZigZagRunNode:
-                return new GClass257(bot);
+                return new DebugZigZagRunNode(bot);
             case BotLogicDecision.debugMeds:
-                return new GClass298(bot);
+                return new DebugMedsNode(bot);
             case BotLogicDecision.debugtacticalMove:
-                return new GClass241(bot);
+                return new DebugAttackMovingTactical(bot);
             case BotLogicDecision.debugToggleLauncher:
-                return new GClass308(bot);
+                return new DebugUnderbarrelLauncherNode(bot);
             default:
-                if (!BotActionNodesClass.HashSet_0.Contains(type))
+                if (!AIActionsList._noNodeCollectedError.Contains(type))
                 {
-                    BotActionNodesClass.HashSet_0.Add(type);
+                    AIActionsList._noNodeCollectedError.Add(type);
                     Debug.LogError("Action:" + type.ToString() + " have no node");
                 }
                 return null;
@@ -210,83 +211,83 @@ public class NodeCreator
     }
 
     // Token: 0x060014C1 RID: 5313 RVA: 0x002BDDD0 File Offset: 0x002BBFD0
-    public static Dictionary<BotLogicDecision, BotNodeAbstractClass> ActionsList(BotOwner bot)
+    public static Dictionary<BotLogicDecision, AICoreNode> ActionsList(BotOwner bot)
     {
-        Dictionary<BotLogicDecision, BotNodeAbstractClass> dictionary = new Dictionary<BotLogicDecision, BotNodeAbstractClass>();
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.holdPosition, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.goToCoverPoint, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.attackMoving, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.attackMovingWithSuppress, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.shootFromPlace, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.simplePatrol, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.followerPatrol, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.lay, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.plantMine, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.crawl, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.moveStealthy, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.attackMovingFlank, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.teleportToCover, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.runToCover, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.goToEnemy, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.runToEnemy, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.runToStationary, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.suppressStationary, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.shootFromStationary, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.dogFight, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.search, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.shootFromCover, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.deactivateMine, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.runAwayGrenade, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.runAwayBTR, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.runToEnemyZigZag, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.shootToSmoke, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.suppressFire, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.followPlayer, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.heal, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.repairMalfunction, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.goToPoint, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.goToPointTactical, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.axeTarget, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.oneMeleeAttack, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.grenadeSuicide, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.warnPlayer, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.doorOpen, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.panicSitting, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.healStimulators, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.healAnotherTarget, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.deadBody, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.friendlyTilt, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.eatDrink, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.watchSecondWeapon, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.gesture, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.peaceful, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.followMeRequest, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.peaceHardAim, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.peaceLook, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.suppressGrenade, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.runAndThrowGrenadeFromPlace, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.throwGrenadeFromPlace, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.alternativePatrol, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.botDropItem, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.goToLootPointNode, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.goToExfiltrationPointNode, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.botTakeItem, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.flashed, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.standBy, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.turnAwayLight, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.leaveMap, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.runToCoverZigZag, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.summon, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.khorovodChristmasEvent, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.doGiftChristmasEvent, bot);
-        BotActionNodesClass.smethod_0(dictionary, BotLogicDecision.goToCoverPointTactical, bot);
+        Dictionary<BotLogicDecision, AICoreNode> dictionary = new Dictionary<BotLogicDecision, AICoreNode>();
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.holdPosition, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.goToCoverPoint, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.attackMoving, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.attackMovingWithSuppress, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.shootFromPlace, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.simplePatrol, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.followerPatrol, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.lay, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.plantMine, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.crawl, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.moveStealthy, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.attackMovingFlank, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.teleportToCover, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.runToCover, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.goToEnemy, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.runToEnemy, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.runToStationary, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.suppressStationary, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.shootFromStationary, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.dogFight, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.search, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.shootFromCover, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.deactivateMine, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.runAwayGrenade, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.runAwayBTR, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.runToEnemyZigZag, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.shootToSmoke, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.suppressFire, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.followPlayer, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.heal, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.repairMalfunction, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.goToPoint, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.goToPointTactical, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.axeTarget, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.oneMeleeAttack, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.grenadeSuicide, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.warnPlayer, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.doorOpen, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.panicSitting, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.healStimulators, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.healAnotherTarget, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.deadBody, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.friendlyTilt, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.eatDrink, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.watchSecondWeapon, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.gesture, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.peaceful, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.followMeRequest, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.peaceHardAim, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.peaceLook, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.suppressGrenade, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.runAndThrowGrenadeFromPlace, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.throwGrenadeFromPlace, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.alternativePatrol, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.botDropItem, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.goToLootPointNode, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.goToExfiltrationPointNode, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.botTakeItem, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.flashed, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.standBy, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.turnAwayLight, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.leaveMap, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.runToCoverZigZag, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.summon, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.khorovodChristmasEvent, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.doGiftChristmasEvent, bot);
+        AIActionsList.AddNodeTo(dictionary, BotLogicDecision.goToCoverPointTactical, bot);
         return dictionary;
     }
 
     // Token: 0x060014C2 RID: 5314 RVA: 0x00183BCB File Offset: 0x00181DCB
-    public static void smethod_0(Dictionary<BotLogicDecision, BotNodeAbstractClass> dictionary, BotLogicDecision botLogicDecision, BotOwner bot)
+    public static void smethod_0(Dictionary<BotLogicDecision, AICoreNode> dictionary, BotLogicDecision botLogicDecision, BotOwner bot)
     {
-        dictionary.Add(botLogicDecision, BotActionNodesClass.CreateNode(botLogicDecision, bot));
+        dictionary.Add(botLogicDecision, AIActionsList.CreateNode(botLogicDecision, bot));
     }
 
     // Token: 0x04000FBD RID: 4029

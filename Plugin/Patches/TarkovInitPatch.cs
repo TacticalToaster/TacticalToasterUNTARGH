@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using MoreBotsAPI.Behavior.Layers;
 using TacticalToasterUNTARGH.Behavior.Layers;
+using EFT.AssetsManager;
 
 namespace TacticalToasterUNTARGH.Patches
 {

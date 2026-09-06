@@ -6,7 +6,7 @@ using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Enums;
 using SPTarkov.Server.Core.Models.Spt.Config;
 using SPTarkov.Server.Core.Models.Spt.Mod;
-using SPTarkov.Server.Core.Models.Spt.Server;
+using SPTarkov.Server.Core.Models.Spt.Tables;
 using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Services;
@@ -21,13 +21,13 @@ public class UntarSpawnController(
     JsonUtil jsonUtil,
     RandomUtil randomUtil,
     ConfigController configController,
-    DatabaseService databaseService,
+    LocationTable locationTable,
     UNTARLogger logger,
     HttpResponseUtil httpResponse)
 {
     private readonly JsonUtil _jsonUtil = jsonUtil;
     private readonly RandomUtil _randomUtil = randomUtil;
-    private readonly DatabaseService _databaseService = databaseService;
+    private readonly LocationTable _locationTable = locationTable;
     private readonly UNTARLogger _logger = logger;
     private readonly HttpResponseUtil _httpResponse = httpResponse;
     private readonly ConfigController _configController = configController;
@@ -36,15 +36,13 @@ public class UntarSpawnController(
     {
         try
         {
-            var tables = _databaseService.GetTables();
-            var locations = _databaseService.GetLocations();
             var mainConfig = _configController.ModConfig;
 
             foreach (var map in mainConfig.locations.Keys)
             {
                 _logger.Info($"Adjusting UNTAR spawns for {map}.");
 
-                if (!tables.Locations.GetDictionary().ContainsKey(locations.GetMappedKey(map)))
+                if (!_locationTable.GetDictionary().ContainsKey(_locationTable.GetMappedKey(map)))
                 {
                     _logger.Info($"No location data found for {map}. Skipping UNTAR spawn adjustment.");
                     continue;
@@ -54,7 +52,7 @@ public class UntarSpawnController(
                 var patrolConfig = mapConfig.patrol;
                 var checkpointConfig = mapConfig.checkpoint;
                 var huntConfig = mapConfig.hunt;
-                var location = locations.GetDictionary()[locations.GetMappedKey(map)].Base;
+                var location = _locationTable.GetDictionary()[_locationTable.GetMappedKey(map)].Base;
                 var spawns = location.BossLocationSpawn;
 
                 // Remove existing UNTAR spawns

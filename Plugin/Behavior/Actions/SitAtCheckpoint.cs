@@ -10,16 +10,16 @@ namespace TacticalToasterUNTARGH.Behavior.Actions
     internal class SitAtCheckpoint : CustomLogic
     {
         protected BotUntarManager UntarManager { get; private set; }
-        private GClass278 holdPosition;
-        private GClass395 baseSteeringLogic;
+        private HoldPosition holdPosition;
+        private LookAround baseSteeringLogic;
         private float sitStart = -1f;
         private float sitDuration = 0f;
 
         public SitAtCheckpoint(BotOwner botOwner) : base(botOwner)
         {
             UntarManager = botOwner.GetOrAddUntarManager();
-            holdPosition = new GClass278(BotOwner);
-            baseSteeringLogic = new GClass395();
+            holdPosition = new HoldPosition(BotOwner);
+            baseSteeringLogic = new LookAround();
         }
 
         public override void Start()
@@ -28,7 +28,7 @@ namespace TacticalToasterUNTARGH.Behavior.Actions
             sitStart = Time.time;
             sitDuration = UnityEngine.Random.Range(10f, 30f);
 
-            if (GClass856.IsTrue100(50))
+            if (MyExtensions.IsTrue100(50))
                 BotOwner.SetPose(1);
             else
                 BotOwner.SetPose(0);

@@ -6,116 +6,63 @@ namespace Prepatch.Prepatches
 {
     public static class CustomTypesPatch
     {
-        public static IEnumerable<string> TargetDLLs { get; } = new[] { "Assembly-CSharp.dll" };
+        private const int BaseBrainType = 9;
+
+        private const int RiflemanId = 1170;
+        private const int SquadLeaderId = 1171;
+        private const int MarksmanId = 1172;
+        private const int OfficerId = 1173;
+
+        private static readonly List<int> ExcludedDifficulties = new()
+        {
+            0,
+            2,
+            3
+        };
+
+        private static readonly List<int> UntarGroup = new()
+        {
+            RiflemanId,
+            SquadLeaderId,
+            MarksmanId,
+            OfficerId
+        };
+
+        public static IEnumerable<string> TargetDLLs { get; } = new[]
+        {
+            "Assembly-CSharp.dll"
+        };
 
         public static void Patch(ref AssemblyDefinition assembly)
         {
-            var untarBrains = new List<string>() { "PMC", "ExUsec" };
-            var untarLayers = new List<string>() {
-                "Request",
-                //"FightReqNull",
-                //"PeacecReqNull",
-                "KnightFight",
-                //"PtrlBirdEye",
-				"PmcBear",
-                "PmcUsec",
-                "StationaryWS",
-                "ExURequest",
-                "Utility peace"
-            };
+            RegisterBot(assembly, RiflemanId, "followeruntar", "UNTAR");
+            RegisterBot(assembly, SquadLeaderId, "bossuntarlead", "UNTAR");
+            RegisterBot(assembly, MarksmanId, "followeruntarmarksman", "UNTAR");
+            RegisterBot(assembly, OfficerId, "bossuntarofficer", "UNTAR");
 
-            int untarBrainInt = 9;//24;//9;
-
-            // rifleman
-            var untarBot = new CustomWildSpawnType(1170, "followeruntar", "UNTAR", untarBrainInt, true, true, false);
-
-            untarBot.SetCountAsBossForStatistics(false);
-            untarBot.SetShouldUseFenceNoBossAttack(false, false);
-            untarBot.SetExcludedDifficulties(new List<int> { 0, 2, 3 });
-
-            SAINSettings settings = new SAINSettings(untarBot.WildSpawnTypeValue)
-            {
-                Name = "UNTAR Follower",
-                Description = "An UNTAR grunt.",
-                Section = "UNTAR",
-                BaseBrain = "PMC",
-                BrainsToApply = untarBrains,
-                LayersToRemove = untarLayers,
-                DifficultyModifier = .5f
-            };
-
-            untarBot.SetSAINSettings(settings);
-
-            CustomWildSpawnTypeManager.RegisterWildSpawnType(untarBot, assembly);
-
-            // senior rifleman
-            untarBot = new CustomWildSpawnType(1171, "bossuntarlead", "UNTAR", untarBrainInt, true, true, false);
-
-            untarBot.SetCountAsBossForStatistics(false);
-            untarBot.SetShouldUseFenceNoBossAttack(false, false);
-            untarBot.SetExcludedDifficulties(new List<int> { 0, 2, 3 });
-
-            settings = new SAINSettings(untarBot.WildSpawnTypeValue)
-            {
-                Name = "UNTAR Squad Leader",
-                Description = "An UNTAR squad leader.",
-                Section = "UNTAR",
-                BaseBrain = "PMC",
-                BrainsToApply = untarBrains,
-                LayersToRemove = untarLayers,
-                DifficultyModifier = .66f
-            };
-
-            untarBot.SetSAINSettings(settings);
-
-            CustomWildSpawnTypeManager.RegisterWildSpawnType(untarBot, assembly);
-
-            // autorifleman
-            untarBot = new CustomWildSpawnType(1172, "followeruntarmarksman", "UNTAR", untarBrainInt, true, true, false);
-
-            untarBot.SetCountAsBossForStatistics(false);
-            untarBot.SetShouldUseFenceNoBossAttack(false, false);
-            untarBot.SetExcludedDifficulties(new List<int> { 0, 2, 3 });
-
-            settings = new SAINSettings(untarBot.WildSpawnTypeValue)
-            {
-                Name = "UNTAR Marksman",
-                Description = "An UNTAR marksman.",
-                Section = "UNTAR",
-                BaseBrain = "PMC",
-                BrainsToApply = untarBrains,
-                LayersToRemove = untarLayers,
-                DifficultyModifier = .5f
-            };
-
-            untarBot.SetSAINSettings(settings);
-
-            CustomWildSpawnTypeManager.RegisterWildSpawnType(untarBot, assembly);
-
-            // grenadier
-            untarBot = new CustomWildSpawnType(1173, "bossuntarofficer", "UNTAR", untarBrainInt, true, true, false);
-
-            untarBot.SetCountAsBossForStatistics(false);
-            untarBot.SetShouldUseFenceNoBossAttack(false, false);
-            untarBot.SetExcludedDifficulties(new List<int> { 0, 2, 3 });
-
-            settings = new SAINSettings(untarBot.WildSpawnTypeValue)
-            {
-                Name = "UNTAR Officer",
-                Description = "An UNTAR officer.",
-                Section = "UNTAR",
-                BaseBrain = "PMC",
-                BrainsToApply = untarBrains,
-                LayersToRemove = untarLayers,
-                DifficultyModifier = .7f
-            };
-
-            untarBot.SetSAINSettings(settings);
-
-            CustomWildSpawnTypeManager.RegisterWildSpawnType(untarBot, assembly);
-
-            CustomWildSpawnTypeManager.AddSuitableGroup(new List<int> { 1170, 1171, 1172, 1173 });
+            CustomWildSpawnTypeManager.AddSuitableGroup(UntarGroup);
         }
 
+        private static void RegisterBot(
+            AssemblyDefinition assembly,
+            int id,
+            string botDbKey,
+            string role)
+        {
+            var bot = new CustomWildSpawnType(
+                id,
+                botDbKey,
+                role,
+                BaseBrainType,
+                true,
+                true,
+                false);
+
+            bot.SetCountAsBossForStatistics(false);
+            bot.SetShouldUseFenceNoBossAttack(false, false);
+            bot.SetExcludedDifficulties(ExcludedDifficulties);
+
+            CustomWildSpawnTypeManager.RegisterWildSpawnType(bot, assembly);
+        }
     }
 }
