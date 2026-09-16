@@ -18,13 +18,12 @@ public record ModMetadata : IModMetadata
     public string Name { get; init; } = "UNTAR Go Home!";
     public string Author { get; init; } = "TacticalToaster";
     public List<string>? Contributors { get; init; } = new() { };
-    public SemanticVersioning.Version Version { get; init; } = new(3, 2, 1);
+    public SemanticVersioning.Version Version { get; init; } = new(3, 2, 2);
     public SemanticVersioning.Range SptVersion { get; init; } = new("~4.1.5");
     public List<string>? Incompatibilities { get; init; }
     public Dictionary<string, SemanticVersioning.Range>? ModDependencies { get; init; } = new()
     {
         { "com.morebotsapi.tacticaltoaster", new SemanticVersioning.Range(">=2.1.1") },
-        { "me.sol.sain", new SemanticVersioning.Range("~4.5.1") },
         { "com.wtt.commonlib", new SemanticVersioning.Range(">=3.0.0") }
     };
     public string? Url { get; init; }
