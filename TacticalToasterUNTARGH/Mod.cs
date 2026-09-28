@@ -63,8 +63,7 @@ public class UntarGoHomeBots(
     MoreBotsServer.Services.FactionService factionService,
     MoreBotsServer.Services.LoadoutService loadoutService,
     WTTServerCommonLib.WTTServerCommonLib commonLib,
-    IReadOnlyList<SptMod> modList,
-    UntarSpawnController untarSpawnController
+    IReadOnlyList<SptMod> modList
 ) : IOnLoad
 {
     public async Task OnLoadAsync(CancellationToken cancellationToken)
@@ -119,10 +118,21 @@ public class UntarGoHomeBots(
         // Use WTT to add locales
         await commonLib.CustomLocaleService.CreateCustomLocales(Assembly.GetExecutingAssembly());
 
-        // Add UNTAR to spawns
+        await Task.CompletedTask;
+    }
+}
+
+// Add to spawns after spawn managers such as ABPS have rebuilt the location spawn lists, using MoreBotsLoadOrder.AddSpawns.
+[Injectable(InjectionType = InjectionType.Singleton, TypePriority = MoreBotsServer.MoreBotsLoadOrder.AddSpawns)]
+public class UntarGoHomeSpawns(
+    UntarSpawnController untarSpawnController
+) : IOnLoad
+{
+    public Task OnLoadAsync(CancellationToken cancellationToken)
+    {
         untarSpawnController.AdjustAllUntarSpawns();
 
-        await Task.CompletedTask;
+        return Task.CompletedTask;
     }
 }
 
